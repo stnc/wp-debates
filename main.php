@@ -33,6 +33,8 @@ require_once (ssDebate_init_Path ."init-menu.php");
 
 require_once (ssDebate_init_Path .'c_debate-custom-type.php');
 require_once (ssDebate_init_Path .'c_debate-speaker_custom-type.php');
+require_once (ssDebate_init_Path .'c_debate-transcript_custom-type.php');
+require_once (ssDebate_init_Path .'c_debate-opinions_custom-type.php');
 
 require_once (ssDebate_init_Path . "metaBox/class.metabox-engine.php");
 

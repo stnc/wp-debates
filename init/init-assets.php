@@ -14,7 +14,7 @@ function ssDebate_script_in_admin($hook) {
 }
 
 
-if  (ssDebate_post_type()["post_type"] === 'debate' || ssDebate_post_type()["get_type"] === 'debate' ||  ssDebate_post_type()["get_type"] === 'tvs_speaker' || ssDebate_post_type()["get_type"] === 'tvs_speaker') {
+if  (ssDebate_post_type()["post_type"] === 'debate' || ssDebate_post_type()["get_type"] === 'debate' ||  ssDebate_post_type()["get_type"] === 'speaker' || ssDebate_post_type()["get_type"] === 'speaker') {
     add_action('admin_enqueue_scripts', 'ssDebate_admin_enqueue_style');
     add_action('admin_enqueue_scripts', 'ssDebate_script_in_admin');
 }

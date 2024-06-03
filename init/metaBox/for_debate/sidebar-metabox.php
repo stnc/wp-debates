@@ -44,7 +44,7 @@ function ssDebate_selected_html($post)
 		$list_location_db = explode(',', $list_location_db);
 		//print_r($list_location_db);
 		//burası custom post verisi okur --burada location ın verisi okunmuş 
-		$args = array("posts_per_page" => -1, "orderby" => "title", "order" => "asc", 'post_type' => 'tvs_speaker', 'post_status' => array('publish', 'future', 'private'));
+		$args = array("posts_per_page" => -1, "orderby" => "title", "order" => "asc", 'post_type' => 'speaker', 'post_status' => array('publish', 'future', 'private'));
 		//'post_status' => array('publish', 'pending', 'draft', 'auto-draft', 'future', 'private', 'inherit', 'trash')
 		$posts_array = get_posts($args);
 		if ($posts_array) {

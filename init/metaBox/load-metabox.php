@@ -24,7 +24,7 @@ function ssDebate_speaker_options_()
 }
 
 
-if (ssDebate_post_type()["get_type"] ==   'tvs_speaker' || ssDebate_post_type()["post_type"] == 'tvs_speaker'  ) {
+if (ssDebate_post_type()["get_type"] ==   'speaker' || ssDebate_post_type()["post_type"] == 'speaker'  ) {
 	ssDebate_speaker_options_();
 }
 

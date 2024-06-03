@@ -1,27 +1,27 @@
 <?php
 
-function ssDebate_register_speaker_type()
+function ssDebate_register_transcript_type()
 {
-    $singular = 'speaker';
-     $plural = __('Speaker', 'debateLang');
+    $singular = 'transcript';
+     $plural = __('Transcript', 'debateLang');
      $slug = str_replace(' ', '_', strtolower($singular));
     $labels = array(
         'name' => $plural,
-        'singular_name' => __('Speaker', 'debateLang'),
-        'add_new' =>__('New Speaker Add', 'debateLang'),
-        'add_new_item' => __('New Speaker Add', 'debateLang'),
+        'singular_name' => __('Transcript', 'debateLang'),
+        'add_new' =>__('New Transcript Add', 'debateLang'),
+        'add_new_item' => __('New Transcript Add', 'debateLang'),
         'edit' => __('Edit', 'debateLang'),
         'edit_item' => __('Edit', 'debateLang'),
-        'new_item' => __('New Speaker', 'debateLang'),
-        'view' => __('Show Speaker', 'debateLang'),
-        'view_item' => __('Show Speaker', 'debateLang'),
-        'search_term' =>  __('Search Speaker', 'debateLang'),
-        'parent' =>  __('Sub Speaker', 'debateLang'),
-        'not_found' => __('There are no speaker added', 'debateLang'),
+        'new_item' => __('New Transcript', 'debateLang'),
+        'view' => __('Show Transcript', 'debateLang'),
+        'view_item' => __('Show Transcript', 'debateLang'),
+        'search_term' =>  __('Search Transcript', 'debateLang'),
+        'parent' =>  __('Sub Transcript', 'debateLang'),
+        'not_found' => __('There are no transcript added', 'debateLang'),
         'not_found_in_trash' => __('Trash can empty', 'debateLang'),
     );
     $args = array(
-        'label' => 'Speaker',
+        'label' => 'Transcript',
         'labels' => $labels,
         'public' => true,
         'publicly_queryable' => true,
@@ -56,11 +56,11 @@ function ssDebate_register_speaker_type()
     register_post_type($slug, $args);
 
 }
-add_action('init', 'ssDebate_register_speaker_type');
+add_action('init', 'ssDebate_register_transcript_type');
 
 
 
-
+/*
 ///depent categories for donate 
 function ssDebate_create_cat_taxonomies()
 {
@@ -95,3 +95,4 @@ add_action('init', 'ssDebate_create_cat_taxonomies', 0);
 
 
 
+*/

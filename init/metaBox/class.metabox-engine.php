@@ -165,6 +165,8 @@ class ssSytemMetaboxEngine
               <input type="checkbox" value="on"  ' . $this->post_options_checked($values['name']) . '   class="' . $values['class'] . '" style="' . $values['style'] . '"  name="' . $values['name'] . '" id="' . $values['name'] . '"/>
                ' . $this->post_options_description($values['description']) . '</li>';
 					break;
+
+					
 				case 'gmap':
 					echo '<li class="' . $values['class_li'] . '" id="' . $values['name'] . '_li"><label for="' . $values['name'] . '">' . $values['title'] . '</label>
                  <textarea name="' . $values['name'] . '" class="' . $values['class'] . '" style="' . $values['style'] . '"  id="' . $values['name'] . '" cols="40" rows="6" >' . $this->get_meta($values['name']) . '</textarea>

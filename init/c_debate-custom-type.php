@@ -2,7 +2,7 @@
 function ssDebate_register_debate_type()
 {
     $singular = 'debate';
-    $plural = __('Debate', 'debateLang');
+    $plural = __('TVS Debate', 'debateLang');
     $slug = str_replace(' ', '_', strtolower($singular));
     $labels = array(
         'name' => $plural,

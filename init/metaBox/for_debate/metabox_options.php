@@ -15,8 +15,8 @@ $tvs_wp_debate_OptionsPageSetting = array(
 	'fields' => array(
 
 		array(
-			'name' => $tvs_wp_debate_prefix_debate . 'name',
-			'title' => __('Debate Name', 'debateLang'),
+			'name' => $tvs_wp_debate_prefix_debate . 'broadcast_date',
+			'title' => __('broadcast date', 'debateLang'),
 			'type' => 'text',
 			'description' => '',
 			'style' => '',
@@ -25,8 +25,8 @@ $tvs_wp_debate_OptionsPageSetting = array(
 		),
 
 		array(
-			'name' => $tvs_wp_debate_prefix_debate . 'code',
-			'title' => __('Debate Code', 'debateLang'),
+			'name' => $tvs_wp_debate_prefix_debate . 'venue',
+			'title' => __('venue', 'debateLang'),
 			'type' => 'text',
 			'description' => '',
 			'style' => '',
@@ -34,55 +34,55 @@ $tvs_wp_debate_OptionsPageSetting = array(
 			'class_li' => '',
 		),
 
-		array(
-			'name' => $tvs_wp_debate_prefix_debate . 'phone',
-			'title' => __('Phone', 'debateLang'),
-			'type' => 'text',
-			'description' => '',
-			'style' => '',
-			'class' => '',
-			'class_li' => '',
-		),
+		// array(
+		// 	'name' => $tvs_wp_debate_prefix_debate . 'phone',
+		// 	'title' => __('Phone', 'debateLang'),
+		// 	'type' => 'text',
+		// 	'description' => '',
+		// 	'style' => '',
+		// 	'class' => '',
+		// 	'class_li' => '',
+		// ),
 	
-		array(
-			'name' => $tvs_wp_debate_prefix_debate . 'adress',
-			'title' => __('Adress', 'debateLang'),
-			'type' => 'textarea',
-			'description' => '',
-			'style' => '',
-			'class' => '',
-			'class_li' => '',
-		),
+		// array(
+		// 	'name' => $tvs_wp_debate_prefix_debate . 'adress',
+		// 	'title' => __('Adress', 'debateLang'),
+		// 	'type' => 'textarea',
+		// 	'description' => '',
+		// 	'style' => '',
+		// 	'class' => '',
+		// 	'class_li' => '',
+		// ),
 
-		array(
-			'name' => $tvs_wp_debate_prefix_debate . 'google_map',
-			'title' => __('Google Map', 'debateLang'),
-			'type' => 'textarea',
-			'description' => '',
-			'style' => '',
-			'class' => '',
-			'class_li' => '',
-		),
+		// array(
+		// 	'name' => $tvs_wp_debate_prefix_debate . 'google_map',
+		// 	'title' => __('Google Map', 'debateLang'),
+		// 	'type' => 'textarea',
+		// 	'description' => '',
+		// 	'style' => '',
+		// 	'class' => '',
+		// 	'class_li' => '',
+		// ),
 
-		array(
-			'name' => $tvs_wp_debate_prefix_debate . 'donate_form_shortcode',
-			'title' => __('Donate Form Shortcode', 'debateLang'),
-			'type' => 'textarea',
-			'description' => '',
-			'style' => '',
-			'class' => '',
-			'class_li' => '',
-		),
+		// array(
+		// 	'name' => $tvs_wp_debate_prefix_debate . 'donate_form_shortcode',
+		// 	'title' => __('Donate Form Shortcode', 'debateLang'),
+		// 	'type' => 'textarea',
+		// 	'description' => '',
+		// 	'style' => '',
+		// 	'class' => '',
+		// 	'class_li' => '',
+		// ),
 
-		array(
-			'name' => $tvs_wp_debate_prefix_debate . 'wp_form_shortcode',
-			'title' => __('Summer Camp Form Shortcode', 'debateLang'),
-			'type' => 'textarea',
-			'description' => '',
-			'style' => '',
-			'class' => '',
-			'class_li' => '',
-		),
+		// array(
+		// 	'name' => $tvs_wp_debate_prefix_debate . 'wp_form_shortcode',
+		// 	'title' => __('Summer Camp Form Shortcode', 'debateLang'),
+		// 	'type' => 'textarea',
+		// 	'description' => '',
+		// 	'style' => '',
+		// 	'class' => '',
+		// 	'class_li' => '',
+		// ),
 
 
 		// array(
@@ -119,7 +119,7 @@ $tvs_wp_debate_OptionsPageSetting = array(
 		// ),
 	
 
-				// array(
+		// 		array(
 		// 	'name' => 'page_header_type_info',
 		// 	'title' => __('bla bla bl
 		// 	. <br> bla bla bla', 'debateLang'),
@@ -131,22 +131,35 @@ $tvs_wp_debate_OptionsPageSetting = array(
 		// 	'extra' => '',
 		// ),
 
-		/////-----------------------------
-		// array(
-		// 	'name' => $tvs_wp_debate_prefix_debate . 'gender',
-		// 	'title' => __('Gender of doctor', 'debateLang'),
-		// 	'type' => 'select',
-		// 	'description' => __("Select gender", 'debateLang'),
-		// 	'style' => '',
-		// 	'class' => '',
-		// 	'class_li' => '',
-		// 	'options' => array(
-		// 		'male' => __('Male', 'debateLang'),
-		// 		'female' => __('Female', 'debateLang'),
-		// 	)
-		// ),
+		///-----------------------------
+		array(
+			'name' => $tvs_wp_debate_prefix_debate . 'gender',
+			'title' => __('Gender of doctor', 'debateLang'),
+			'type' => 'select',
+			'description' => __("Select gender", 'debateLang'),
+			'style' => '',
+			'class' => '',
+			'class_li' => '',
+			'options' => array(
+				'male' => __('Male', 'debateLang'),
+				'female' => __('Female', 'debateLang'),
+			)
+		),
 
-	
+			///-----------------------------
+			array(
+				'name' => $tvs_wp_debate_prefix_debate . 'gender',
+				'title' => __('Gender of doctor', 'debateLang'),
+				'type' => 'select',
+				'description' => __("Select gender", 'debateLang'),
+				'style' => '',
+				'class' => '',
+				'class_li' => '',
+				'options' => array(
+					'male' => __('Male', 'debateLang'),
+					'female' => __('Female', 'debateLang'),
+				)
+			),
 		// array(
 		// 	'name' => $tvs_wp_debate_prefix_debate . 'gal',
 		// 	'title' => __('gal', 'debateLang'),

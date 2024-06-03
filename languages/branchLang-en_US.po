@@ -1,0 +1,126 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Build\n"
+"POT-Creation-Date: 2023-07-21 21:41-0600\n"
+"PO-Revision-Date: 2024-04-06 18:59-0600\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.3.2\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-KeywordsList: _e;__;esc_html_e\n"
+"X-Poedit-SearchPath-0: .\n"
+
+msgid "Debate"
+msgstr "Tvs Debate"
+
+msgid "Speaker"
+msgstr "Tvs Speaker"
+
+msgid "Donate"
+msgstr "Tvs Donate Page"
+
+msgid "New Debate Add"
+msgstr ""
+
+msgid "Debate Edit"
+msgstr ""
+
+msgid "About"
+msgstr ""
+
+msgid "Info"
+msgstr ""
+
+msgid "Show Debate"
+msgstr ""
+
+msgid "Debate Search"
+msgstr ""
+
+msgid "Sub Debate"
+msgstr ""
+
+msgid "There are no debatees added"
+msgstr ""
+
+msgid "New Speaker Add"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "New Speaker"
+msgstr ""
+
+msgid "Show Speaker"
+msgstr ""
+
+msgid "Search Speaker"
+msgstr ""
+
+msgid "Sub Speaker"
+msgstr ""
+
+msgid "Trash can empty"
+msgstr ""
+
+msgid "Categories"
+msgstr ""
+
+msgid "Add New Category"
+msgstr ""
+
+msgid "Search Category"
+msgstr ""
+
+msgid "Popular Category"
+msgstr ""
+
+msgid "All Categories"
+msgstr ""
+
+msgid "Sub Categories"
+msgstr ""
+
+msgid "Category Edit"
+msgstr ""
+
+msgid "New Donate Page"
+msgstr ""
+
+msgid "Show Donate Page"
+msgstr ""
+
+msgid "Search Donate Page"
+msgstr ""
+
+msgid "Sub Donate Page"
+msgstr ""
+
+msgid "There are no Speaker added"
+msgstr ""
+
+msgid "Donate Categories"
+msgstr ""
+
+msgid "New Donate Category"
+msgstr ""
+
+msgid "Donate Search Category"
+msgstr ""
+
+msgid "Donate Category"
+msgstr ""
+
+msgid "All Donate Categories"
+msgstr ""
+
+msgid "Sub Donate Categories"
+msgstr ""
+
+msgid "Donate Category Edit"
+msgstr ""

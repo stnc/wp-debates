@@ -1,0 +1,130 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Build\n"
+"POT-Creation-Date: 2023-07-21 21:41-0600\n"
+"PO-Revision-Date: 2024-04-06 18:46-0600\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: tr_TR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.3.2\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-KeywordsList: _e;__;esc_html_e\n"
+"X-Poedit-SearchPath-0: .\n"
+
+
+msgid "Debate"
+msgstr "Tvs Sube"
+
+msgid "Speaker"
+msgstr "Tvs Personel"
+
+msgid "Donate"
+msgstr "Tvs Bagis Sayfasi"
+
+
+msgid "New Debate Add"
+msgstr "Yeni Şube Ekleme"
+
+
+msgid "Debate Edit"
+msgstr "Şube Düzenle"
+
+msgid "About"
+msgstr "Hakkinda"
+
+msgid "Info"
+msgstr "Bilgilendirme"
+
+msgid "Show Debate"
+msgstr "Şubeyi Goster"
+
+msgid "Debate Search"
+msgstr "Şube Ara"
+
+msgid "Sub Debate"
+msgstr "Alt Şube"
+
+msgid "There are no debatees added"
+msgstr "Şube eklenmedi"
+
+msgid "New Speaker Add"
+msgstr "Yeni Personel Ekle"
+
+msgid "Edit"
+msgstr "Duzenle"
+
+msgid "New Speaker"
+msgstr "Yeni Personel"
+
+msgid "Show Speaker"
+msgstr "Personeli Goster"
+
+msgid "Search Speaker"
+msgstr "Personel Ara"
+
+msgid "Sub Speaker"
+msgstr "Alt Personel"
+
+msgid "Trash can empty"
+msgstr "Cop Kutusu Bos"
+
+msgid "Categories"
+msgstr "Kategoriler"
+
+msgid "Add New Category"
+msgstr "Yeni Kategori Ekle"
+
+msgid "Search Category"
+msgstr "Kategori Ara"
+
+msgid "Popular Category"
+msgstr "Poupler Kategoriler"
+
+msgid "All Categories"
+msgstr "Tum Kategoriler"
+
+msgid "Sub Categories"
+msgstr "Alt KAtegoriler"
+
+msgid "Category Edit"
+msgstr "Kategori Duzenle"
+
+msgid "New Donate Page"
+msgstr "Yeni Bagis"
+
+msgid "Show Donate Page"
+msgstr "Bağış Sayfasını Göster"
+
+msgid "Search Donate Page"
+msgstr "Ara"
+
+msgid "Sub Donate Page"
+msgstr "Alt Bağış Sayfasi"
+
+msgid "There are no donate added"
+msgstr "Bağış eklenmedi"
+
+msgid "Donate Categories"
+msgstr "Bağış Katgorileri"
+
+msgid "New Donate Category"
+msgstr "Yeni Bağış Kategorisi"
+
+msgid "Donate Search Category"
+msgstr "Bağış Kategorisi Ara"
+
+msgid "Donate Category"
+msgstr "Bağış Katgorisi"
+
+msgid "All Donate Categories"
+msgstr "Tum Bağış Katgorileri"
+
+msgid "Sub Donate Categories"
+msgstr "Alt Bağış Katgorileri"
+
+msgid "Donate Category Edit"
+msgstr "Bağış Kategorisi Duzenle"

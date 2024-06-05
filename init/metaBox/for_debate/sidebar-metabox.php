@@ -20,7 +20,7 @@ function ssDebate_selected_add_meta_box()
 {
 	add_meta_box(
 		'tvs_wp_debate_metabox',
-		__('Sube Sorumlusu Atama', 'debateLang'),
+		__('Speaker', 'debateLang'),
 		'ssDebate_selected_html',
 		'debate',
 		'side',
@@ -33,7 +33,7 @@ function ssDebate_selected_html($post)
 	wp_nonce_field('_speaker_selected_nonce', 'speaker_selected_nonce'); ?>
 
 	<label for="tvs_wp_debate_slide_time_metaBox">
-		<?php _e('Sube Sorumlusu Seciniz', 'debateLang'); ?>
+		<?php _e('Select Speaker', 'debateLang'); ?>
 	</label>
 	<br>
 
@@ -54,7 +54,7 @@ function ssDebate_selected_html($post)
 			}
 		}
 
-		echo '<option  value="0">'. _e("Sube Sorumlusu Seciniz", "debateLang") .'</option>';
+		echo '<option  value="0">'. _e("Select Speaker", "debateLang") .'</option>';
 		foreach ($locations as $location) {
 
 			if (in_array($location['id'], $list_location_db)) {

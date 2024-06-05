@@ -4,7 +4,7 @@ $tvs_wp_debate_prefix_debate = $tvs_wp_debate_themeName . "MB_";
 $tvs_wp_debate_OptionsPageSetting = array(
 	'name' => $tvs_wp_debate_prefix_debate . 'meta-box-page',
 	'nonce' => 'st_studio_debate',
-	'title' => __('EK Bilgiler', 'debateLang'),
+	'title' => __('Information ', 'debateLang'),
 	'page' => 'debate',
 	//'context' => 'side',
 	'context' => 'normal',
@@ -16,7 +16,7 @@ $tvs_wp_debate_OptionsPageSetting = array(
 
 		array(
 			'name' => $tvs_wp_debate_prefix_debate . 'broadcast_date',
-			'title' => __('broadcast date', 'debateLang'),
+			'title' => __('Broadcast Date', 'debateLang'),
 			'type' => 'text',
 			'description' => '',
 			'style' => '',
@@ -26,7 +26,7 @@ $tvs_wp_debate_OptionsPageSetting = array(
 
 		array(
 			'name' => $tvs_wp_debate_prefix_debate . 'venue',
-			'title' => __('venue', 'debateLang'),
+			'title' => __('Venue', 'debateLang'),
 			'type' => 'text',
 			'description' => '',
 			'style' => '',
@@ -146,20 +146,7 @@ $tvs_wp_debate_OptionsPageSetting = array(
 			)
 		),
 
-			///-----------------------------
-			array(
-				'name' => $tvs_wp_debate_prefix_debate . 'gender',
-				'title' => __('Gender of doctor', 'debateLang'),
-				'type' => 'select',
-				'description' => __("Select gender", 'debateLang'),
-				'style' => '',
-				'class' => '',
-				'class_li' => '',
-				'options' => array(
-					'male' => __('Male', 'debateLang'),
-					'female' => __('Female', 'debateLang'),
-				)
-			),
+
 		// array(
 		// 	'name' => $tvs_wp_debate_prefix_debate . 'gal',
 		// 	'title' => __('gal', 'debateLang'),

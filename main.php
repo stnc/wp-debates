@@ -3,7 +3,7 @@
  * Plugin Name: Tvs Debates
  * Author: Tvs Debate Teams
  * Text-domain: wp-single-system
- * Version: 3.0.0
+ * Version: 1.0.0
  * Description: Tvs Debates Plugin  
  * *License: GPLv2 or later
  * *License URI: https://www.gnu.org/licenses/gpl-2.0.html

@@ -4,7 +4,7 @@
 
 
 
-function ssDebate_about_page()
+function tvsDebate_about_page()
 {
 
 

@@ -1,8 +1,8 @@
 <?php 
-$ssDebate_post_themeName = 'tvs_post_event';//for include data
-$ssDebate_prefix = $ssDebate_post_themeName . "_metabox_";
-$ssDebate_OptionsPageSetting = array(
-	'name' => $ssDebate_prefix . 'meta-box-page',
+$tvsDebate_post_themeName = 'tvs_post_event';//for include data
+$tvsDebate_prefix = $tvsDebate_post_themeName . "_metabox_";
+$tvsDebate_OptionsPageSetting = array(
+	'name' => $tvsDebate_prefix . 'meta-box-page',
 	'nonce' => 'st_studio_post',
 	'title' => __('EK Bilgiler', 'debateLang'),
 	'page' => 'post',
@@ -14,7 +14,7 @@ $ssDebate_OptionsPageSetting = array(
 	'title_h2' => true,
 	'fields' => array(
 		array(
-			'name' => $ssDebate_prefix . 'time',
+			'name' => $tvsDebate_prefix . 'time',
 			'title' => __('Event Time', 'debateLang'),
 			'type' => 'text',
 			'description' => '',
@@ -24,7 +24,7 @@ $ssDebate_OptionsPageSetting = array(
 		),
 
 		array(
-			'name' => $ssDebate_prefix . 'page_view',
+			'name' => $tvsDebate_prefix . 'page_view',
 			'title' => __('Page View', 'debateLang'),
 			'type' => 'text',
 			'description' => '',

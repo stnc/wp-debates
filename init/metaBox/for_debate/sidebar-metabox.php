@@ -1,121 +1,161 @@
 <?php
-
-if (ssDebate_post_type()["post_type"] === 'debate' || ssDebate_post_type()["get_type"] === 'debate') {
-	if (is_admin()) {
-		add_action('load-post.php', 'ssDebate_debate_init_metabox');
-		add_action('load-post-new.php', 'ssDebate_debate_init_metabox');
-	}
+if (tvsDebate_post_type() ["post_type"] === "debate" || tvsDebate_post_type() ["get_type"] === "debate") {
+    if (is_admin()) {
+        add_action("load-post.php", "tvsDebate_debate_init_metabox");
+        add_action("load-post-new.php", "tvsDebate_debate_init_metabox");
+    }
 }
-
 /*register metabox */
-function ssDebate_debate_init_metabox()
-{
-	// add meta box
-	add_action('add_meta_boxes', 'ssDebate_selected_add_meta_box');
-	// metabox save
-	add_action('save_post', 'ssDebate_selected_save');
+function tvsDebate_debate_init_metabox() {
+    // add meta box
+    add_action("add_meta_boxes", "tvsDebate_selected_add_meta_box");
+    // metabox save
+    add_action("save_post", "tvsDebate_selected_save");
 }
-
-function ssDebate_selected_add_meta_box()
-{
-	add_meta_box(
-		'tvs_wp_debate_metabox',
-		__('Speaker', 'debateLang'),
-		'ssDebate_selected_html',
-		'debate',
-		'side',
-		'default'
-	);
+function tvsDebate_selected_add_meta_box() {
+    add_meta_box("tvs_debate_metabox", __("Speaker", "debateLang"), "tvsDebate_selected_html", "debate", "normal", // normal  side  advanced
+    "default");
 }
+function tvsDebate_selected_html($post) {
+    wp_nonce_field("_speaker_selected_nonce", "speaker_selected_nonce"); 
 
-function ssDebate_selected_html($post)
-{
-	wp_nonce_field('_speaker_selected_nonce', 'speaker_selected_nonce'); ?>
+?>
 
-	<label for="tvs_wp_debate_slide_time_metaBox">
-		<?php _e('Select Speaker', 'debateLang'); ?>
-	</label>
-	<br>
+<div id='speakersList'>
+    <table class='speakersEditor'>
+        <tr>
+            <th style="color:red">Select Speaker  </th>
+            <th style="color:blue"> Introduction  </th>
+            <th style="color:orange"> Opinions</th>
+            <th></th>
+        </tr>
+        <tbody data-bind="foreach: speakers">
+            <tr>
+                <td>
+                    <select name="speaker" data-bind='value: speaker' id="speaker">
+                        <?php
+						$args = ["posts_per_page" => - 1, "orderby" => "title", "order" => "asc", "post_type" => "speaker", "post_status" => ["publish", "future", "private"], ];
+						//'post_status' => array('publish', 'pending', 'draft', 'auto-draft', 'future', 'private', 'inherit', 'trash')
+						$posts_array = get_posts($args);
+						if ($posts_array) {
+							foreach ($posts_array as $key => $location) {
+								$locations[$key]["id"] = $location->ID;
+								$locations[$key]["title"] = $location->post_title;
+							}
+						}
+						// echo '<option  value="0">' . _e("Select Speaker", "debateLang") . "</option>";
+						foreach ($locations as $location) {
+					
+								$selected = "";
+								echo "<option " . $selected . ' value="' . $location["id"] . ' ">' . $location["title"] . "</option>";
+							
+						}
+						?>
+                    </select>
 
-	<select name="tvs_wp_debate_slide_time_metaBox[]" id="tvs_wp_debate_slide_time_metaBox">
-		<?php
-		//https://developer.wordpress.org/reference/functions/query_posts/
-		$list_location_db = ssDebate_selected_get_meta_simple('tvs_wp_debate_slide_time_metaBox');
-		$list_location_db = explode(',', $list_location_db);
-		//print_r($list_location_db);
-		//burası custom post verisi okur --burada location ın verisi okunmuş 
-		$args = array("posts_per_page" => -1, "orderby" => "title", "order" => "asc", 'post_type' => 'speaker', 'post_status' => array('publish', 'future', 'private'));
-		//'post_status' => array('publish', 'pending', 'draft', 'auto-draft', 'future', 'private', 'inherit', 'trash')
-		$posts_array = get_posts($args);
-		if ($posts_array) {
-			foreach ($posts_array as $key => $location) {
-				$locations[$key]["id"] = $location->ID;
-				$locations[$key]["title"] = $location->post_title;
-			}
-		}
+					
+                </td>
 
-		echo '<option  value="0">'. _e("Select Speaker", "debateLang") .'</option>';
-		foreach ($locations as $location) {
+                <td>
+                    <input class="form-control" id="introduction" data-bind='value: introduction' type="text">
+                </td>
 
-			if (in_array($location['id'], $list_location_db)) {
-				$selected = "selected";
-				echo '<option ' . $selected . ' value="' . $location['id'] . ' ">' . $location['title'] . '</option>';
+                <td>
+                    <select name="opinionsStatus" data-bind='value: opinionsStatus' id="opinionsStatus">
+                        <option value="FOR">FOR</option>
+                        <option value="AGAINST">AGAINST</option>
+                    </select>
+                </td>
 
-			} else {
-				$selected = "";
-				echo '<option ' . $selected . ' value="' . $location['id'] . ' ">' . $location['title'] . '</option>';
+                <td>
+                    <a href='#' data-bind='click: $root.removeSpeaker'>Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button id="addSpeakerEvent" data-bind='click: addSpeaker'>New Speaker Add</button>
+    <button style="display: block" id="SaveJson" data-bind='click: save2, enable: speakers().length > 0'>Save to
+        JSON</button>
+    <textarea name="tvsDebateMB_selectSpeakerData[]" style="display: block;" data-bind='value: lastSavedJson' rows='5'
+        cols='60'> </textarea>
+</div>
 
-			}
-		}
-		?>
-	</select>
-	<?php
+
+
+
+https://stackoverflow.com/questions/14291970/selecting-a-nested-object-based-on-nested-dropdowns-with-knockoutjs
+
+
+https://stackoverflow.com/questions/14673702/selected-value-in-select-statement-using-options-in-knockout-js
+
+https://stackoverflow.com/questions/38193457/getting-selected-value-from-dropdown-list-in-knockout-js
+
+
+
+<script type="text/javascript">
+jQuery("#publish").click(function() {
+    jQuery("#SaveJson").click();
+});
+
+
+var speakersModel = function(speakers) {
+    var self = this;
+    self.speakers = ko.observableArray(ko.utils.arrayMap(speakers, function(speaker) {
+        return {
+            speaker: speaker.speaker,
+            introduction: speaker.introduction,
+            opinionsStatus: speaker.opinionsStatus
+        };
+    }));
+
+    self.addSpeaker = function() {
+        self.speakers.push({
+            speaker: "erhan",
+            introduction: "",
+            opinionsStatus: "",
+
+        });
+    };
+
+    self.removeSpeaker = function(speaker) {
+        self.speakers.remove(speaker);
+    };
+
+
+
+
+    self.save2 = function() {
+        self.lastSavedJson(JSON.stringify(ko.toJS(self.speakers), null, 2));
+    };
+
+    self.lastSavedJson = ko.observable("")
+};
+
+ko.applyBindings(new speakersModel());
+</script>
+
+
+<?php
 }
-
 /***SIDEBAR Speaker select METABOX (ONLY debate )  ****/
-
-function ssDebate_selected_get_meta_simple($value)
-{
-	global $post;
-	return get_post_meta($post->ID, $value, true);
+function tvsDebate_selected_get_meta_simple($value) {
+    global $post;
+    return get_post_meta($post->ID, $value, true);
 }
-
-
-
-
-function ssDebate_selected_save($post_id)
-{
-	if (wp_is_post_autosave($post_id)) {
-		return;
-	}
-	// Check if not a revision.
-	if (wp_is_post_revision($post_id)) {
-		return;
-	}
-	// Stop the script when doing autosave
-	if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-		return $post_id;
-	}
-
-
-	// //services save
-	// if (isset($_POST['tvs_wp_debate_DrAndDep_program_and_services'])) {
-	// 	foreach ($_POST['tvs_wp_debate_DrAndDep_program_and_services'] as $selectedOption) {
-	// 		$selectedOptionlist[] = $selectedOption;
-	// 	}
-	// 	$selectedOptionlist = implode(",", $selectedOptionlist);
-	// 	update_post_meta($post_id, 'tvs_wp_debate_DrAndDep_program_and_services', sanitize_text_field($selectedOptionlist));
-	// }
-
-
-
-	
-	if (isset ($_POST['tvs_wp_debate_slide_time_metaBox'])) {
-
-		foreach ($_POST['tvs_wp_debate_slide_time_metaBox'] as $selectedOption_locations) {
-			$selectedOptionlist_locations[] = $selectedOption_locations;
-		}
-		$selectedOptionlist_locations = implode(",", $selectedOptionlist_locations);
-		update_post_meta($post_id, 'tvs_wp_debate_slide_time_metaBox', sanitize_text_field($selectedOptionlist_locations));
-	}
+function tvsDebate_selected_save($post_id) {
+    if (wp_is_post_autosave($post_id)) {
+        return;
+    }
+    // Check if not a revision.
+    if (wp_is_post_revision($post_id)) {
+        return;
+    }
+    // Stop the script when doing autosave
+    if (defined("DOING_AUTOSAVE") && DOING_AUTOSAVE) {
+        return $post_id;
+    }
+    if (isset($_POST["tvsDebateMB_selectSpeakerData"])) {
+        $selectedOptionlist_locations = implode(",", $_POST["tvsDebateMB_selectSpeakerData"]);
+        update_post_meta($post_id, "tvsDebateMB_selectSpeakerData", sanitize_text_field($selectedOptionlist_locations));
+    }
 }

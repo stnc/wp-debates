@@ -1,6 +1,6 @@
 <?php
 
-function ssDebate_register_speaker_type()
+function tvsDebate_register_speaker_type()
 {
     $singular = 'speaker';
      $plural = __('Speaker', 'debateLang');
@@ -56,41 +56,7 @@ function ssDebate_register_speaker_type()
     register_post_type($slug, $args);
 
 }
-add_action('init', 'ssDebate_register_speaker_type');
-
-
-
-
-///depent categories for donate 
-function ssDebate_create_cat_taxonomies()
-{
-    // Add new taxonomy, make it hierarchical (like categories)
-    $labels = array(
-        'name' => __( 'Categories', 'debateLang' ) ,
-        'singular_name' => __('Categories', 'debateLang'),
-        'add_new_item' =>  __('Add New Category', 'debateLang'),
-        'search_items' =>__('Search Category', 'debateLang'),
-        'popular_items' => __('Popular Category', 'debateLang'),
-        'all_items' => __('All Categories', 'debateLang'),
-        'parent_item' => __('Sub Categories', 'debateLang'),
-        'parent_item_colon' => __('Sub Categories', 'debateLang'),
-        'edit_item' => __('Category Edit', 'debateLang'),
-        'update_item' => __('Category Edit', 'debateLang'),
-        'new_item_name' => __('New Category', 'debateLang'),
-    );
-    
-    register_taxonomy('tvs_debate_cat', array("debate","speaker"), array(
-        'hierarchical' => true,
-        'labels' => $labels,
-        'show_ui' => true,
-        'query_var' => true,
-        'with_front' => true,
-        'show_in_menu' => "edit.php?post_type=debate",
-        'rewrite' => array('slug' => 'tvs_debate_cat'),
-    ));
-}
-
-add_action('init', 'ssDebate_create_cat_taxonomies', 0);
+add_action('init', 'tvsDebate_register_speaker_type');
 
 
 

@@ -11,12 +11,12 @@ class ssSytemMetaboxEngine
 	private $fields;
 	private $current_id;
 	private $SaveMethodSingle;
-	private $ssDebate_meta_key_debate = 'ss-setting'; // TODO : changes name 
+	private $tvsDebate_meta_key_debate = 'ss-setting'; // TODO : changes name 
 
-	public function __construct($fields, $ssDebate_meta_key_debate, $SaveMethodSingle = false)
+	public function __construct($fields, $tvsDebate_meta_key_debate, $SaveMethodSingle = false)
 	{
 
-		$this->meta_key = $ssDebate_meta_key_debate;
+		$this->meta_key = $tvsDebate_meta_key_debate;
 		$this->SaveMethodSingle = $SaveMethodSingle;
 
 		if (is_admin()) {

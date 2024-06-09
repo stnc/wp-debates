@@ -1,31 +1,31 @@
 <?php 
 //--------------debate-------------
-function ssDebate_debate_options_()
+function tvsDebate_debate_options_()
 {
 	include('for_debate/metabox_options.php');
-	$ssDebate_debate_options['0'] = $tvs_wp_debate_OptionsPageSetting;
-	 new ssSytemMetaboxEngine($ssDebate_debate_options, 'tvs_wp_debate-Setting', true);
+	$tvsDebate_debate_options['0'] = $tvs_debate_OptionsPageSetting;
+	 new ssSytemMetaboxEngine($tvsDebate_debate_options, 'tvs_debate-setting', true);
 }
 
 
-if (ssDebate_post_type()["get_type"] == 'debate' || ssDebate_post_type()["post_type"] == 'debate' ) {
-	ssDebate_debate_options_();
+if (tvsDebate_post_type()["get_type"] == 'debate' || tvsDebate_post_type()["post_type"] == 'debate' ) {
+	tvsDebate_debate_options_();
 }
 
 include ("for_debate/sidebar-metabox.php");
 
 //--------------Speaker-------------
 
-function ssDebate_speaker_options_()
+function tvsDebate_speaker_options_()
 {
 	include('for_speaker/metabox_options.php');
-	$ssDebate_debate_options['0'] = $tvs_wp_speaker_OptionsPageSetting;
-	new ssSytemMetaboxEngine($ssDebate_debate_options, 'tvs_wp_speaker-Setting', true);
+	$tvsDebate_debate_options['0'] = $tvs_speaker_OptionsPageSetting;
+	new ssSytemMetaboxEngine($tvsDebate_debate_options, 'tvs_speaker-setting', true);
 }
 
 
-if (ssDebate_post_type()["get_type"] ==   'speaker' || ssDebate_post_type()["post_type"] == 'speaker'  ) {
-	ssDebate_speaker_options_();
+if (tvsDebate_post_type()["get_type"] ==   'speaker' || tvsDebate_post_type()["post_type"] == 'speaker'  ) {
+	tvsDebate_speaker_options_();
 }
 
 
@@ -39,11 +39,11 @@ if (ssDebate_post_type()["get_type"] ==   'speaker' || ssDebate_post_type()["pos
 // function tvs_wp_post_options_()
 // {
 // 	include('for-post/metabox_options.php');
-// 	$ssDebate_debate_options['0'] = $ssDebate_OptionsPageSetting;
-// 	 new tvs_wp_metabox_engine($ssDebate_debate_options, 'tvs_wp_post-Setting', true);
+// 	$tvsDebate_debate_options['0'] = $tvsDebate_OptionsPageSetting;
+// 	 new tvs_wp_metabox_engine($tvsDebate_debate_options, 'tvs_wp_post-Setting', true);
 // }
 
 
-// if (ssDebate_post_type()["get_type"] ==  'post' || ssDebate_post_type()["post_type"] == 'post' ) {
+// if (tvsDebate_post_type()["get_type"] ==  'post' || tvsDebate_post_type()["post_type"] == 'post' ) {
 // 	tvs_wp_post_options_();
 // }

@@ -1,6 +1,6 @@
 <?php
 
-function ssDebate_register_opinions_type()
+function tvsDebate_register_opinions_type()
 {
     $singular = 'opinions';
      $plural = __('Opinions', 'debateLang');
@@ -56,13 +56,13 @@ function ssDebate_register_opinions_type()
     register_post_type($slug, $args);
 
 }
-add_action('init', 'ssDebate_register_opinions_type');
+add_action('init', 'tvsDebate_register_opinions_type');
 
 
 
 /*
 ///depent categories for donate 
-function ssDebate_create_cat_taxonomies()
+function tvsDebate_create_cat_taxonomies()
 {
     // Add new taxonomy, make it hierarchical (like categories)
     $labels = array(
@@ -90,7 +90,7 @@ function ssDebate_create_cat_taxonomies()
     ));
 }
 
-add_action('init', 'ssDebate_create_cat_taxonomies', 0);
+add_action('init', 'tvsDebate_create_cat_taxonomies', 0);
 
 
 

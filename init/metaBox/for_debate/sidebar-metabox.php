@@ -1,4 +1,32 @@
 <?php
+
+function  tvsDebate_PushData(){
+    $args = [
+        "posts_per_page" => - 1, 
+        "orderby" => "title", 
+        "order" => "asc", 
+        "post_type" => "speaker", 
+        "post_status" => ["publish", "future", "private"]
+     ];
+ $posts_array = get_posts($args);
+ $initialData_ = array();
+ $initialData_["introduction"]= "";
+ $initialData_["speakerlist"]= array();
+ $initialData_["opinionsStatus"]=array(); 
+ if ($posts_array) {
+     foreach ($posts_array as $key => $data) {
+          $initialData_["speakerlist"][$key]=["name" => $data->post_name,"id" => $data->ID,"selected" => false];
+     }
+ }
+ 
+$initialData_["opinionsStatus"][0] = ['id' => 1, 'name' => "FOR", 'selected' => false];
+$initialData_["opinionsStatus"][1] = ['id' => 2, 'name' => "AGAINST", 'selected' => false];
+//  print_r( $initialData_);
+//  print_r( json_encode($initialData_));
+return  json_encode($initialData_);
+}
+
+
 if (tvsDebate_post_type() ["post_type"] === "debate" || tvsDebate_post_type() ["get_type"] === "debate") {
     if (is_admin()) {
         add_action("load-post.php", "tvsDebate_debate_init_metabox");
@@ -16,6 +44,11 @@ function tvsDebate_selected_add_meta_box() {
     add_meta_box("tvs_debate_metabox", __("Speaker", "debateLang"), "tvsDebate_selected_html", "debate", "normal", // normal  side  advanced
     "default");
 }
+
+
+
+
+
 function tvsDebate_selected_html($post) {
     wp_nonce_field("_speaker_selected_nonce", "speaker_selected_nonce"); 
 
@@ -24,36 +57,22 @@ function tvsDebate_selected_html($post) {
 <div id='speakersList'>
     <table class='speakersEditor'>
         <tr>
-            <th style="color:red">Select Speaker  </th>
-            <th style="color:blue"> Introduction  </th>
+            <th style="color:red">Select Speaker </th>
+            <th style="color:blue"> Introduction </th>
             <th style="color:orange"> Opinions</th>
             <th></th>
         </tr>
         <tbody data-bind="foreach: speakers">
             <tr>
                 <td>
-                    <select name="speaker" data-bind='value: speaker' id="speaker">
-                        <?php
-						$args = ["posts_per_page" => - 1, "orderby" => "title", "order" => "asc", "post_type" => "speaker", "post_status" => ["publish", "future", "private"], ];
-						//'post_status' => array('publish', 'pending', 'draft', 'auto-draft', 'future', 'private', 'inherit', 'trash')
-						$posts_array = get_posts($args);
-						if ($posts_array) {
-							foreach ($posts_array as $key => $location) {
-								$locations[$key]["id"] = $location->ID;
-								$locations[$key]["title"] = $location->post_title;
-							}
-						}
-						// echo '<option  value="0">' . _e("Select Speaker", "debateLang") . "</option>";
-						foreach ($locations as $location) {
-					
-								$selected = "";
-								echo "<option " . $selected . ' value="' . $location["id"] . ' ">' . $location["title"] . "</option>";
-							
-						}
-						?>
+                    <select class="speakerlist"  id="speakerlist"
+                        data-bind="foreach: speakerlist,  event:{ change: $parent.permissionChanged}, checkedRadioToBool: speakerlist">
+                        <option
+                            data-bind="value: id, text: name  ,attr: { selected : (selected == false) ? selected : '' }">
+                        </option>
                     </select>
 
-					
+
                 </td>
 
                 <td>
@@ -61,9 +80,10 @@ function tvsDebate_selected_html($post) {
                 </td>
 
                 <td>
-                    <select name="opinionsStatus" data-bind='value: opinionsStatus' id="opinionsStatus">
-                        <option value="FOR">FOR</option>
-                        <option value="AGAINST">AGAINST</option>
+                    <select data-bind="foreach: opinionsStatus">
+                        <option
+                            data-bind="value: id, text: name , attr: { selected : (selected == false) ? selected : '' }">
+                        </option>
                     </select>
                 </td>
 
@@ -71,6 +91,13 @@ function tvsDebate_selected_html($post) {
                     <a href='#' data-bind='click: $root.removeSpeaker'>Delete</a>
                 </td>
             </tr>
+
+
+
+
+
+
+
         </tbody>
     </table>
     <button id="addSpeakerEvent" data-bind='click: addSpeaker'>New Speaker Add</button>
@@ -83,38 +110,61 @@ function tvsDebate_selected_html($post) {
 
 
 
-https://stackoverflow.com/questions/14291970/selecting-a-nested-object-based-on-nested-dropdowns-with-knockoutjs
-
-
-https://stackoverflow.com/questions/14673702/selected-value-in-select-statement-using-options-in-knockout-js
-
-https://stackoverflow.com/questions/38193457/getting-selected-value-from-dropdown-list-in-knockout-js
-
-
 
 <script type="text/javascript">
 jQuery("#publish").click(function() {
     jQuery("#SaveJson").click();
 });
 
+// jQuery(document).ready(function() {
+//     jQuery('.speakerlist').on('change', function() {
+      
+//         jQuery(".speakerlist :selected" ).attr('selected','selected');
+//         // jQuery(".speakerlist :selected" ).removeAttr('selected');
+//         alert (   jQuery(".speakerlist :selected").val());
+//     });
+// });
+
+ko.bindingHandlers.checkedRadioToBool = {
+    init: function(element, valueAccessor, allBindingsAccessor) {
+        var observable = valueAccessor(),
+            interceptor = ko.computed({
+                read: function() {
+                    alert(observable().toString());
+                    return observable().toString();
+                },
+                write: function(newValue) {
+                    observable(newValue === "selected");
+                },
+                owner: this
+            });
+        ko.applyBindingsToNode(element, {
+            selected: interceptor
+        });
+    }
+};
+
 
 var speakersModel = function(speakers) {
     var self = this;
+
+
+    self.speakerlist = ko.observable(true);
+
+
+
     self.speakers = ko.observableArray(ko.utils.arrayMap(speakers, function(speaker) {
         return {
-            speaker: speaker.speaker,
             introduction: speaker.introduction,
-            opinionsStatus: speaker.opinionsStatus
+            opinionsStatus: ko.observableArray(speaker.opinionsStatus),
+            speakerlist: ko.observableArray(speaker.speakerlist)
         };
     }));
 
-    self.addSpeaker = function() {
-        self.speakers.push({
-            speaker: "erhan",
-            introduction: "",
-            opinionsStatus: "",
 
-        });
+
+    self.addSpeaker = function() {
+        self.speakers.push(<?php echo tvsDebate_PushData() ?>);
     };
 
     self.removeSpeaker = function(speaker) {
@@ -122,6 +172,51 @@ var speakersModel = function(speakers) {
     };
 
 
+
+    https://jsfiddle.net/xjYcu/276/
+
+    // permissionChanged= function(obj, event){
+    //     console.log(event.target.value);
+    //     // console.log(event.target.value);
+    //     jQuery("#speakerlist").attr('selected','selected');
+    // };
+
+
+    // permissionChanged= function(element, value){
+    //     // var value = ko.utils.unwrapObservable(valueAccessor());
+    //     if (!value && element.selected)
+    //         element.selected = false;
+    //     else if (value && !element.selected)
+    //         element.selected = true;
+
+    // };
+
+    this.permissionChanged = function(obj, event) {
+        if (event.originalEvent) { //user changed
+            // alert("dd");
+            event.selected = true;
+        } else { // program changed
+        }
+    };
+
+
+    ko.bindingHandlers.checkedRadioToBool = {
+        init: function(element, valueAccessor, allBindingsAccessor) {
+            var observable = valueAccessor(),
+                interceptor = ko.computed({
+                    read: function() {
+                        return observable().toString();
+                    },
+                    write: function(newValue) {
+                        observable(newValue === "true");
+                    },
+                    owner: this
+                });
+            ko.applyBindingsToNode(element, {
+                checked: interceptor
+            });
+        }
+    };
 
 
     self.save2 = function() {
@@ -131,7 +226,83 @@ var speakersModel = function(speakers) {
     self.lastSavedJson = ko.observable("")
 };
 
-ko.applyBindings(new speakersModel());
+
+var initialData = [{
+        introduction: "Danny",
+        opinionsStatus: [{
+                id: 1,
+                name: "FOR",
+                selected: false
+            },
+            {
+                id: 2,
+                name: "AGAINST",
+                selected: true
+            }
+        ],
+        speakerlist: [{
+                id: 1,
+                name: "Apple",
+                selected: false
+            },
+            {
+                id: 55,
+                name: "Orange",
+                selected: false
+            },
+            {
+                id: 78,
+                name: "vegas",
+                selected: true
+            },
+            {
+                id: 3,
+                name: "Banana",
+                selected: false
+            }
+        ]
+    },
+    {
+        introduction: "Danny33",
+        opinionsStatus: [{
+                id: 1,
+                name: "FOR",
+                selected: true
+            },
+            {
+                id: 2,
+                name: "AGAINST",
+                selected: false
+            }
+        ],
+        speakerlist: [{
+                id: 1,
+                name: "Apple",
+                selected: false
+            },
+            {
+                id: 55,
+                name: "Orange",
+                selected: true
+            },
+            {
+                id: 78,
+                name: "vegas",
+                selected: false
+            },
+            {
+                id: 3,
+                name: "Banana",
+                selected: false
+            }
+        ]
+    }
+];
+
+
+
+
+ko.applyBindings(new speakersModel(initialData));
 </script>
 
 

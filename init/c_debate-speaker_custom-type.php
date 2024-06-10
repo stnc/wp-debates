@@ -3,7 +3,7 @@
 function tvsDebate_register_speaker_type()
 {
     $singular = 'speaker';
-     $plural = __('Speaker', 'debateLang');
+     $plural = __('Speakers', 'debateLang');
      $slug = str_replace(' ', '_', strtolower($singular));
     $labels = array(
         'name' => $plural,
@@ -21,7 +21,7 @@ function tvsDebate_register_speaker_type()
         'not_found_in_trash' => __('Trash can empty', 'debateLang'),
     );
     $args = array(
-        'label' => 'Speaker',
+        'label' => 'Speakers',
         'labels' => $labels,
         'public' => true,
         'publicly_queryable' => true,
@@ -49,7 +49,7 @@ function tvsDebate_register_speaker_type()
             'excerpt',
             'editor',
             'thumbnail',
-            'custom-fields'
+            // 'custom-fields'
         )
     );
 

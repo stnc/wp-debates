@@ -3,7 +3,7 @@
 function tvsDebate_register_transcript_type()
 {
     $singular = 'transcript';
-     $plural = __('Transcript', 'debateLang');
+     $plural = __('Transcripts', 'debateLang');
      $slug = str_replace(' ', '_', strtolower($singular));
     $labels = array(
         'name' => $plural,
@@ -21,7 +21,7 @@ function tvsDebate_register_transcript_type()
         'not_found_in_trash' => __('Trash can empty', 'debateLang'),
     );
     $args = array(
-        'label' => 'Transcript',
+        'label' => 'Transcripts',
         'labels' => $labels,
         'public' => true,
         'publicly_queryable' => true,

@@ -1,5 +1,8 @@
 <?php
+/*
+https://tatvog.wordpress.com/2016/06/22/knockout-js-binding-the-disabled-attribute-in-select-tag/
 
+*/
 function  tvsDebate_PushData(){
     $args = [
         "posts_per_page" => - 1, 
@@ -65,10 +68,9 @@ function tvsDebate_selected_html($post) {
         <tbody data-bind="foreach: speakers">
             <tr>
                 <td>
-                    <select class="speakerlist"  id="speakerlist"
-                        data-bind="foreach: speakerlist,  event:{ change: $parent.permissionChanged}, checkedRadioToBool: speakerlist">
+                    <select multiple="multiple"    data-bind="foreach: speakerlist ">
                         <option
-                            data-bind="value: id, text: name  ,attr: { selected : (selected == false) ? selected : '' }">
+                            data-bind="value: id, text: name ,attr: { selected : (selected == false) ? selected : '' }  ">
                         </option>
                     </select>
 
@@ -107,9 +109,13 @@ function tvsDebate_selected_html($post) {
         cols='60'> </textarea>
 </div>
 
+<a href="#" data-bind="click: function () {setValue(0)}">Set Value to 1</a>
 
+<button data-bind='click: save'>Submit order</button>
 
-
+<!-- <div data-bind="text: ko.toJSON($root)"></div> -->
+<textarea  style="display: block;" data-bind="text: ko.toJSON($root)" rows='5'
+        cols='60'> </textarea>
 
 <script type="text/javascript">
 jQuery("#publish").click(function() {
@@ -118,39 +124,29 @@ jQuery("#publish").click(function() {
 
 // jQuery(document).ready(function() {
 //     jQuery('.speakerlist').on('change', function() {
-      
+
 //         jQuery(".speakerlist :selected" ).attr('selected','selected');
 //         // jQuery(".speakerlist :selected" ).removeAttr('selected');
 //         alert (   jQuery(".speakerlist :selected").val());
 //     });
 // });
 
-ko.bindingHandlers.checkedRadioToBool = {
-    init: function(element, valueAccessor, allBindingsAccessor) {
-        var observable = valueAccessor(),
-            interceptor = ko.computed({
-                read: function() {
-                    alert(observable().toString());
-                    return observable().toString();
-                },
-                write: function(newValue) {
-                    observable(newValue === "selected");
-                },
-                owner: this
-            });
-        ko.applyBindingsToNode(element, {
-            selected: interceptor
-        });
-    }
-};
 
+var CartLine = function() {
+    var self = this;
+    self.category = ko.observable();
+    self.product = ko.observable();
+    self.quantity = ko.observable(1);
+
+ 
+    // Whenever the category changes, reset the product selection
+    self.category.subscribe(function() {
+        self.product(undefined);
+    });
+};
 
 var speakersModel = function(speakers) {
     var self = this;
-
-
-    self.speakerlist = ko.observable(true);
-
 
 
     self.speakers = ko.observableArray(ko.utils.arrayMap(speakers, function(speaker) {
@@ -161,6 +157,15 @@ var speakersModel = function(speakers) {
         };
     }));
 
+    self.save = function() {
+        var dataToSave = jQuery.map(self.lines(), function(line) {
+            return line.product() ? {
+                productName: line.product().name,
+                quantity: line.quantity()
+            } : undefined
+        });
+        alert("Could now send this to server: " + JSON.stringify(dataToSave));
+    };
 
 
     self.addSpeaker = function() {
@@ -173,7 +178,7 @@ var speakersModel = function(speakers) {
 
 
 
-    https://jsfiddle.net/xjYcu/276/
+    // https://jsfiddle.net/xjYcu/276/
 
     // permissionChanged= function(obj, event){
     //     console.log(event.target.value);
@@ -191,32 +196,32 @@ var speakersModel = function(speakers) {
 
     // };
 
-    this.permissionChanged = function(obj, event) {
-        if (event.originalEvent) { //user changed
-            // alert("dd");
-            event.selected = true;
-        } else { // program changed
-        }
-    };
+    // this.permissionChanged = function(obj, event) {
+    //     if (event.originalEvent) { //user changed
+    //         // alert("dd");
+    //         event.selected = true;
+    //     } else { // program changed
+    //     }
+    // };
 
 
-    ko.bindingHandlers.checkedRadioToBool = {
-        init: function(element, valueAccessor, allBindingsAccessor) {
-            var observable = valueAccessor(),
-                interceptor = ko.computed({
-                    read: function() {
-                        return observable().toString();
-                    },
-                    write: function(newValue) {
-                        observable(newValue === "true");
-                    },
-                    owner: this
-                });
-            ko.applyBindingsToNode(element, {
-                checked: interceptor
-            });
-        }
-    };
+    // ko.bindingHandlers.checkedRadioToBool = {
+    //     init: function(element, valueAccessor, allBindingsAccessor) {
+    //         var observable = valueAccessor(),
+    //             interceptor = ko.computed({
+    //                 read: function() {
+    //                     return observable().toString();
+    //                 },
+    //                 write: function(newValue) {
+    //                     observable(newValue === "true");
+    //                 },
+    //                 owner: this
+    //             });
+    //         ko.applyBindingsToNode(element, {
+    //             checked: interceptor
+    //         });
+    //     }
+    // };
 
 
     self.save2 = function() {

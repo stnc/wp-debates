@@ -1,0 +1,185 @@
+
+/**
+*** SIMPLE GRID
+*** (C) ZACH COLE 2016
+**/
+
+
+/* POSITIONING */
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.justify {
+  text-align: justify;
+}
+
+/* ==== GRID SYSTEM ==== */
+
+.stnc-container {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stnc-row {
+  position: relative;
+  width: 100%;
+}
+
+.stnc-row [class^="col"] {
+  float: left;
+  margin: 0.5rem 2%;
+  min-height: 0.125rem;
+}
+
+.stnc-col-1,
+.stnc-col-2,
+.stnc-col-3,
+.stnc-col-4,
+.stnc-col-5,
+.stnc-col-6,
+.stnc-col-7,
+.stnc-col-8,
+.stnc-col-9,
+.stnc-col-10,
+.stnc-col-11,
+.stnc-col-12 {
+  width: 96%;
+}
+
+.stnc-col-1-sm {
+  width: 4.33%;
+}
+
+.stnc-col-2-sm {
+  width: 12.66%;
+}
+
+.stnc-col-3-sm {
+  width: 21%;
+}
+
+.stnc-col-4-sm {
+  width: 29.33%;
+}
+
+.stnc-col-5-sm {
+  width: 37.66%;
+}
+
+.stnc-col-6-sm {
+  width: 46%;
+}
+
+.stnc-col-7-sm {
+  width: 54.33%;
+}
+
+.stnc-col-8-sm {
+  width: 62.66%;
+}
+
+.stnc-col-9-sm {
+  width: 71%;
+}
+
+.stnc-col-10-sm {
+  width: 79.33%;
+}
+
+.stnc-col-11-sm {
+  width: 87.66%;
+}
+
+.stnc-col-12-sm {
+  width: 96%;
+}
+
+.stnc-row::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.hidden-sm {
+  display: none;
+}
+
+@media only screen and (min-width: 33.75em) {  /* 540px */
+  .stnc-container {
+    width: 80%;
+  }
+}
+
+@media only screen and (min-width: 45em) {  /* 720px */
+  .stnc-col-1 {
+    width: 4.33%;
+  }
+
+  .stnc-col-2 {
+    width: 12.66%;
+  }
+
+  .stnc-col-3 {
+    width: 21%;
+  }
+
+  .stnc-col-4 {
+    width: 29.33%;
+  }
+
+  .stnc-col-5 {
+    width: 37.66%;
+  }
+
+  .stnc-col-6 {
+    width: 46%;
+  }
+
+  .stnc-col-7 {
+    width: 54.33%;
+  }
+
+  .stnc-col-8 {
+    width: 62.66%;
+  }
+
+  .stnc-col-9 {
+    width: 71%;
+  }
+
+  .stnc-col-10 {
+    width: 79.33%;
+  }
+
+  .stnc-col-11 {
+    width: 87.66%;
+  }
+
+  .stnc-col-12 {
+    width: 96%;
+  }
+
+  .hidden-sm {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 60em) { /* 960px */
+  .stnc-container {
+    width: 75%;
+    max-width: 60rem;
+  }
+}

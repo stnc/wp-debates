@@ -107,10 +107,10 @@ function tvsDebate_selected_html($post) {
             foreach ($speakers as $speaker) {
                 if (in_array($speaker->id, $list_speaker_db)) {
                     $selected = "selected";
-                    echo '<option ' . $selected . ' value="' .  $speaker->ID . ' ">' .$speaker->post_title . '</option>';
+                    echo '<option ' . $selected . ' value="'.  $speaker->ID . '">' .$speaker->post_title .'</option>';
                 } else {
                     $selected = "";
-                    echo '<option ' . $selected . ' value="' .  $speaker->ID . ' ">' .$speaker->post_title . '</option>';
+                    echo '<option ' . $selected . ' value="'.  $speaker->ID . '">' .$speaker->post_title .'</option>';
     
                 }
             }

@@ -82,58 +82,6 @@ function tvsDebate_selected_html($post) {
 
 ?>
 
-<div id='speakersList'>
-    <table class='speakersEditor'>
-        <tr>
-            <th style="color:red">Select Speaker </th>
-            <th style="color:blue"> Introduction </th>
-            <th style="color:orange"> Opinions</th>
-            <th></th>
-        </tr>
-        <tbody>
-            <tr>
-                <td>
-                <select>
-                <?php
-		$list_speaker_db = tvsDebate_selected_get_meta_simple('tvs_wp_debate_slide_time_metaBox');
-		$list_speaker_db = explode(',', $list_speaker_db);
-		//print_r($list_speaker_db);
-		$args = array("posts_per_page" => -1, "orderby" => "title", "order" => "asc", 'post_type' => 'speaker', 'post_status' => array('publish', 'future', 'private'));
-		$speakers = get_posts($args);
-
-        if ($speakers) {
-		// echo '<option  value="0">'. _e("Select Speaker", "debateLang") .'</option>';
-		foreach ($speakers as $speaker) {
-			if (in_array($speaker->id, $list_speaker_db)) {
-				$selected = "selected";
-				echo '<option ' . $selected . ' value="' .  $speaker->ID . ' ">' .$speaker->post_title . '</option>';
-			} else {
-				$selected = "";
-                echo '<option ' . $selected . ' value="' .  $speaker->ID . ' ">' .$speaker->post_title . '</option>';
-
-			}
-		}
-		}
-		?>
-  </select>
-
-                </td>
-
-                <td>
-                    <input class="form-control" id="introduction" data-bind='value: introduction' type="text">
-                </td>
-
-                <td>
-                    <select >
-                        <option>
-                        </option>
-                    </select>
-                </td>
-
-                <td>
-                    <a href='#' data-bind='click: $root.removeSpeaker'>Delete</a>
-                </td>
-            </tr>
 
 
 
@@ -141,14 +89,113 @@ function tvsDebate_selected_html($post) {
 
 
 
-        </tbody>
-    </table>
-    <button id="addSpeakerEvent" data-bind='click: addSpeaker'>New Speaker Add</button>
+
+
+<div id="stnc-container">
+
+
+    <div class="panel-body container-item">
+        <fieldset class="item panel panel-default" style="border: 1px solid black; padding: 10px;">
+            <!-- widgetBody -->
+            <legend style="width: auto;padding:10px;">Speaker</legend>
+            <div class="panel-body">
+
+
+
+                <div class="stnc-row">
+
+                    <div class="column">
+
+                        <div class="form-group">
+                            <label class="control-label" style="color:green" for="state_0">Select Speaker </label>
+
+                    
+
+                            <select class="form-control select2-init" name="speaker[0][state]">
+                    <?php
+                    $list_speaker_db = tvsDebate_selected_get_meta_simple('tvs_wp_debate_slide_time_metaBox');
+                    $list_speaker_db = explode(',', $list_speaker_db);
+                    //print_r($list_speaker_db);
+                    $args = array("posts_per_page" => -1, "orderby" => "title", "order" => "asc", 'post_type' => 'speaker', 'post_status' => array('publish', 'future', 'private'));
+                    $speakers = get_posts($args);
+
+                    if ($speakers) {
+                    // echo '<option  value="0">'. _e("Select Speaker", "debateLang") .'</option>';
+                    foreach ($speakers as $speaker) {
+                        if (in_array($speaker->id, $list_speaker_db)) {
+                            $selected = "selected";
+                            echo '<option ' . $selected . ' value="'.  $speaker->ID . '">'.$speaker->post_title .'</option>';
+                        } else {
+                            $selected = "";
+                            echo '<option ' . $selected . ' value="' .  $speaker->ID . '">'.$speaker->post_title .'</option>';
+
+                        }
+                    }
+                    }
+		            ?>
+                </select>
+
+
+                        </div>
+                    </div>
+
+                    <div class="column">
+                        <div class="form-group">
+                            <label class="control-label" style="color:red" for="state_0"> Opinions</label>
+
+                            <select id="state_0" class="form-control select2-init" name="speaker[0][opinions]">
+                                <option value="1" data-select2-id="2">FOR</option>
+                                <option value="2" data-select2-id="2">AGAINST</option>
+        
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="column">
+                        <div class="form-group">
+                            <label class="control-label" style="color:blue" for="full_name_0">Introduction</label>
+                            <input type="text" id="full_name_0" class="form-control" name="speaker[0][introduction]"
+                                maxlength="128" placeholder="Full Name">
+                        </div>
+                    </div>
+
+                    <div class="column">
+                        <div>
+                            <a href="javascript:void(0)"
+                                class="remove-item btn btn-sm btn-danger remove-social-media">Remove</a>
+                        </div>
+                    </div>
+
+                </div>
+
+               
+            </div>
+        </fieldset>
+    </div>
+
 
 </div>
+<hr>
+
+
+
+
+<div class="row">
+    <div class="col-sm-6">
+        <a href="javascript:;" class="pull-right btn btn-success btn-xs" id="add-more"><i class="fa fa-plus"></i>
+            Add more address</a>
+        <div class="clearfix"></div>
+    </div>
+
+ 
+</div>
+
+
+
+
 
 <!-- <div data-bind="text: ko.toJSON($root)"></div> -->
-<textarea  style="display: block;" data-bind="text: ko.toJSON($root)" rows='5' cols='60'> </textarea>
 
 <script type="text/javascript">
 jQuery("#publish").click(function() {
@@ -167,9 +214,35 @@ jQuery("#publish").click(function() {
 
 // });
 
+jQuery('a#add-more').cloneData({
+    mainContainerId: 'stnc-container', // Main container Should be ID
+    cloneContainer: 'container-item', // Which you want to clone
+    removeButtonClass: 'remove-item', // Remove button for remove cloned HTML
+    removeConfirm: true, // default true confirm before delete clone item
+    removeConfirmMessage: 'Are you sure want to delete?', // confirm delete message
+    //append: '<a href="javascript:void(0)" class="remove-item btn btn-sm btn-danger remove-social-media">Remove</a>', // Set extra HTML append to clone HTML
+    minLimit: 1, // Default 1 set minimum clone HTML required
+    maxLimit: 5, // Default unlimited or set maximum limit of clone HTML
+    defaultRender: 1,
+    init: function() {
+        console.info(':: Initialize Plugin ::');
+    },
+    beforeRender: function() {
+        console.info(':: Before rendered callback called');
+    },
+    afterRender: function() {
+        console.info(':: After rendered callback called');
+        //jQuery(".selectpicker").selectpicker('refresh');
+    },
+    afterRemove: function() {
+        console.warn(':: After remove callback called');
+    },
+    beforeRemove: function() {
+        console.warn(':: Before remove callback called');
+    }
 
+});
 </script>
-
 
 <?php
 }

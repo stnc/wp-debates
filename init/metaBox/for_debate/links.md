@@ -37,6 +37,11 @@ https://jsfiddle.net/WcFMx/
 
 # Jqwery 
 
+https://github.com/rajneeshgautam/jquery-dynamicform?tab=readme-ov-file
+
+https://jsfiddle.net/ferne97/6zjw00td/
+
+
 https://www.jqueryscript.net/form/clone-field-increment-id.html
 
 https://www.jqueryscript.net/form/replicate-manage-input-group.html
@@ -49,5 +54,7 @@ https://codepen.io/Maxim22/pen/MWWajEM
 
 
 https://www.jqueryscript.net/demo/replicate-manage-input-group/
+
+https://github.com/Brutenis/Repeater-Field-JS
 
 

@@ -4,6 +4,7 @@ https://tatvog.wordpress.com/2016/06/22/knockout-js-binding-the-disabled-attribu
 
 */
 
+
 /***SIDEBAR Speaker select METABOX (ONLY debate )  ****/
 function tvsDebate_selected_get_meta_simple($value) {
     global $post;
@@ -43,12 +44,12 @@ function  tvsDebate_PushData(){
  $initialData_["opinionsStatus"]=array(); 
  if ($posts_array) {
      foreach ($posts_array as $key => $data) {
-          $initialData_["speakerlist"][$key]=["name" => $data->post_name,"id" => $data->ID,"selected" => false];
+     $initialData_["speakerlist"][$key]=["name" => $data->post_name,"id" => $data->ID,/*"selected" => false*/];
      }
  }
  
-$initialData_["opinionsStatus"][0] = ['id' => 1, 'name' => "FOR", 'selected' => false];
-$initialData_["opinionsStatus"][1] = ['id' => 2, 'name' => "AGAINST", 'selected' => false];
+$initialData_["opinionsStatus"][0] = ['id' => 1, 'name' => "FOR", /*'selected' => false*/];
+$initialData_["opinionsStatus"][1] = ['id' => 2, 'name' => "AGAINST", /*'selected' => false*/];
 //  print_r( $initialData_);
 //  print_r( json_encode($initialData_));
 return  json_encode($initialData_);
@@ -90,32 +91,33 @@ function tvsDebate_selected_html($post) {
             <th style="color:orange"> Opinions</th>
             <th></th>
         </tr>
-        <tbody>
+        <tbody  data-bind='foreach: lines'>
             <tr>
                 <td>
-                <select>
-                <?php
-		$list_speaker_db = tvsDebate_selected_get_meta_simple('tvs_wp_debate_slide_time_metaBox');
-		$list_speaker_db = explode(',', $list_speaker_db);
-		//print_r($list_speaker_db);
-		$args = array("posts_per_page" => -1, "orderby" => "title", "order" => "asc", 'post_type' => 'speaker', 'post_status' => array('publish', 'future', 'private'));
-		$speakers = get_posts($args);
-
-        if ($speakers) {
-		// echo '<option  value="0">'. _e("Select Speaker", "debateLang") .'</option>';
-		foreach ($speakers as $speaker) {
-			if (in_array($speaker->id, $list_speaker_db)) {
-				$selected = "selected";
-				echo '<option ' . $selected . ' value="' .  $speaker->ID . ' ">' .$speaker->post_title . '</option>';
-			} else {
-				$selected = "";
-                echo '<option ' . $selected . ' value="' .  $speaker->ID . ' ">' .$speaker->post_title . '</option>';
-
-			}
-		}
-		}
+                <select data-bind="options: speakers, optionsText: 'name', optionsValue: 'id',  value: selectedItemId1">
+                        <?php
+			$list_speaker_db = tvsDebate_selected_get_meta_simple('tvs_wp_debate_slide_time_metaBox');
+            $list_speaker_db = explode(',', $list_speaker_db);
+            //print_r($list_speaker_db);
+            $args = array("posts_per_page" => -1, "orderby" => "title", "order" => "asc", 'post_type' => 'speaker', 'post_status' => array('publish', 'future', 'private'));
+            $speakers = get_posts($args);
+    
+            if ($speakers) {
+            // echo '<option  value="0">'. _e("Select Speaker", "debateLang") .'</option>';
+            foreach ($speakers as $speaker) {
+                if (in_array($speaker->id, $list_speaker_db)) {
+                    $selected = "selected";
+                    echo '<option ' . $selected . ' value="' .  $speaker->ID . ' ">' .$speaker->post_title . '</option>';
+                } else {
+                    $selected = "";
+                    echo '<option ' . $selected . ' value="' .  $speaker->ID . ' ">' .$speaker->post_title . '</option>';
+    
+                }
+            }
+            }
 		?>
-  </select>
+                    </select>
+
 
                 </td>
 
@@ -144,11 +146,18 @@ function tvsDebate_selected_html($post) {
         </tbody>
     </table>
     <button id="addSpeakerEvent" data-bind='click: addSpeaker'>New Speaker Add</button>
-
+    <button style="display: block" id="SaveJson" data-bind='click: save2, enable: speakers().length > 0'>Save to
+        JSON</button>
+    <textarea name="tvsDebateMB_selectSpeakerData[]" style="display: block;" data-bind='value: lastSavedJson' rows='5'
+        cols='60'> </textarea>
 </div>
 
+<a href="#" data-bind="click: function () {setValue(0)}">Set Value to 1</a>
+
+<button data-bind='click: save'>Submit order</button>
+
 <!-- <div data-bind="text: ko.toJSON($root)"></div> -->
-<textarea  style="display: block;" data-bind="text: ko.toJSON($root)" rows='5' cols='60'> </textarea>
+<textarea style="display: block;" data-bind="text: ko.toJSON($root)" rows='5' cols='60'> </textarea>
 
 <script type="text/javascript">
 jQuery("#publish").click(function() {
@@ -156,8 +165,6 @@ jQuery("#publish").click(function() {
 });
 
 // jQuery(document).ready(function() {
-
-
 
 //     jQuery('.speakerlist').on('change', function() {
 //         jQuery(".speakerlist :selected" ).attr('selected','selected');
@@ -168,6 +175,40 @@ jQuery("#publish").click(function() {
 // });
 
 
+
+var speakersModel = function() {
+    var self = this;
+
+    self.speakers = ko.observableArray(); //TODO:  look here  
+    self.speakers = ko.observableArray(); //TODO:  look here  
+
+    self.addSpeaker = function() {
+        self.speakers.push(<?php echo tvsDebate_PushData() ?>);
+    };
+
+    this.selectedItemId1 = ko.observable(78);
+
+    this.selectedItem = function() {
+    var self = this;
+    return ko.utils.arrayFirst(this.items(), function(item) {
+      return self.selectedItemId1() == item.id;
+    });
+  }.bind(this);
+
+
+    self.removeSpeaker = function(speaker) {
+        self.speakers.remove(speaker);
+    };
+
+
+    self.save2 = function() {
+        self.lastSavedJson(JSON.stringify(ko.toJS(self.speakers), null, 2));
+    };
+
+    self.lastSavedJson = ko.observable("")
+};
+
+ko.applyBindings(new speakersModel());
 </script>
 
 

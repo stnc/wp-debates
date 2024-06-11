@@ -139,6 +139,17 @@ function tvsDebate_selected_html($post) {
                         </div>
                     </div>
 
+            
+
+                    <div class="column">
+                        <div class="form-group">
+                            <label class="control-label" style="color:blue" for="full_name_0">Introduction</label>
+                            <input type="text" id="full_name_0" class="form-control" name="speaker[0][introduction]"
+                                maxlength="128" placeholder="Introduction">
+                        </div>
+                    </div>
+
+
                     <div class="column">
                         <div class="form-group">
                             <label class="control-label" style="color:red" for="state_0"> Opinions</label>
@@ -146,17 +157,7 @@ function tvsDebate_selected_html($post) {
                             <select id="state_0" class="form-control select2-init" name="speaker[0][opinions]">
                                 <option value="1" data-select2-id="2">FOR</option>
                                 <option value="2" data-select2-id="2">AGAINST</option>
-        
                             </select>
-                        </div>
-
-                    </div>
-
-                    <div class="column">
-                        <div class="form-group">
-                            <label class="control-label" style="color:blue" for="full_name_0">Introduction</label>
-                            <input type="text" id="full_name_0" class="form-control" name="speaker[0][introduction]"
-                                maxlength="128" placeholder="Full Name">
                         </div>
                     </div>
 

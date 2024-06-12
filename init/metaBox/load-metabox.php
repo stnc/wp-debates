@@ -3,30 +3,25 @@
 function tvsDebate_debate_options_()
 {
 	include('for_debate/metabox_options.php');
-	$tvsDebate_debate_options['0'] = $tvs_debate_OptionsPageSetting;
+	 $tvsDebate_debate_options['0'] = $tvs_debate_OptionsPageSetting;
 	 new ssSytemMetaboxEngine($tvsDebate_debate_options, 'tvs_debate-setting', true);
 }
 
 
 if (tvsDebate_post_type()["get_type"] == 'debate' || tvsDebate_post_type()["post_type"] == 'debate' ) {
 	tvsDebate_debate_options_();
+
+include ("for_debate/spekear-metabox.php");
+include ("for_debate/video-metabox.php");
+
 }
 
-include ("for_debate/sidebar-metabox.php");
-
-//--------------Speaker-------------
-
-function tvsDebate_speaker_options_()
-{
-	include('for_speaker/metabox_options.php');
-	$tvsDebate_debate_options['0'] = $tvs_speaker_OptionsPageSetting;
-	new ssSytemMetaboxEngine($tvsDebate_debate_options, 'tvs_speaker-setting', true);
+function tvsDebate_selected_get_meta_simple($value) {
+    global $post;
+    return get_post_meta($post->ID, $value, true);
 }
 
 
-if (tvsDebate_post_type()["get_type"] ==   'speaker' || tvsDebate_post_type()["post_type"] == 'speaker'  ) {
-	tvsDebate_speaker_options_();
-}
 
 
 

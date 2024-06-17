@@ -8,7 +8,7 @@
 
     <div class="col-lg-3">
 
-	<?php dynamic_sidebar('tvs-past-debates'); ?>
+	<?php dynamic_sidebar('tvs-overseas-debates'); ?>
     </div>
 
 

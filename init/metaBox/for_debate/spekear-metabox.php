@@ -110,9 +110,9 @@ foreach ($json_speaker_list as $key =>  $json_speaker) :
 
                     <div class="column column-20">
                         <div class="form-group">
-                            <label class="control-label" style="color:blue" for="full_name_0">Introduction</label>
-                            <input type="text" id="full_name_0" class="form-control"
-                                value="<?php echo $json_speaker_list[$key]["introduction"] ?>"
+                            <label class="control-label" style="color:blue" for="introduction">Introduction</label>
+                            <input type="text" id="introduction" class="form-control"
+                                value="<?php echo   isset($json_speaker_list[$key]["introduction"]) ? $json_speaker_list[$key]["introduction"] : ''?> "
                                 name="speakers[0][introduction]" maxlength="128">
                         </div>
                     </div>

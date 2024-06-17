@@ -3,10 +3,11 @@
 css and jss for will add version number 
 
 
-TO do 
+https://dev.tvsdebates.com/
 
-metabox 
 
-# Date time will be added to the metabox
 
-# didn`t work metabox image_select feature 
+https://qodeinteractive.com/magazine/how-to-create-custom-wordpress-archive-page/
+
+
+https://www.wpbeginner.com/wp-tutorials/how-to-create-a-custom-post-types-archive-page-in-wordpress/

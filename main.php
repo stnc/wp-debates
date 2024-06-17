@@ -30,8 +30,9 @@ require_once (tvsDebate_init_Path .'init-languages.php');
 
 require_once (tvsDebate_init_Path ."init-menu.php");
 
-
+//---- Custom Post type
 require_once (tvsDebate_init_Path .'c_debate-custom-type.php');
+
 require_once (tvsDebate_init_Path .'c_debate-speaker_custom-type.php');
 require_once (tvsDebate_init_Path .'c_debate-transcript_custom-type.php');
 require_once (tvsDebate_init_Path .'c_debate-opinions_custom-type.php');
@@ -40,9 +41,16 @@ require_once (tvsDebate_init_Path . "metaBox/class.metabox-engine.php");
 
 require_once (tvsDebate_init_Path . "metaBox/load-metabox.php");
 
+//---- Extra Menu  
 require_once (tvsDebate_pages_Path ."about/about.php");
 
+
+//---- SIDEBAR 
+require_once (tvsDebate_init_Path .'c_sidebar.php');
+
+
 require_once (tvsDebate_init_Path .'init-assets.php');
+require_once ('customPage.php');
 
 function tvsDebate_init_languages() {
 	// Retrieve the directory for the internationalization files

@@ -2,11 +2,11 @@
 function tvsDebate_register_debate_type()
 {
     $singular = 'debate';
-    $plural = __('TVS Debate', 'debateLang');
+    $plural = __('Debates', 'debateLang');
     $slug = str_replace(' ', '_', strtolower($singular));
     $labels = array(
         'name' => $plural,
-        'singular_name' =>  __('Debate', 'debateLang'),
+        'singular_name' =>  __('Debates', 'debateLang'),
         'add_new' =>  __( 'New Debate Add', 'debateLang' ) ,
         'add_new_item' =>  __( 'New Debate Add', 'debateLang' ) ,
         'edit' =>  __( 'Debate Edit', 'debateLang' ) ,
@@ -33,7 +33,8 @@ function tvsDebate_register_debate_type()
         'can_export' => true,
         'delete_with_user' => false,
         'hierarchical' => true,
-        'show_in_nav_menus' => false,
+        // 'show_in_nav_menus' => true, //is it show menu ? 
+        'show_in_nav_menus' => true,
         'has_archive' => true,
         'query_var' => true,
         'map_meta_cap' => true,

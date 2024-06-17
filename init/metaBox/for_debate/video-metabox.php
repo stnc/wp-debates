@@ -8,6 +8,12 @@ if (tvsDebate_post_type() ["post_type"] === "debate" || tvsDebate_post_type() ["
     }
 }
 
+
+function str_replace_json($search, $replace, $subject){
+    return json_decode(str_replace($search, $replace,  json_encode($subject)));
+}
+
+
 function tvsDebate_video_selected_save($post_id) {
     if (wp_is_post_autosave($post_id)) {
         return;
@@ -22,9 +28,16 @@ function tvsDebate_video_selected_save($post_id) {
     }
 
     if (isset($_POST["videos"])) {
-  
-        $selectedOptionlist_video = json_encode($_POST["videos"]);
-        // print_r( $selectedOptionlist_video);
+
+    // FIXME:  here should be html and " cleaning this with foreach
+
+         $selectedOptionlist_video = $_POST["videos"];
+        // $selectedOptionlist_video = $_POST["videos"] ["description"];
+        // // $selectedOptionlist_video = str_replace(  '"', "'",  $selectedOptionlist_video);
+        // print_r(   $_POST["videos"]);
+        // print_r(   $selectedOptionlist_video);
+        // die;
+        $selectedOptionlist_video = json_encode( $selectedOptionlist_video,true);
         update_post_meta($post_id, "tvsDebateMB_videoList", sanitize_text_field($selectedOptionlist_video));
     }
 }
@@ -54,13 +67,25 @@ function tvsDebate_selected_video_add_meta_box() {
 function tvsDebate_video_selected_html($post) {
 wp_nonce_field("_video_selected_nonce", "video_selected_nonce"); 
 
-$video_list_db = tvsDebate_selected_get_meta_simple('tvsDebateMB_videoList');
+$json_video_list = tvsDebate_selected_get_meta_simple('tvsDebateMB_videoList');
 
-$json_video_list= json_decode($video_list_db, true);
+// echo  "<pre>";
 
+// print_r ($json_video_list);
+
+$json_video_list= json_decode($json_video_list, true);
+
+// $json_video_list=str_replace_json( '"', "'",  $json_video_list);
+
+// [{"youtube":"https://www.youtube.com/watch?v=-4A4XzRx0UY","youtubePicture":"https://i.ytimg.com/vi/uS3wEQGuqbc/hqdefault.jpg","description":"ll "},{"youtube":"https://www.youtube.com/watch?v=aUhDzk1pSKY","youtubePicture":"https://media.ssyoutube.com/get?__sig=jYQKWNdOMWMrTgHL4X_RgQ&__expires=1718306046&uri=httpsi.ytimg.comviaUhDzk1pS","description":""}]
+
+// print_r ($json_video_list);
+// die;
 if ($json_video_list) :
 foreach ($json_video_list as $key =>  $json_video) :
 ?>
+
+
 <div id="stnc-video-container">
     <div class="panel-body container-item-video">
         <fieldset class="item panel panel-default" style="border: 1px solid black; padding: 10px;">
@@ -73,16 +98,26 @@ foreach ($json_video_list as $key =>  $json_video) :
                         <div class="form-group">
                             <label class="control-label" style="color:blue" for="youtube">Youtube Video URL</label>
                             <input type="text" id="youtube" class="form-control"
-                                value="<?php echo $json_video_list[$key]["youtube"] ?>" name="videos[0][youtube]"
+                                value="<?php echo  isset($json_video_list[$key]["youtube"]) ? $json_video_list[$key]["youtube"] : ''; ?>" name="videos[0][youtube]"
                                 maxlength="128">
                         </div>
                     </div>
 
                     <div class="column ">
                         <div class="form-group">
+                            <label class="control-label" style="color:blue" for="youtubePicture">Youtube Video Picture</label>
+                            <input type="text" id="youtubePicture" class="form-control"
+                                value="<?php echo   isset($json_video_list[$key]["youtubePicture"]) ? $json_video_list[$key]["youtubePicture"] : '';?>" name="videos[0][youtubePicture]"
+                                maxlength="128">
+                        </div>
+                    </div>
+
+
+                    <div class="column ">
+                        <div class="form-group">
                             <label class="control-label" style="color:blue" for="description">Description</label>
                             <textarea name="videos[0][description]" style="display: block;" rows='5'
-                                cols='60'><?php echo $json_video_list[$key]["description"] ?></textarea>
+                                cols='60'><?php echo isset($json_video_list[$key]["description"]) ? $json_video_list[$key]["description"] : ''; ?></textarea>
                         </div>
                     </div>
 
@@ -124,6 +159,17 @@ endforeach;
                                 maxlength="128">
                         </div>
                     </div>
+
+
+
+                    <div class="column ">
+                        <div class="form-group">
+                            <label class="control-label" style="color:blue" for="youtubePicture">Youtube Video Picture</label>
+                            <input type="text" id="youtubePicture" class="form-control"  name="videos[0][youtubePicture]"
+                                maxlength="128">
+                        </div>
+                    </div>
+
 
                     <div class="column column">
                         <div class="form-group">

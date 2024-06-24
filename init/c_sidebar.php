@@ -1,7 +1,6 @@
 
 <?php
 
-
 function tvs_special_debates_setup() {
     // register sidebar
     $rs_sidebar_opts = array(

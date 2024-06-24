@@ -87,7 +87,7 @@ $json_related_list= json_decode($json_related_list, true);
                 <?php
 			$list_opinion_db = tvsDebate_selected_get_meta_simple('tvsDebateMB_opinion');
             //print_r($list_opinion_db);
-            $args = array("posts_per_page" => -1, "orderby" => "title", "order" => "asc", 'post_type' => 'opinions', 'post_status' => array('publish', 'future', 'private'));
+            $args = array("posts_per_page" => -1, "orderby" => "title", "order" => "asc", 'post_type' => 'opinion', 'post_status' => array('publish', 'future', 'private'));
             $opinions = get_posts($args);
     
             if ($opinions) {

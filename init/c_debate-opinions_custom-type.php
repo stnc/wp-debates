@@ -2,7 +2,7 @@
 
 function tvsDebate_register_opinions_type()
 {
-    $singular = 'opinions';
+    $singular = 'opinion';
      $plural = __('Opinions', 'debateLang');
      $slug = str_replace(' ', '_', strtolower($singular));
     $labels = array(

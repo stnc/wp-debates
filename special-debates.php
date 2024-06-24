@@ -36,25 +36,13 @@
             <div class="page-debates clearfix">
                 <div class="row debate-row archive-debate-row">
                     <?php
-				$event_count = 0;
-				while ( $event_query->have_posts() ) {
-					$event_count++;
-					$event_query->the_post();
-					?>
-                    <div class="col-lg-12  col-md-12 offset-lg-0 offset-md-2 custom-sm-margin-bottom-1 p-b-lg single-debate">
-                    
-
-
-
-
-
-
-
-
-
-
-
-					<?php
+$event_count = 0;
+while ( $event_query->have_posts() ) {
+$event_count++;
+$event_query->the_post();
+?>
+<div class="col-lg-12  col-md-12 offset-lg-0 offset-md-2 custom-sm-margin-bottom-1 p-b-lg single-debate">                
+<?php
 $opinionPage = get_post_meta(get_the_ID(), 'tvsDebateMB_opinion', true);
 $transcriptPage = get_post_meta(get_the_ID(), 'tvsDebateMB_transcript', true);
 global $porto_settings;

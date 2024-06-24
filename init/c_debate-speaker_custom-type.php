@@ -34,7 +34,7 @@ function tvsDebate_register_speaker_type()
         'can_export' => true,
         'delete_with_user' => false,
         'hierarchical' => true,
-        'show_in_nav_menus' => false,
+        'show_in_nav_menus' => true,
         'has_archive' => true,
         'query_var' => true,
         'map_meta_cap' => true,

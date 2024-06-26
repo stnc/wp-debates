@@ -110,3 +110,23 @@ add_action( 'plugins_loaded', 'tvsDebate_init_languages' );
 
 //     return $template;
 // }
+
+
+add_action('init', function(){
+    add_rewrite_rule('job/([a-zA-Z0-9\-]+)/bewerben', 'index.php?pagename=jetzt-bewerben&job-name=$matches[1]','top');
+});
+
+echo get_template_directory();
+add_action( 'template_include', function( $template ) {
+    if ( false == get_query_var( 'job-name' ) || '' == get_query_var( 'job-name' )) {
+        return $template;
+    }
+ 
+    return get_template_directory() . '-child/page-job-name.php';
+});
+
+
+add_filter('query_vars', function($query_vars){
+    $query_vars[] = 'job-name';
+    return $query_vars;
+});

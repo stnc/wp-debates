@@ -105,13 +105,13 @@ add_action( 'plugins_loaded', 'tvsDebate_init_languages' );
 // }
 
 // add_filter( 'page_template', 'my_sector_page_template' );
+
 // function my_sector_page_template( $template ) {
 //     if ( is_page( 'imports' ) && get_query_var( 'sector' ) ) {
 //         // this assumes the template is in the active theme directory
 //         // and just change the path if the template is somewhere else
 //         $template = locate_template( 'sector.php' ); // use a full absolute path
 //     }
-
 //     return $template;
 // }
 
@@ -173,7 +173,7 @@ add_action( 'init', '___create_my_custom_tax' );
 
 function ___create_my_custom_tax() {
 	register_taxonomy(
-		'my-tax',
+		'my2-tax',
 		'post',
 		array(
 			'label' => __( 'Custom Taxonomy' ),
@@ -208,7 +208,7 @@ function ___get_term_meta_text( $term_id ) {
 
 // ADD FIELD TO CATEGORY TERM PAGE
 
-add_action( 'my-tax_add_form_fields', '___add_form_field_term_meta_text' );
+add_action( 'my2-tax_add_form_fields', '___add_form_field_term_meta_text' );
 
 function ___add_form_field_term_meta_text() { ?>
     <?php wp_nonce_field( basename( __FILE__ ), 'term_meta_text_nonce' ); ?>
@@ -221,7 +221,7 @@ function ___add_form_field_term_meta_text() { ?>
 
 // ADD FIELD TO CATEGORY EDIT PAGE
 
-add_action( 'my-tax_edit_form_fields', '___edit_form_field_term_meta_text' );
+add_action( 'my2-tax_edit_form_fields', '___edit_form_field_term_meta_text' );
 
 function ___edit_form_field_term_meta_text( $term ) {
 
@@ -242,8 +242,8 @@ function ___edit_form_field_term_meta_text( $term ) {
 
 // SAVE TERM META (on term edit & create)
 
-add_action( 'edit_my-tax',   '___save_term_meta_text' );
-add_action( 'create_my-tax', '___save_term_meta_text' );
+add_action( 'edit_my2-tax',   '___save_term_meta_text' );
+add_action( 'create_my2-tax', '___save_term_meta_text' );
 
 function ___save_term_meta_text( $term_id ) {
 
@@ -264,7 +264,7 @@ function ___save_term_meta_text( $term_id ) {
 
 // MODIFY COLUMNS (add our meta to the list)
 
-add_filter( 'manage_edit-my-tax_columns', '___edit_term_columns', 10, 3 );
+add_filter( 'manage_edit-my2-tax_columns', '___edit_term_columns', 10, 3 );
 
 function ___edit_term_columns( $columns ) {
 
@@ -275,7 +275,7 @@ function ___edit_term_columns( $columns ) {
 
 // RENDER COLUMNS (render the meta data on a column)
 
-add_filter( 'manage_my-tax_custom_column', '___manage_term_custom_column', 10, 3 );
+add_filter( 'manage_my2-tax_custom_column', '___manage_term_custom_column', 10, 3 );
 
 function ___manage_term_custom_column( $out, $column, $term_id ) {
 

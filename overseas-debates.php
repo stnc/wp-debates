@@ -18,16 +18,20 @@
 		<div id="content" role="main">
 
 			<?php
+			    // $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+				$paged = (get_query_var('paged')) ? get_query_var('paged') : ((get_query_var('page')) ? get_query_var('page') : 1);
+				$args['paged'] = $paged;
 			$args = array(
 				// 'post_type'   => get_post_type(),
 				'post_type' => "debate",
 				'post_status' => 'publish',
 				// 'meta_key'    => 'event_start_date',
-				'orderby' => 'id',
+				// 'orderby' => 'id',
+				'orderby'=>'date',
+				'paged'=>$paged
 			);
 
-			$paged = (get_query_var('paged')) ? get_query_var('paged') : ((get_query_var('page')) ? get_query_var('page') : 1);
-			$args['paged'] = $paged;
+		
 
 			$event_query = new WP_Query($args);
 			?>
@@ -205,7 +209,18 @@
 						}
 						?>
 					</div>
-					<?php porto_pagination(); ?>
+					<?php
+		// Navigation
+    echo '<div id="my-navigation">';
+    the_posts_pagination( array(
+        'mid_size' => 2,
+        'prev_text' => __( 'Prev', 'text-domain' ),
+        'next_text' => __( 'Next', 'text-domain' ),
+    ));
+    echo '</div>';
+
+	?>
+<?php wp_reset_query();  ?>
 				</div>
 				<?php wp_reset_postdata(); ?>
 			<?php else: ?>
@@ -213,7 +228,9 @@
 			<?php endif; ?>
 		</div>
 
-
+		dfgdfg
+					
+	
 	</div>
 </div>
 

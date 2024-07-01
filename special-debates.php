@@ -1,8 +1,11 @@
-<?php get_header(); ?>
+<?php get_header(); 
 
 
 
 
+?>
+
+	
 
 <div class="row">
 
@@ -218,7 +221,7 @@ $post_meta     .= '</div>';
 				}
 				?>
                 </div>
-                <?php porto_pagination(); ?>
+            
             </div>
             <?php wp_reset_postdata(); ?>
             <?php else : ?>
@@ -231,6 +234,6 @@ $post_meta     .= '</div>';
 </div>
 
 
-
+<?php  porto_pagination(); ?>
 
 <?php get_footer(); ?>

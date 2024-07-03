@@ -2,5 +2,5 @@
 *.html linguist-detectable=false
 *.js linguist-detectable=false
 *.java linguist-detectable=false
-*.go linguist-detectable=true
+*.go linguist-detectable=false
 *.php linguist-detectable=true

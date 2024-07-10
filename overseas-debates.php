@@ -1,223 +1,131 @@
-<?php get_header(); ?>
-
-
-
-
-
+<?php get_header();
+require_once ("functions.php");
+?>
 <div class="row">
-
 	<div class="col-lg-3">
-
 		<?php dynamic_sidebar('tvs-overseas-debates'); ?>
 	</div>
 
 
-
-
 	<div class="col-lg-9">
+
 		<div id="content" role="main">
+			<div class="page-debates clearfix">
+				<div class="row debate-row archive-debate-row">
+					<div
+						class="col-lg-12  col-md-12 offset-lg-0 offset-md-2 custom-sm-margin-bottom-1 p-b-lg single-debate">
 
-			<?php
-			$args = array(
-				// 'post_type'   => get_post_type(),
-				'post_type' => "debate",
-				'post_status' => 'publish',
-				// 'meta_key'    => 'event_start_date',
-				'orderby' => 'id',
-			);
+kjkkjkj
 
-			$paged = (get_query_var('paged')) ? get_query_var('paged') : ((get_query_var('page')) ? get_query_var('page') : 1);
-			$args['paged'] = $paged;
+						<article id="post-4590"
+							class="post post-medium post-title-simple post-4590 debate type-debate status-publish has-post-thumbnail hentry topics-ayad-allawi topics-bill-clinton topics-cambridge-union topics-comedy topics-egypt topics-egyptian-military topics-extremism topics-georgetown-university topics-hamas-meets-fatah topics-mahmoud-al-zahar topics-overseas-debates topics-past-debates topics-series-1-2004-2005 topics-series-2-2005-2006 topics-series-3-2006-2007 topics-series-4-2007-2008 topics-series-5-2007-2008 topics-series-6-2008-2009 topics-series-7-2009-2010 topics-series-8-2010-2011 topics-series-9-2011-2012 topics-special-debates topics-st-stephens-college topics-turkey">
+							<!-- Post meta before content -->
+							<div class="row">
+								<div class="col-lg-5">
+									<div class="post-image single">
+										<div class="post-slideshow porto-carousel owl-carousel has-ccols ccols-1 nav-inside nav-inside-center nav-style-2 show-nav-hover owl-loaded owl-drag"
+											data-plugin-options="{&quot;nav&quot;:true}">
 
-			$event_query = new WP_Query($args);
-			?>
-
-			<?php if ($event_query->have_posts()): ?>
-				<div class="page-debates clearfix">
-					<div class="row debate-row archive-debate-row">
-						<?php
-						$event_count = 0;
-						while ($event_query->have_posts()) {
-							$event_count++;
-							$event_query->the_post();
-							?>
-							<div
-								class="col-lg-12  col-md-12 offset-lg-0 offset-md-2 custom-sm-margin-bottom-1 p-b-lg single-debate">
-
-
-								<?php
-								$opinionPage = get_post_meta(get_the_ID(), 'tvsDebateMB_opinion', true);
-								$transcriptPage = get_post_meta(get_the_ID(), 'tvsDebateMB_transcript', true);
-								global $porto_settings;
-
-								$post_layout = 'medium';
-								$featured_images = porto_get_featured_images();
-
-								$post_class = array();
-								$post_class[] = 'post post-' . $post_layout;
-								if (isset($porto_settings['post-title-style']) && 'without-icon' == $porto_settings['post-title-style']) {
-									$post_class[] = 'post-title-simple';
-								}
-								$post_meta = '';
-								$post_meta .= '<div class="post-meta ' . (empty($porto_settings['post-metas']) ? ' d-none' : '') . '">';
-
-								$post_meta .= '<ul class="buttons">';
-								$post_meta .= '<li><a  href="' . get_permalink() . '">Details</a></li>';
-								$post_meta .= '<li><a  href="' . get_permalink($transcriptPage) . '">Transcript</a></li>';
-								$post_meta .= '<li><a href="#" onClick="alert(\'Coming Soon\')">Speakers</a></li>';
-								$post_meta .= '<li><a  href="' . get_permalink($opinionPage) . '">Opinion poll</a></li>';
-								$post_meta .= '<li style="float:right"><span class="d-block float-sm-end mt-3 mt-sm-0"><a class="btn btn-xs btn-default text-xs text-uppercase" href="' . esc_url(apply_filters('the_permalink', get_permalink())) . '">' . esc_html__('Read more...', 'porto') . '</a></span></li>';
-								$post_meta .= '</ul>';
-								$post_meta .= '</div>';
-
-								?>
-
-								<article id="post-<?php the_ID(); ?>" <?php post_class($post_class); ?>>
-									<!-- Post meta before content -->
-									<?php
-									if (isset($porto_settings['post-meta-position']) && 'before' === $porto_settings['post-meta-position']) {
-										echo '<div class="row"><div class="col-12">' . porto_filter_output($post_meta) . '</div></div>';
-									}
-									?>
-									<div class="row">
-										<?php if (count($featured_images)): ?>
-											<div class="col-lg-5">
-												<?php
-												// Post Slideshow
-												$slideshow_type = get_post_meta(get_the_ID(), 'slideshow_type', true);
-
-												if (!$slideshow_type) {
-													$slideshow_type = 'images';
-												}
-												porto_get_template_part(
-													'views/posts/post-media/' . sanitize_file_name($slideshow_type),
-													null,
-													('images' == $slideshow_type ? array(
-														'image_size' => 'blog-medium',
-													) : false)
-												);
-												?>
-											</div>
-											<div class="col-lg-7">
-											<?php else: ?>
-												<div class="col-lg-12">
-												<?php endif; ?>
-
-												<div class="post-content">
-
-													<?php
-													if (is_sticky() && is_home() && !is_paged()) {
-														printf('<span class="sticky-post">%s</span>', esc_html__('Featured', 'porto'));
-													}
-													?>
-
-													<h2 class="entry-title"><a
-															href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-
-													<?php
-													porto_render_rich_snippets(false);
-													if (!empty($porto_settings['blog-excerpt'])) {
-														echo porto_get_excerpt($porto_settings['blog-excerpt-length'], false);
-
-														$speaker_list_db = get_post_meta(get_the_ID(), 'tvsDebateMB_speakerList', true);
-														$json_speaker_list = json_decode($speaker_list_db, true);
-														// echo "<pre>";
-														// print_r($json_speaker_list);
-														if ($json_speaker_list):
-															echo '<ul style="border:1px solid black">';
-															foreach ($json_speaker_list as $key => $json_speaker) {
-
-																if (1 == $json_speaker["opinions"])
-																	$opinions = "FOR";
-
-																if (2 == $json_speaker["opinions"])
-																	$opinions = "AGAINST";
-
-																echo '<li><strong>' . get_the_title($json_speaker["speaker"]) . '</strong> ' . $json_speaker["introduction"] . ' <span style="color:red"> ' . $opinions . '  </span> </li>';
-
-															}
-															echo '</ul>';
-														endif;
-
-
-
-													} else {
-														echo '<div class="entry-content">';
-														porto_the_content();
-
-
-														$speaker_list_db = get_post_meta(get_the_ID(), 'tvsDebateMB_speakerList', true);
-														$json_speaker_list = json_decode($speaker_list_db, true);
-														// echo "<pre>";
-														// print_r($json_speaker_list);
-														if ($json_speaker_list):
-															echo '<ul>';
-															foreach ($json_speaker_list as $key => $json_speaker) {
-
-																if (1 == $json_speaker["opinions"])
-																	$opinions = "FOR";
-
-																if (2 == $json_speaker["opinions"])
-																	$opinions = "AGAINST";
-
-																echo '<li><strong>' . get_the_title($json_speaker["speaker"]) . '</strong> ' . $json_speaker["introduction"] . ' <span style="color:red"> ' . $opinions . '  </span> </li>';
-
-															}
-															echo '</ul>';
-														endif;
-
-
-
-														wp_link_pages(
-															array(
-																'before' => '<div class="page-links"><span class="page-links-title">' . esc_html__('Pages:', 'porto') . '</span>',
-																'after' => '</div>',
-																'link_before' => '<span>',
-																'link_after' => '</span>',
-																'pagelink' => '<span class="screen-reader-text">' . esc_html__('Page', 'porto') . ' </span>%',
-																'separator' => '<span class="screen-reader-text">, </span>',
-															)
-														);
-														echo '</div>';
-													}
-													?>
-
+											<div class="owl-stage-outer">
+												<div class="owl-stage"
+													style="transform: translate3d(0px, 0px, 0px); transition: all; width: 326px;">
+													<div class="owl-item active" style="width: 325.417px;"><a
+															href="http://debates.test/debate/this-house-believes-arab-governments-need-to-take-urgent-measures-to-protect-religious-minorities-8/"
+															aria-label="post image">
+															<div class="img-thumbnail">
+																<img width="261" height="174"
+																	src="http://debates.test/wp-content/uploads/2024/06/S08E07.jpg"
+																	class="owl-lazy img-responsive" alt=""
+																	decoding="async"> <span class="zoom"
+																	data-src="http://debates.test/wp-content/uploads/2024/06/S08E07.jpg"
+																	data-title=""><i class="fas fa-search"></i></span>
+															</div>
+														</a></div>
 												</div>
 											</div>
-
+											<div class="owl-nav disabled"><button type="button" aria-label="owl-button"
+													role="presentation" class="owl-prev disabled"></button><button
+													type="button" aria-label="owl-button" role="presentation"
+													class="owl-next disabled"></button></div>
+											<div class="owl-dots disabled"><button aria-label="owl-dot" role="button"
+													class="owl-dot active"><span></span></button></div>
+											<div class="owl-nav disabled"><button type="button" aria-label="owl-button"
+													role="presentation" class="owl-prev disabled"></button><button
+													type="button" aria-label="owl-button" role="presentation"
+													class="owl-next disabled"></button></div>
+											<div class="owl-dots disabled"><button aria-label="owl-dot" role="button"
+													class="owl-dot active"><span></span></button></div>
 										</div>
 
-										<!-- Post meta after content -->
-										<?php
-										if (isset($porto_settings['post-meta-position']) && 'before' !== $porto_settings['post-meta-position']) {
-											echo porto_filter_output($post_meta);
-										}
-										?>
+									</div>
+								</div>
+								<div class="col-lg-7">
 
-								</article>
 
+
+									<div class="post-content">
+
+										show 1
+										<h2 class="entry-title"><a
+												href="http://debates.test/debate/this-house-believes-arab-governments-need-to-take-urgent-measures-to-protect-religious-minorities-8/">This
+												House believes Arab governments need to take urgent measures to protect
+												religious minorities</a></h2>
+
+										show 2
+										<span class="vcard" style="display: none;"><span class="fn"><a
+													href="http://debates.test/author/admin/" title="Posts by admin"
+													rel="author">admin</a></span></span><span class="updated"
+											style="display:none">2024-07-10T20:29:10+00:00</span>
+										<p class="post-excerpt"> 4</p>
+										<h5>What Do You Think?</h5> ...<p></p>
+										<ul style="border:1px solid black">
+											<li><strong>George Carey</strong> Former Archbishop of Canterbur <span
+													style="color:red"> FOR </span> </li>
+											<li><strong>Fadi Daou</strong> CEO of the Adyan Foundation <span
+													style="color:red"> AGAINST </span> </li>
+											<li><strong>Ahmed Saad</strong> Former Imam of North London Central mosque
+												<span style="color:red"> FOR </span> </li>
+											<li><strong>Roger Bismuth</strong> President of the Tunisian Jewish
+												Community <span style="color:red"> AGAINST </span> </li>
+										</ul>
+									</div>
+								</div>
 
 							</div>
-							<?php
-							if (0 === $event_count % 2 && ($event_query->current_post + 1) != ($event_query->post_count)) {
-								echo '</div><div class="row event-row archive-event-row">';
-							}
-						}
-						?>
+
+							<!-- Post meta after content -->
+							<div class="post-meta ">
+								<ul class="buttons">
+									<li><a
+											href="http://debates.test/debate/this-house-believes-arab-governments-need-to-take-urgent-measures-to-protect-religious-minorities-8/">Details</a>
+									</li>
+									<li><a
+											href="http://debates.test/transcript/this-house-believes-arab-governments-need-to-take-urgent-measures-to-protect-religious-minorities/">Transcript</a>
+									</li>
+									<li><a href="#" onclick="alert('Coming Soon')">Speakers</a></li>
+									<li><a
+											href="http://debates.test/opinion/this-house-believes-arab-governments-need-to-take-urgent-measures-to-protect-religious-minorities/">Opinion
+											poll</a></li>
+									<li style="float:right"><span class="d-block float-sm-end mt-3 mt-sm-0"><a
+												class="btn btn-xs btn-default text-xs text-uppercase"
+												href="http://debates.test/debate/this-house-believes-arab-governments-need-to-take-urgent-measures-to-protect-religious-minorities-8/">Read
+												more...</a></span></li>
+								</ul>
+							</div>
+						</article>
+
+
 					</div>
-					<?php porto_pagination(); ?>
 				</div>
-				<?php wp_reset_postdata(); ?>
-			<?php else: ?>
-				<p><?php esc_html_e('Apologies, but no results were found for the requested archive.', 'porto'); ?></p>
-			<?php endif; ?>
+			</div>
 		</div>
 
-
 	</div>
+
+
 </div>
 
+<?php
+get_footer();
 
 
-
-<?php get_footer(); ?>

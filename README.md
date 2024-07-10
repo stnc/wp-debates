@@ -1,5 +1,8 @@
 # Debate System 
 
+D:\laragon\www\debates\wp-content\themes\porto\inc\plugins\plugins.php  /// satir  10 $plugin = PORTO_PLUGINS . '/sidebar-generator/sidebar_generator.php';
+
+
 css and jss for will add version number 
 
 

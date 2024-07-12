@@ -9,8 +9,8 @@ function tvsDebate_register_debate_type()
         'singular_name' =>  __('Debates', 'debateLang'),
         'add_new' =>  __( 'New Debate Add', 'debateLang' ) ,
         'add_new_item' =>  __( 'New Debate Add', 'debateLang' ) ,
-        'edit' =>  __( 'Debate Edit', 'debateLang' ) ,
-        'edit_item' =>__( 'Debate Edit', 'debateLang' ) ,
+        'edit' =>  __( 'Edit Debate', 'debateLang' ) ,
+        'edit_item' =>__( 'Edit Debate', 'debateLang' ) ,
         'new_item' => __( 'New Debate', 'debateLang' ) ,
         'view' => __( 'Show Debate', 'debateLang' ) ,
         'view' => __( 'Show Debate', 'debateLang' ) ,
@@ -74,8 +74,8 @@ function tvsDebate_create_cat_taxonomies()
         'all_items' => __('All Topics', 'debateLang'),
         'parent_item' => __('Sub Topics', 'debateLang'),
         'parent_item_colon' => __('Sub Topics', 'debateLang'),
-        'edit_item' => __('Topic Edit', 'debateLang'),
-        'update_item' => __('Topic Edit', 'debateLang'),
+        'edit_item' => __('Edit Topic', 'debateLang'),
+        'update_item' => __('Edit Topic', 'debateLang'),
         'new_item_name' => __('New Topic', 'debateLang'),
     );
     

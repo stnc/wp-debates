@@ -1,4 +1,3 @@
-
 <?php get_header();
 require_once ("functions.php");
 
@@ -22,20 +21,20 @@ require_once ("functions.php");
 		<div id="content" role="main">
 
 			<?php
-	$paged = (get_query_var('paged')) ? get_query_var('paged') : ((get_query_var('page')) ? get_query_var('page') : 1);
-	// $args['paged'] = $paged;
-
+			$paged = (get_query_var('paged')) ? get_query_var('paged') : ((get_query_var('page')) ? get_query_var('page') : 1);
+			// $args['paged'] = $paged;
+			
 			$args = array(
 				// 'post_type'   => get_post_type(),
 				'post_type' => "debate",
-				'posts_per_page'=>4,
+				'posts_per_page' => 4,
 				'post_status' => 'publish',
 				// 'meta_key'    => 'event_start_date',
 				'orderby' => 'id',
 				'paged' => $paged
 			);
 
-		
+
 
 			$event_query = new WP_Query($args);
 			?>
@@ -108,7 +107,7 @@ require_once ("functions.php");
 											</div>
 											<div class="col-lg-7">
 
-									
+
 											<?php else: ?>
 												<div class="col-lg-12">
 												<?php endif; ?>
@@ -122,11 +121,11 @@ require_once ("functions.php");
 														printf('<span class="sticky-post">%s</span>', esc_html__('Featured', 'porto'));
 													}
 													?>
-show 1
+													show 1
 													<h2 class="entry-title"><a
 															href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 
-															show 2 
+													show 2
 													<?php
 													porto_render_rich_snippets(false);
 													if (!empty($porto_settings['blog-excerpt'])) {
@@ -181,7 +180,7 @@ show 1
 														endif;
 
 
-														
+
 														wp_link_pages(
 															array(
 																'before' => '<div class="page-links"><span class="page-links-title">' . esc_html__('Pages:', 'porto') . '</span>',
@@ -221,10 +220,10 @@ show 1
 					</div>
 
 
-					
-					<?php 
-					
-					
+
+					<?php
+
+
 					echo "<div> custom pagination </div>";
 
 
@@ -244,23 +243,23 @@ show 1
 <?php
 // include "experiment.php";
 
-$links_data = kama_paginate_links_data( [
-	'total' => $the_query->max_num_pages - 1 ,
-	'current' => max( 1, get_query_var('paged')  ),
+$links_data = kama_paginate_links_data([
+	'total' => $the_query->max_num_pages - 1,
+	'current' => max(1, get_query_var('paged')),
 	'url_base' => 'http://debates.test/topics/overseas-debates/page/{pagenum}',
-] );
-if( $links_data ){
+]);
+if ($links_data) {
 	?>
 
 	<ul>
-		<?php foreach( $links_data as $link ) { ?>
-		<li>
-			<?php if ( $link->is_current ) { ?>
-				<strong><?php _e( $link->page_num ) ?></strong>
-			<?php } else { ?>
-				<a href="<?php esc_attr_e( $link->url ) ?>"><?php _e( $link->page_num ) ?></a>
-			<?php } ?>
-		</li>
+		<?php foreach ($links_data as $link) { ?>
+			<li>
+				<?php if ($link->is_current) { ?>
+					<strong><?php _e($link->page_num) ?></strong>
+				<?php } else { ?>
+					<a href="<?php esc_attr_e($link->url) ?>"><?php _e($link->page_num) ?></a>
+				<?php } ?>
+			</li>
 		<?php } ?>
 	</ul>
 
@@ -268,4 +267,4 @@ if( $links_data ){
 }
 wp_reset_postdata();
 
- get_footer();
+get_footer();

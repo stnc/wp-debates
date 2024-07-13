@@ -1,5 +1,5 @@
 <?php get_header();
-require_once ("functions.php");
+require_once ("functions-tvs.php");
 ?>
 <div class="row">
 	<div class="col-lg-3">
@@ -60,7 +60,7 @@ require_once ("functions.php");
 								$post_meta .= '<ul class="buttons">';
 								$post_meta .= '<li><a  href="' . get_permalink() . '">Details</a></li>';
 								$post_meta .= '<li><a  href="' . get_permalink($transcriptPage) . '">Transcript</a></li>';
-								$post_meta .= '<li><a href="#" onClick="alert(\'Coming Soon\')">Speakers</a></li>';
+								$post_meta .= '<li><a href="/speakers?list='.get_the_ID().'">Speakers</a></li>';
 								$post_meta .= '<li><a  href="' . get_permalink($opinionPage) . '">Opinion poll</a></li>';
 								$post_meta .= '<li style="float:right"><span class="d-block float-sm-end mt-3 mt-sm-0"><a class="btn btn-xs btn-default text-xs text-uppercase" href="' . esc_url(apply_filters('the_permalink', get_permalink())) . '">' . esc_html__('Read more...', 'porto') . '</a></span></li>';
 								$post_meta .= '</ul>';

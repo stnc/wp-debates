@@ -1,5 +1,21 @@
 
 <?php
+function tvs_main_sidebar_setup() {
+    // register sidebar
+    $rs_sidebar_opts = array(
+        'name' => __('TVS  Main Sidebar '),
+        'id' => 'tvs-main-sidebar',
+        'description' => __('TVS  Main Sidebar '),
+        'before_widget' => '',
+        'after_widget' => ''
+    );
+    register_sidebar($rs_sidebar_opts);
+}
+add_action('widgets_init', 'tvs_main_sidebar_setup');
+
+
+/// **** This feature will be activated in V2.0.0 *****
+
 
 function tvs_special_debates_setup() {
     // register sidebar
@@ -40,6 +56,9 @@ function tvs_past_debates_setup() {
 }
 add_action('widgets_init', 'tvs_past_debates_setup');
 
+
+
+/// **** This feature will be activated in V2.0.0 -- end *****  
 
 
 

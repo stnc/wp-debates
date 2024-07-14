@@ -1,8 +1,91 @@
-<?php get_header();
+<?php 
+
+//https://wordpress.stackexchange.com/questions/245894/how-can-i-remove-just-the-title-tag-from-wp-head-function
+
+//https://wordpress.stackexchange.com/questions/33101/how-do-i-set-the-page-title-dynamically
+
+//https://wordpress.stackexchange.com/questions/245894/how-can-i-remove-just-the-title-tag-from-wp-head-function
+
+
+
+
+remove_action( 'wp_head', '_wp_render_title_tag', 1 );
+
+
+add_filter( 'pre_get_document_title' , 'render_title' );
+function render_title($title){
+    return 'New title ';
+}
+add_filter(  'document_title_parts' , 'render_title' );
+
+
+
+
+
+get_header();
+
+
+
+
+
+tvs_meta_tags("selman");
+function tvs_meta_tags($title) {
+
+    echo '  <title>'.$title.'</title>      <meta name="description" content="Modifying page title using the_title filter in WordPress - modify-page-title.php">';
+  
+}
+
+add_action('wp_head', 'tvs_meta_tags');
+
+
+
+
+// function mycustom_enqueue() {     
+//     echo "<script type='text/javascript'>alert('1');</script>";
+// }
+// add_action( 'wp_head', 'mycustom_enqueue',100 ); //here 100 is prioriry
+
+
+
+
 require_once ("functions-tvs.php");
 echo get_query_var( 'list' );
 /// ozel bir page yap 
-// speaker page init icin ornek birak 
+// // speaker page init icin ornek birak 
+// function wpse309151_title_update( $title, $id = null ) {
+//     if ( ! is_admin() && ! is_null( $id ) ) {
+//         $post = get_post( $id );
+//         if ( $post instanceof WP_Post && ( $post->post_type == 'post' || $post->post_type == 'page' ) ) {
+//             $new_titile = get_post_meta( $id, 'pp_new_title', true );
+//             if( ! empty( $new_titile ) ) {
+//                 return $new_titile;
+//             }
+//         } else {
+// 			return "dsdsd";
+// 		}
+//     }
+//     return $title;
+// }
+// add_filter( 'the_title', 'wpse309151_title_update', 10, 2 );
+
+// function wpse309151_remove_title_filter_nav_menu( $nav_menu, $args ) {
+//     // we are working with menu, so remove the title filter
+//     remove_filter( 'the_title', 'wpse309151_title_update', 10, 2 );
+//     return $nav_menu;
+// }
+// // this filter fires just before the nav menu item creation process
+// add_filter( 'pre_wp_nav_menu', 'wpse309151_remove_title_filter_nav_menu', 10, 2 );
+
+// function wpse309151_add_title_filter_non_menu( $items, $args ) {
+//     // we are done working with menu, so add the title filter back
+//     add_filter( 'the_title', 'wpse309151_title_update', 10, 2 );
+//     return $items;
+// }
+// // this filter fires after nav menu item creation is done
+// add_filter( 'wp_nav_menu_items', 'wpse309151_add_title_filter_non_menu', 10, 2 );
+
+
+
 
 ?>
 <div class="row">

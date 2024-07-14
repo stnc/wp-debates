@@ -70,7 +70,8 @@ class STNC_PageTemplater {
 			'past-debates.php' =>  'Past Debates',
 			'overseas-debates.php' =>  'Overseas Debates',
 			'special-debates.php' =>  ' Special Debates',
-			'page-properties.php' =>  ' Pro',
+			'speakers.php' =>  ' Speaker',
+			// 'page-properties.php' =>  ' Pro',
 		);
 
 	}

@@ -1,8 +1,14 @@
-<?php 
+<?php
+//https://blacksaildivision.com/how-to-clean-up-wordpress-head-tag
+//https://wordpress.stackexchange.com/questions/245894/how-can-i-remove-just-the-title-tag-from-wp-head-function
+
+//https://wordpress.stackexchange.com/questions/33101/how-do-i-set-the-page-title-dynamically
+
+//https://wordpress.stackexchange.com/questions/245894/how-can-i-remove-just-the-title-tag-from-wp-head-function
 
 /*  // not working but backup 
 function render_title($title){
-    return 'New title ';
+	return 'New title ';
 }
 add_filter(  'document_title_parts' , 'render_title' );
 add_filter( 'pre_get_document_title' , 'render_title' );
@@ -19,8 +25,8 @@ add_filter( 'pre_get_document_title' , 'render_title' );
 some_callback("ddd");
 add_filter('the_title','some_callback');
 function some_callback($data){
-    global $post;
-    return 'Book Order #' . $post->ID;
+	global $post;
+	return 'Book Order #' . $post->ID;
 }
 $name = "SAM-----SAM-------";
 apply_filters("porto_portfolio_sub_title", $name);
@@ -30,70 +36,129 @@ apply_filters( 'porto_breadcrumbs', $name );
 
 
 //https://wordpress.stackexchange.com/questions/245894/how-can-i-remove-just-the-title-tag-from-wp-head-function
-remove_action( 'wp_head', '_wp_render_title_tag', 1 );
+remove_action('wp_head', '_wp_render_title_tag', 1);
 
 
 get_header();
 
-
-
-tvs_meta_tags("selman");
-function tvs_meta_tags($title) {
-    echo '  <title>'.$title.'</title>      <meta name="description" content="Modifying page title using the_title filter in WordPress - modify-page-title.php">';
+function tvs_meta_tags($title)
+{
+	echo '  <title>' . $title . '</title>      <meta name="description" content="' . $title . 'php">';
 }
 add_action('wp_head', 'tvs_meta_tags');
-
-
 
 require_once ("functions-tvs.php");
 
 ?>
 <div class="row">
-	<div class="col-lg-3">
-		<?php dynamic_sidebar('tvs-special-debates'); ?>
-	</div>
+	<!-- <div class="col-lg-3">
+		<?php //dynamic_sidebar('tvs-special-debates'); ?>
+	</div> -->
 
 
-	<div class="col-lg-9">
-
+	<div class="col-lg-12">
 		<div id="content" role="main">
-
-
-
 			<div class="page-debates clearfix">
 				<div class="row debate-row archive-debate-row">
-
-					<div
-						class="col-lg-12  col-md-12 offset-lg-0 offset-md-2 custom-sm-margin-bottom-1 p-b-lg single-debate">
-
+					<div class="col-lg-12  col-md-12 offset-lg-0 offset-md-2 custom-sm-margin-bottom-1 p-b-lg single-debate">
 						<?php
 						$opinionPage = get_post_meta(get_the_ID(), 'tvsDebateMB_opinion', true);
 						$transcriptPage = get_post_meta(get_the_ID(), 'tvsDebateMB_transcript', true);
 						?>
 						<article id="post-<?php the_ID(); ?>">
 							<!-- Post meta before content -->
+							<div class="post-content">
+								<?php
+								$id = get_query_var('list');
+								$post = get_post($id);
+								// print_r($post);
+								$title = apply_filters('the_title', $post->post_title);
+								echo '<h2 class="entry-title"> <a href="'.get_permalink($id).'"> ' . $title . '</a> </h2>';
+								tvs_meta_tags("Speakers List - " . $title);
 
-							<div class="row">
-								<div class="col-lg-7">
-									<div class="post-content">
-										<h2 class="entry-title"><a
-												href="<?php //the_permalink(); ?>"><?php //the_title(); ?></a></h2>
-										tyututyu
-									</div>
-								</div>
+								$speaker_list_db = get_post_meta($id, 'tvsDebateMB_speakerList', true);
+								if ($speaker_list_db != '') {
+									/*
+
+													 // 										here you can use two different data
+													 // 1- the data of the page with id 4672 of this page
+													 // or
+													 // 2- the data of the connected debate page, that is, the get_query_var('list') data
+
+																								 $post = get_post($id);
+																								 $content = apply_filters('the_content', $post->post_content);
+																								 echo $title = the_title();
+																								 echo $content;
+																					   */
+									$json_speaker_list = json_decode($speaker_list_db, true);
+									
+									if ($json_speaker_list):
+									
+										foreach ($json_speaker_list as $key => $json_speaker) :
+
+											if (1 == $json_speaker["opinions"])
+												$opinions = "FOR";
+
+											if (2 == $json_speaker["opinions"])
+												$opinions = "AGAINST";
+											$speakerId = $json_speaker["speaker"]; 
+								
+											$speakerName = '<strong>' . get_the_title($speakerId) . '</strong>';
+											$speakerDesc = $json_speaker["introduction"] . ' <span style="color:red"> ' . $opinions . '  </span> </li>';
+											$speaker_post = get_post($speakerId);
+											$speaker_content = apply_filters('the_content', $speaker_post->post_content)
+											?>
+											<div class="row">
+												<div class="col-md-12">
+													<div
+														class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+														<div class="col p-4 d-flex flex-column position-static">
+
+															<h3 class="mb-0"> <a style="color:black" href="<?php echo  get_permalink($speakerId)  ?>"><?php echo $speakerName; ?> </a></h3>
+															<strong
+																class="d-inline-block mb-2 text-primary-emphasis"><?php echo $speakerDesc ?></strong>
+															<div class="mb-1 text-body-secondary"></div>
+															<p class="card-text mb-auto"><?php echo $speaker_content; ?></p>
+															<!--	<a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+												  Continue reading
+												  <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+												</a> -->
+														</div>
+														<div class="col-auto d-none d-lg-block">
+															<?php if (has_post_thumbnail($speakerId)):
+																$image = wp_get_attachment_image_src(get_post_thumbnail_id($speakerId), 'thumbnail');
+																?>
+																<img width="300" height="300" src="<?php echo $image[0]; ?>">
+															<?php endif; ?>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<hr>
+
+										<?php endforeach;
+									endif;
+								} else {
+									echo "Can't Display The Content";
+									// wp_redirect("/", 301);
+									//exit();
+								}
+								?>
 							</div>
-							<!-- Post meta after content -->
-							<?php
-							if (isset($porto_settings['post-meta-position']) && 'before' !== $porto_settings['post-meta-position']) {
-								echo porto_filter_output($post_meta);
-							}
-							?>
-						</article>
 					</div>
 				</div>
+				<!-- Post meta after content -->
+				<?php
+				if (isset($porto_settings['post-meta-position']) && 'before' !== $porto_settings['post-meta-position']) {
+					echo porto_filter_output($post_meta);
+				}
+				?>
+				</article>
 			</div>
 		</div>
 	</div>
 </div>
+
 <?php
 get_footer();

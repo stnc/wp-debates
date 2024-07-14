@@ -65,3 +65,8 @@ add_action( 'plugins_loaded', 'tvsDebate_init_languages' );
 // include "other/example_post_type.php";
 // include "other/special-rewrite-rule/special-rewrite-rule.php";t
 // include "other/speakers-custom-rewrite-url/speakers-page-init.php";
+
+add_filter('query_vars', function($query_vars){
+    $query_vars[] = 'list';
+    return $query_vars;
+});

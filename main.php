@@ -65,5 +65,4 @@ add_action( 'plugins_loaded', 'tvsDebate_init_languages' );
 // include "other/example_post_type.php";
 // include "other/special-rewrite-rule.php";t
 
-include "speakers-page.php";
-
+include "speakers-page-init.php";

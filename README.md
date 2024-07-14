@@ -21,7 +21,7 @@ How to get the WordPress post thumbnail (featured image) URL?
 https://stackoverflow.com/questions/11261883/how-to-get-the-wordpress-post-thumbnail-featured-image-url
 
 # TODO 
-speaker sayfasi ?? 
+---speaker sayfasi ?? 
 single page sayfasinin nasil gorunecegi ? 
 anasayfanin tasarlanmasi 
 video sayfalarinin listelenmesi 
@@ -63,4 +63,42 @@ https://www.youtube.com/watch?v=8jiMZx_Ddg4
 //    echo "<br>";
 //    echo ''. $tax->description .''; 
 
+# porto yontemi ile  gecerli kategoriyi bulmak 
+	$cat_list = get_the_term_list( $post->ID, 'portfolio_cat', '', ', ', '' );
+					if ( isset( $porto_settings['portfolio-metas'] ) && in_array( 'cats', $porto_settings['portfolio-metas'] ) && $cat_list ) :
+						?>
+						<li>
+							<i class="fas fa-tags"></i> <?php echo porto_filter_output( $cat_list ); ?>
+						</li>
+					<?php endif; ?>
 
+
+
+# custom URL routes 
+
+https://carlalexander.ca/wordpress-adventurous-rewrite-api/
+
+https://digitalsetups.com/custom-rewrite-rules-vs-rest-routes/
+
+ https://wpmudev.com/blog/building-customized-urls-wordpress/
+
+https://anchor.host/wordpress-routing-hacks-for-single-page-applications/
+
+https://github.com/varunsridharan/wp-endpoint
+
+https://pexetothemes-com.translate.goog/wordpress-functions/add_query_arg/?_x_tr_sl=auto&_x_tr_tl=tr&_x_tr_hl=en-US
+
+https://www.daggerhartlab.com/wordpress-rewrite-api-examples/
+
+https://imranhsayed.medium.com/adding-rewrite-rules-in-wordpress-tutorial-b8603a37dcab
+
+
+https://wordpress.stackexchange.com/questions/390382/how-to-add-custom-rewrite-rules-and-point-to-specific-templates
+
+https://www.google.com/search?q=wordpress+rewrite+url&client=firefox-b-1-d&sca_esv=cfcd3706826e13a2&sca_upv=1&sxsrf=ADLYWIIdY7mgYKzr3Ld7pjb5bceaHobkLw%3A1719266978598&ei=ou55ZvmnJLvmkPIP-YyI8Ao&ved=0ahUKEwj5gKLMoPWGAxU7M0QIHXkGAq4Q4dUDCBA&uact=5&oq=wordpress+rewrite+url&gs_lp=Egxnd3Mtd2l6LXNlcnAiFXdvcmRwcmVzcyByZXdyaXRlIHVybDILEAAYgAQYkQIYigUyBRAAGIAEMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHkjoPlD7BlijPXAAeAGQAQCYAVygAcwIqgECMTa4AQPIAQD4AQGYAhCgAr8IwgIEEAAYR8ICChAAGIAEGBQYhwLCAggQABgWGAoYHpgDAIgGAZAGCJIHAjE2oAfNYg&sclient=gws-wiz-serp#ip=1
+
+https://www.hongkiat.com/blog/wordpress-url-rewrite/   buna bak 
+
+ https://wordpress.stackexchange.com/questions/58683/how-to-create-a-front-end-user-profile-with-a-friendly-permalink
+
+// https://revelationconcept.com/wordpress-rename-default-posts-news-something-else/

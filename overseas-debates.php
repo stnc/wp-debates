@@ -1,5 +1,9 @@
 <?php get_header();
 require_once ("functions-tvs.php");
+echo get_query_var( 'list' );
+/// ozel bir page yap 
+// speaker page init icin ornek birak 
+
 ?>
 <div class="row">
 	<div class="col-lg-3">

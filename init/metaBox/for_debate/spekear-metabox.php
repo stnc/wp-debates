@@ -5,7 +5,9 @@
 /***SIDEBAR Speaker select METABOX (ONLY debate )  ****/
 
 
-
+function tvs_cc($data ){
+   return  sanitize_text_field( wp_unslash( $data ) );
+}
 
 function tvsDebate_selected_save($post_id) {
     if (wp_is_post_autosave($post_id)) {
@@ -22,12 +24,14 @@ function tvsDebate_selected_save($post_id) {
 
 
 
+    $initialData_ = array();
 
     if (isset($_POST["speakers"])) {
-  
-        $selectedOptionlist_speaker = json_encode($_POST["speakers"]);
-        // print_r( $selectedOptionlist_speaker);
-        update_post_meta($post_id, "tvsDebateMB_speakerList", sanitize_text_field($selectedOptionlist_speaker));
+        foreach ($_POST["speakers"] as $key => $data) {
+            $initialData_[$key]=   ["speaker" =>     tvs_cc($data['speaker'])  ,"introduction" => tvs_cc($data['introduction']),"opinions" => tvs_cc($data['opinions'])];
+       }
+        $json_data = json_encode($initialData_);
+        update_post_meta($post_id, "tvsDebateMB_speakerList", $json_data);
     }
 }
 
@@ -248,7 +252,7 @@ jQuery('a#add-more').cloneData({
     removeConfirm: true, // default true confirm before delete clone item
     removeConfirmMessage: 'Are you sure want to delete?', // confirm delete message
     //append: '<a href="javascript:void(0)" class="remove-item btn btn-sm btn-danger remove-social-media">Remove</a>', // Set extra HTML append to clone HTML
-    minLimit: 0, // Default 1 set minimum clone HTML required
+    minLimit: 1, // Default 1 set minimum clone HTML required
     maxLimit: 8, // Default unlimited or set maximum limit of clone HTML
     defaultRender: 1,
     init: function() {

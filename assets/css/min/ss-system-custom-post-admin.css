@@ -434,10 +434,13 @@ ul.thumbnails.image_picker_selector li .thumbnail.selected {
     }
   }
   
-
+  .stnc-row input.form-control{
+    width: 340px;
+  }
+  
  .stnc-button-primary{
-    background-color: #9b4dca;
-    border: 0.1rem solid #9b4dca;
+    background-color: #4d6cca;
+    border: 0.1rem solid #4d6cca;
     border-radius: .4rem;
     color: #fff;
     cursor: pointer;

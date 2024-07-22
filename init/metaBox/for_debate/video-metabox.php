@@ -94,18 +94,18 @@ foreach ($json_video_list as $key =>  $json_video) :
             <div class="panel-body">
                 <div class="stnc-row">
 
-                    <div class="column ">
+                    <div class="column column-25 ">
                         <div class="form-group">
-                            <label class="control-label" style="color:blue" for="youtube">Youtube Video URL</label>
+                            <label class="control-label" style="color:blue" for="youtube">Youtube Video URL</label><br>
                             <input type="text" id="youtube" class="form-control"
                                 value="<?php echo  isset($json_video_list[$key]["youtube"]) ? $json_video_list[$key]["youtube"] : ''; ?>" name="videos[0][youtube]"
                                 maxlength="128">
                         </div>
                     </div>
 
-                    <div class="column ">
+                    <div class="column column-25 ">
                         <div class="form-group">
-                            <label class="control-label" style="color:blue" for="youtubePicture">Youtube Video Picture</label>
+                            <label class="control-label" style="color:blue" for="youtubePicture">Youtube Video Picture</label><br>
                             <input type="text" id="youtubePicture" class="form-control"
                                 value="<?php echo   isset($json_video_list[$key]["youtubePicture"]) ? $json_video_list[$key]["youtubePicture"] : '';?>" name="videos[0][youtubePicture]"
                                 maxlength="128">
@@ -113,18 +113,18 @@ foreach ($json_video_list as $key =>  $json_video) :
                     </div>
 
 
-                    <div class="column ">
+                    <div class="column column-33 ">
                         <div class="form-group">
                             <label class="control-label" style="color:blue" for="description">Description</label>
                             <textarea name="videos[0][description]" style="display: block;" rows='5'
-                                cols='60'><?php echo isset($json_video_list[$key]["description"]) ? $json_video_list[$key]["description"] : ''; ?></textarea>
+                                cols='50'><?php echo isset($json_video_list[$key]["description"]) ? $json_video_list[$key]["description"] : ''; ?></textarea>
                         </div>
                     </div>
 
-                    <div class="column ">
+                    <div class="column column-10 ">
                         <div>
                             <a href="javascript:void(0)"
-                                class="remove-item-video stnc-button-primary remove-social-media">Remove</a>
+                                class="remove-item-video stnc-button-primary remove-social-media">X</a>
                         </div>
                     </div>
 
@@ -152,7 +152,7 @@ endforeach;
             <div class="panel-body">
                 <div class="stnc-row">
 
-                    <div class="column column">
+                    <div class="column column-25">
                         <div class="form-group">
                             <label class="control-label" style="color:blue" for="youtube">Youtube Video URL</label>
                             <input type="text" id="youtube" class="form-control" value="" name="videos[0][youtube]"
@@ -162,7 +162,7 @@ endforeach;
 
 
 
-                    <div class="column ">
+                    <div class="column column-25">
                         <div class="form-group">
                             <label class="control-label" style="color:blue" for="youtubePicture">Youtube Video Picture</label>
                             <input type="text" id="youtubePicture" class="form-control"  name="videos[0][youtubePicture]"
@@ -171,18 +171,18 @@ endforeach;
                     </div>
 
 
-                    <div class="column column">
+                    <div class="column column-33">
                         <div class="form-group">
                             <label class="control-label" style="color:blue" for="description">Description</label>
-                            <textarea name="videos[0][description]" style="display: block;" rows='5' cols='60'> </textarea>
+                            <textarea name="videos[0][description]" style="display: block;" rows='5' cols='50'> </textarea>
 
                         </div>
                     </div>
 
-                    <div class="column column">
+                    <div class="column column-10">
                         <div>
                             <a href="javascript:void(0)"
-                                class="remove-item-video stnc-button-primary remove-social-media">Remove</a>
+                                class="remove-item-video stnc-button-primary remove-social-media">X</a>
                         </div>
                     </div>
 
@@ -199,8 +199,7 @@ endif;
 
 <div class="row">
     <div class="col-sm-6">
-        <a href="javascript:;" class="pull-right stnc-button-primary" id="add-more-video"><i class="fa fa-plus"></i>
-            Add more video</a>
+        <a href="javascript:;" class="pull-right stnc-button-primary" id="add-more-video"><i class="fa fa-plus"></i></a>
         <div class="clearfix"></div>
     </div>
 </div>
@@ -219,7 +218,7 @@ jQuery(document).ready(function() {
         minLimit: 0, // Default 1 set minimum clone HTML required
         maxLimit: 8, // Default unlimited or set maximum limit of clone HTML
         defaultRender: 1,
-        init: function() {
+      /*  init: function() {
             console.info(':: Initialize Plugin ::');
         },
         beforeRender: function() {
@@ -234,7 +233,7 @@ jQuery(document).ready(function() {
         },
         beforeRemove: function() {
             console.warn(':: Before remove callback called');
-        }
+        }*/
 
     });
 });

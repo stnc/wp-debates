@@ -90,11 +90,11 @@ require_once ("functions-tvs.php");
 																								 echo $title = the_title();
 																								 echo $content;
 																					   */
-									$json_speaker_list = json_decode($speaker_list_db, true);
+									$speaker_list_json = json_decode($speaker_list_db, true);
 									
-									if ($json_speaker_list):
+									if ($speaker_list_json):
 									
-										foreach ($json_speaker_list as $key => $json_speaker) :
+										foreach ($speaker_list_json as $key => $json_speaker) :
 
 											if (1 == $json_speaker["opinions"])
 												$opinions = "FOR";

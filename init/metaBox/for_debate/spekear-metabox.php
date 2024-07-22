@@ -67,11 +67,11 @@ function tvsDebate_selected_html($post) {
 
 
 $speaker_list_db = tvsDebate_selected_get_meta_simple('tvsDebateMB_speakerList');
-$json_speaker_list= json_decode($speaker_list_db, true);
-// print_r($json_speaker_list);
+$speaker_list_json= json_decode($speaker_list_db, true);
+// print_r($speaker_list_json);
 // die;
-if ($json_speaker_list) :
-foreach ($json_speaker_list as $key =>  $json_speaker) :
+if ($speaker_list_json) :
+foreach ($speaker_list_json as $key =>  $json_speaker) :
 ?>
 <div id="stnc-container">
     <div class="panel-body container-item">
@@ -82,10 +82,11 @@ foreach ($json_speaker_list as $key =>  $json_speaker) :
                 <div class="stnc-row">
                     <div class="column column-20 ">
                         <div class="form-group">
-                            <label class="control-label" style="color:green" for="state_0">Select Speaker </label>
+                            <label class="control-label" style="color:green" for="state_0">Select Speaker </label> <br>  
 
 
                             <select class="form-control select2-init" name="speakers[0][speaker]">
+                             <option  value="0"> Later (Not Clear Yet) </option>
                          <?php
                             $args = array("posts_per_page" => -1, "orderby" => "title", "order" => "asc", 'post_type' => 'speaker', 'post_status' => array('publish', 'future', 'private'));
                             $speakers = get_posts($args);
@@ -93,7 +94,7 @@ foreach ($json_speaker_list as $key =>  $json_speaker) :
                             if ($speakers) {
                             // echo '<option  value="0">'. _e("Select Speaker", "debateLang") .'</option>';
                             foreach ($speakers as $speaker) {
-                                if ($speaker->ID == $json_speaker_list[$key]["speaker"] ) {
+                                if ($speaker->ID == $speaker_list_json[$key]["speaker"] ) {
                                     $selected = "selected";
                                     echo '<option ' . $selected . ' value="'.   $speaker->ID . '">'.$speaker->post_title .'</option>';
                                 } else {
@@ -112,26 +113,26 @@ foreach ($json_speaker_list as $key =>  $json_speaker) :
 
 
 
-                    <div class="column column-20">
+                    <div class="column column-30">
                         <div class="form-group">
-                            <label class="control-label" style="color:blue" for="introduction">Introduction</label>
-                            <input type="text" id="introduction" class="form-control"
-                                value="<?php echo   isset($json_speaker_list[$key]["introduction"]) ? $json_speaker_list[$key]["introduction"] : ''?> "
+                            <label class="control-label" style="color:blue" for="introduction">Introduction</label> <br>  
+                            <input type="text" id="introduction" style="width: 500px;"  class="form-control"
+                                value="<?php echo   isset($speaker_list_json[$key]["introduction"]) ? $speaker_list_json[$key]["introduction"] : ''?> "
                                 name="speakers[0][introduction]" maxlength="128">
                         </div>
                     </div>
 
 
-                    <div class="column column-20">
+                    <div class="column column-10" style="float: left;" >
                         <div class="form-group">
-                            <label class="control-label" style="color:red" for="state_0"> Opinions</label>
+                            <label class="control-label" style="color:red" for="state_0"> Opinions</label> <br>    
 
                             <select id="state_0" class="form-control select2-init" name="speakers[0][opinions]">
                                 <option value="1"
-                                    <?php    if (1 == $json_speaker_list[$key]["opinions"] )  echo  "selected"; ?>>FOR
+                                    <?php    if (1 == $speaker_list_json[$key]["opinions"] )  echo  "selected"; ?>>FOR
                                 </option>
                                 <option value="2"
-                                    <?php    if (2 == $json_speaker_list[$key]["opinions"] )  echo  "selected"; ?>>
+                                    <?php    if (2 == $speaker_list_json[$key]["opinions"] )  echo  "selected"; ?>>
                                     AGAINST</option>
                             </select>
                         </div>
@@ -140,7 +141,7 @@ foreach ($json_speaker_list as $key =>  $json_speaker) :
                     <div class="column column-10">
                         <div>
                             <a href="javascript:void(0)"
-                                class="remove-item stnc-button-primary remove-social-media">Remove</a>
+                                class="remove-item stnc-button-primary remove-social-media">X</a>
                         </div>
                     </div>
 
@@ -149,6 +150,8 @@ foreach ($json_speaker_list as $key =>  $json_speaker) :
 
             </div>
         </fieldset>
+
+        <br>
     </div>
 
 
@@ -192,15 +195,15 @@ endforeach;
 
 
 
-                    <div class="column column-20">
+                    <div class="column column-30">
                         <div class="form-group">
-                            <label class="control-label" style="color:blue" for="full_name_0">Introduction</label>
-                            <input type="text" id="full_name_0" class="form-control" name="speakers[0][introduction]" maxlength="128">
+                            <label class="control-label" style="color:blue;" for="full_name_0">Introduction</label>
+                            <input type="text" id="full_name_0" style="width: 500px;"  class="form-control" name="speakers[0][introduction]" maxlength="128">
                         </div>
                     </div>
 
 
-                    <div class="column column-20">
+                    <div class="column column-10">
                         <div class="form-group">
                             <label class="control-label" style="color:red" for="state_0"> Opinions</label>
 
@@ -214,7 +217,7 @@ endforeach;
                     <div class="column column-10">
                         <div>
                             <a href="javascript:void(0)"
-                                class="remove-item stnc-button-primary remove-social-media">Remove</a>
+                                class="remove-item stnc-button-primary remove-social-media">X</a>
                         </div>
                     </div>
 
@@ -234,13 +237,14 @@ endif;
 
 <div class="row">
     <div class="col-sm-6">
-        <a href="javascript:;" class="pull-right btn btn-success btn-xs" id="add-more"><i class="fa fa-plus"></i>
-            Add more address</a>
+        <a href="javascript:;" class="pull-right stnc-button-primary" id="add-more"><i class="fa fa-plus"></i>
+            </a>
         <div class="clearfix"></div>
     </div>
 
 
 </div>
+<div style="color:red;background-color:black;padding:5px;">If the speaker has not been determined yet, please select the <strong>"Later (Not Clear Yet)"</strong> option.</div>
 
 
 
@@ -258,7 +262,7 @@ jQuery('a#add-more').cloneData({
     init: function() {
         console.info(':: Initialize Plugin ::');
     },
-    beforeRender: function() {
+  /*  beforeRender: function() {
         console.info(':: Before rendered callback called');
     },
     afterRender: function() {
@@ -270,7 +274,7 @@ jQuery('a#add-more').cloneData({
     },
     beforeRemove: function() {
         console.warn(':: Before remove callback called');
-    }
+    }*/
 
 });
 </script>

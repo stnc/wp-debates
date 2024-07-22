@@ -132,12 +132,12 @@ require_once ("functions.php");
 														echo porto_get_excerpt($porto_settings['blog-excerpt-length'], false);
 
 														$speaker_list_db = get_post_meta(get_the_ID(), 'tvsDebateMB_speakerList', true);
-														$json_speaker_list = json_decode($speaker_list_db, true);
+														$speaker_list_json = json_decode($speaker_list_db, true);
 														// echo "<pre>";
-														// print_r($json_speaker_list);
-														if ($json_speaker_list):
+														// print_r($speaker_list_json);
+														if ($speaker_list_json):
 															echo '<ul style="border:1px solid black">';
-															foreach ($json_speaker_list as $key => $json_speaker) {
+															foreach ($speaker_list_json as $key => $json_speaker) {
 
 																if (1 == $json_speaker["opinions"])
 																	$opinions = "FOR";
@@ -160,12 +160,12 @@ require_once ("functions.php");
 														echo porto_the_content();
 
 														$speaker_list_db = get_post_meta(get_the_ID(), 'tvsDebateMB_speakerList', true);
-														$json_speaker_list = json_decode($speaker_list_db, true);
+														$speaker_list_json = json_decode($speaker_list_db, true);
 														// echo "<pre>";
-														// print_r($json_speaker_list);
-														if ($json_speaker_list):
+														// print_r($speaker_list_json);
+														if ($speaker_list_json):
 															echo '<ul>';
-															foreach ($json_speaker_list as $key => $json_speaker) {
+															foreach ($speaker_list_json as $key => $json_speaker) {
 
 																if (1 == $json_speaker["opinions"])
 																	$opinions = "FOR";

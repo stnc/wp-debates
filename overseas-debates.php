@@ -44,8 +44,7 @@ require_once ("functions-tvs.php");
 								class="col-lg-12  col-md-12 offset-lg-0 offset-md-2 custom-sm-margin-bottom-1 p-b-lg single-debate">
 
 								<?php
-								$opinionPage = get_post_meta(get_the_ID(), 'tvsDebateMB_opinion', true);
-								$transcriptPage = get_post_meta(get_the_ID(), 'tvsDebateMB_transcript', true);
+
 								global $porto_settings;
 
 								$post_layout = 'medium';
@@ -56,14 +55,12 @@ require_once ("functions-tvs.php");
 								if (isset($porto_settings['post-title-style']) && 'without-icon' == $porto_settings['post-title-style']) {
 									$post_class[] = 'post-title-simple';
 								}
+
 								$post_meta = '';
 								$post_meta .= '<div class="post-meta ' . (empty($porto_settings['post-metas']) ? ' d-none' : '') . '">';
-
 								$post_meta .= '<ul class="buttons">';
 								$post_meta .= '<li><a  href="' . get_permalink() . '">Details</a></li>';
-								$post_meta .= '<li><a  href="' . get_permalink($transcriptPage) . '">Transcript</a></li>';
-								$post_meta .= '<li><a href="/speakers?list=' . get_the_ID() . '">Speakers</a></li>';
-								$post_meta .= '<li><a  href="' . get_permalink($opinionPage) . '">Opinion poll</a></li>';
+								$post_meta .= tvs_frontpage_metabox(get_the_ID());
 								$post_meta .= '<li style="float:right"><span class="d-block float-sm-end mt-3 mt-sm-0"><a class="btn btn-xs btn-default text-xs text-uppercase" href="' . esc_url(apply_filters('the_permalink', get_permalink())) . '">' . esc_html__('Read more...', 'porto') . '</a></span></li>';
 								$post_meta .= '</ul>';
 								$post_meta .= '</div>';

@@ -3,7 +3,7 @@
 D:\laragon\www\debates\wp-content\themes\porto\inc\plugins\plugins.php  /// satir  10 $plugin = PORTO_PLUGINS . '/sidebar-generator/sidebar_generator.php';
 
 
-css and jss for will add version number 
+
 
 
 https://dev.tvsdebates.com/
@@ -23,13 +23,18 @@ https://stackoverflow.com/questions/11261883/how-to-get-the-wordpress-post-thumb
 # TODO 
  
 single page sayfasinin nasil gorunecegi ? 
-anasayfanin tasarlanmasi 
+
 video sayfalarinin listelenmesi 
 oylama sistemi olacak mi ?  #V2
 
+https://jqueryui.com/sortable/   https://github.com/DubFriend/jquery.repeater/tree/master 
+
+https://github.com/awps/Accordion.JS
+http://dimsemenov.com/plugins/magnific-popup/
+
 
 ---speaker sayfasi ??
-
+---anasayfanin tasarlanmasi 
 
 speakers listenen yere speaker icin link verelim ikinci versyion #V2
 debates sayfalarinin nasil siralanacagi icin options ayari 
@@ -108,115 +113,3 @@ https://www.hongkiat.com/blog/wordpress-url-rewrite/   buna bak
 
 
 
-
-
-/* /special-debates/ , overseas-debates/ , past-debates/  */
-ul.menu {
-    margin: 0px;
-    padding: 0px;
-  }
-
-
-ul.menu li {
-    list-style: none;
-  }
-
-ul.menu li a {
-    display: block;
-    background-color: rgb(0, 0, 0);
-    padding: 6px 15px;
-    margin: 0px 0px 4px;
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-  }
-
-  ul.menu li a:hover, ul.menu li a.left_marker {
-    background-color: rgb(151, 43, 43);
-    color: rgb(255, 255, 255);
-  }
-
- 
-/* buttons  */
-ul.buttons {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  float: left;
-  width: 100%;
-  clear: both;
-  margin: 10px 0 20px;
-}
-  ul.buttons li {
-    background-color: #fff;
-    color: #333;
-
-    margin: 5px;
- 
-    float: left;
-  }
-
-  ul.buttons li a {
-    background: #972b2b;
-      background-color: rgb(151, 43, 43);
-    color: #fff;
-    padding: 5px;
-    text-decoration: none;
-    -moz-border-radius-topleft: 3px;
-    -moz-border-radius-topright: 3px;
-    -webkit-border-top-left-radius: 3px;
-    -webkit-border-top-right-radius: 3px;
-    margin: 0 0 15px;
-    font-weight: 700;
-    font-size: 13px;
-    border: solid 1px #972b2b;
-  }
-
-  ul.buttons li a {
-    background-color: #fff;
-    color: #333;
-    border: solid 1px #ccc;
-  }
-
-/*single page like /debate/etc-etc-etc */
-
-  .debate-row .single-debate  {
-    background-color: rgb(238, 238, 238);
-    margin-bottom: 15px;
-    border: 1px solid rgb(204, 204, 204);
-    padding: 15px;
-      padding-bottom: 15px;
-  }
-
-  .page-debates .debate-row .entry-title a{
-    color: #972b2b !important;
-    font-size: 23px !important;
-  }
-
-  /*
-  
-  
-  */
-.menu-stnc {
-  box-shadow: 0 5px 5px 0 rgba(0,0,0,.75);
-  margin-bottom: 10px;
-}
-
-/*override porto theme */
-body.boxed {
-
-  background-color: #afafaf;
-}
-
-body.boxed .page-wrapper{
-  border-top:0px!important;
-}
-
-body.boxed .page-wrapper {
-  padding: 10px;
-  border-radius: 15px!important;
-}
-
-#header.header-loaded .header-main{
-  border-radius: 10px 10px 0px 0;
-}

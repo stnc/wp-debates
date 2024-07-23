@@ -456,3 +456,43 @@ ul.thumbnails.image_picker_selector li .thumbnail.selected {
     text-transform: uppercase;
     white-space: nowrap;
 }
+
+
+
+
+
+ span.delete,
+ span.delete,
+span.delete_media {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+    cursor: pointer;
+    z-index: 1;
+    color: #555555;
+    float: right;
+    font-size: 14px;
+    font-family: Tahoma, sans-serif;
+    background: #fff;
+    padding: 7px 12px;
+    font-weight: bold;
+}
+
+ span.delete,
+span.delete,
+span.delete_media {
+    display: block;
+}
+
+
+
+ .images-container .single-image img,
+ .images-containerBG .single-imageBG img {
+    float: left;
+    clear: both;
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 100%
+}

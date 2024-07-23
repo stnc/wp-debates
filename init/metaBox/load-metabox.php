@@ -12,8 +12,8 @@ if (tvsDebate_post_type()["get_type"] == 'debate' || tvsDebate_post_type()["post
 	tvsDebate_debate_options_();
 
 include ("for_debate/spekear-metabox.php");
-include ("for_debate/video-metabox.php");
-include ("for_debate/related-metabox.php");
+// include ("for_debate/video-metabox.php");
+// include ("for_debate/related-metabox.php");
 
 }
 

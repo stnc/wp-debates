@@ -73,35 +73,89 @@ $speaker_list_json= json_decode($speaker_list_db, true);
 if ($speaker_list_json) :
 foreach ($speaker_list_json as $key =>  $json_speaker) :
 ?>
+<div id="stnc-container">
+    <div class="panel-body container-item">
+        <fieldset class="item panel panel-default" style="border: 1px solid black; padding: 10px;">
+            <!-- widgetBody -->
+            <legend style="width: auto;padding:10px;">Speaker </legend>
+            <div class="panel-body">
+                <div class="stnc-row">
+                    <div class="column column-20 ">
+                        <div class="form-group">
+                            <label class="control-label" style="color:green" for="state_0">Select Speaker </label> <br>  
 
 
+                            <select class="form-control select2-init" name="speakers[0][speaker]">
+                             <option  value="0"> Later (Not Clear Yet) </option>
+                         <?php
+                            $args = array("posts_per_page" => -1, "orderby" => "title", "order" => "asc", 'post_type' => 'speaker', 'post_status' => array('publish', 'future', 'private'));
+                            $speakers = get_posts($args);
 
-<div class="repeater1">
-    <!--
-        The value given to the data-repeater-list attribute will be used as the
-        base of rewritten name attributes.  In this example, the first
-        data-repeater-item's name attribute would become group-a[0][text-input],
-        and the second data-repeater-item would become group-a[1][text-input]
-    -->
-    <div data-repeater-list="group-a">
-      <div data-repeater-item>
-      <select id="state_0" class="form-control select2-init" name="speakers[0][opinions]">
-                                <option value="1">FOR</option>
-                                <option value="2">  AGAINST</option>
+                            if ($speakers) {
+                            // echo '<option  value="0">'. _e("Select Speaker", "debateLang") .'</option>';
+                            foreach ($speakers as $speaker) {
+                                if ($speaker->ID == $speaker_list_json[$key]["speaker"] ) {
+                                    $selected = "selected";
+                                    echo '<option ' . $selected . ' value="'.   $speaker->ID . '">'.$speaker->post_title .'</option>';
+                                } else {
+                                    $selected = "";
+                                    echo '<option ' . $selected . ' value="' .  $speaker->ID . '">'.$speaker->post_title .'</option>';
+
+                                }
+                            }
+                            }
+		                   ?>
                             </select>
-                            <input type="text" name="text-input" value="fff"/>
-        <input data-repeater-delete type="button" value="Delete"/>
-      </div>
-      <div data-repeater-item>
-        <input type="text" name="text-input" value="B"/>
-        <input data-repeater-delete type="button" value="Delete"/>
-      </div>
+
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="column column-30">
+                        <div class="form-group">
+                            <label class="control-label" style="color:blue" for="introduction">Introduction</label> <br>  
+                            <input type="text" id="introduction" style="width: 500px;"  class="form-control"
+                                value="<?php echo   isset($speaker_list_json[$key]["introduction"]) ? $speaker_list_json[$key]["introduction"] : ''?> "
+                                name="speakers[0][introduction]" maxlength="128">
+                        </div>
+                    </div>
+
+
+                    <div class="column column-10" style="float: left;" >
+                        <div class="form-group">
+                            <label class="control-label" style="color:red" for="state_0"> Opinions</label> <br>    
+
+                            <select id="state_0" class="form-control select2-init" name="speakers[0][opinions]">
+                                <option value="1"
+                                    <?php    if (1 == $speaker_list_json[$key]["opinions"] )  echo  "selected"; ?>>FOR
+                                </option>
+                                <option value="2"
+                                    <?php    if (2 == $speaker_list_json[$key]["opinions"] )  echo  "selected"; ?>>
+                                    AGAINST</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="column column-10">
+                        <div>
+                            <a href="javascript:void(0)"
+                                class="remove-item stnc-button-primary remove-social-media">X</a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </fieldset>
+
+        <br>
     </div>
-    <input data-repeater-create type="button" value="Add"/>
+
+
 </div>
-
-
-
 <!-- <hr> -->
 <?php
 endforeach;
@@ -194,33 +248,35 @@ endif;
 
 
 
-<script>
-    jQuery(document).ready(function () {
-   
+<script type="text/javascript">
+jQuery('a#add-more').cloneData({
+    mainContainerId: 'stnc-container', // Main container Should be ID
+    cloneContainer: 'container-item', // Which you want to clone
+    removeButtonClass: 'remove-item', // Remove button for remove cloned HTML
+    removeConfirm: true, // default true confirm before delete clone item
+    removeConfirmMessage: 'Are you sure want to delete?', // confirm delete message
+    //append: '<a href="javascript:void(0)" class="remove-item btn btn-sm btn-danger remove-social-media">Remove</a>', // Set extra HTML append to clone HTML
+    minLimit: 1, // Default 1 set minimum clone HTML required
+    maxLimit: 8, // Default unlimited or set maximum limit of clone HTML
+    defaultRender: 1,
+    init: function() {
+        console.info(':: Initialize Plugin ::');
+    },
+  /*  beforeRender: function() {
+        console.info(':: Before rendered callback called');
+    },
+    afterRender: function() {
+        console.info(':: After rendered callback called');
+        //jQuery(".selectpicker").selectpicker('refresh');
+    },
+    afterRemove: function() {
+        console.warn(':: After remove callback called');
+    },
+    beforeRemove: function() {
+        console.warn(':: Before remove callback called');
+    }*/
 
-        jQuery('.repeater1').repeater({
-            // defaultValues: {
-            //     'textarea-input': 'foo',
-            //     'text-input': 'stnc',
-            //     'select-input': 'B',
-            //     'checkbox-input': ['A', 'B'],
-            //     'radio-input': 'B'
-            // },
-            show: function () {
-                jQuery(this).slideDown();
-            },
-            hide: function (deleteElement) {
-                if(confirm('Are you sure you want to delete this element?')) {
-                    jQuery(this).slideUp(deleteElement);
-                }
-            },
-            ready: function (setIndexes) {
-
-            }
-        });
-
-
-    });
+});
 </script>
 
 <?php

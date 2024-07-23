@@ -11,20 +11,25 @@ jQuery(function () {
     /* ==========================================================================
      #Post-meta class media manager trigger  http://bit.ly/2g83CQ7
      ========================================================================== */
-    jQuery('.page_upload_trigger_element').on('click', function (e) {
+
+    jQuery(document).on('click', '.page_upload_trigger_element', function(e) {
+    
         var _custom_media = true;
         var _orig_send_attachment = wp.media.editor.send.attachment;
         var send_attachment_bkp = wp.media.editor.send.attachment;
         var button = jQuery(this);
         var id = button.attr('id').replace('_extra', '');
+        // button.closest('.'+settings.cloneContainer).find("label[for='" + id + "']")
         _custom_media = true;
         wp.media.editor.send.attachment = function (props, attachment) {
             if (_custom_media) {
 
                 jQuery("#" + id).val(attachment.url);
+           
                 var filename = attachment.url;
                 var file_extension = filename.split('.').pop();//find extension
-                if (file_extension == "jpg" || file_extension == "jpeg" || file_extension == "png" || file_extension == "gif") {
+                if (file_extension == "jpg" || file_extension == "jpeg" || file_extension == "png" || file_extension == "gif"  || file_extension == "webp") {
+                    console.log ("dsdsd")
                     jQuery("#" + id + '_li .background_attachment_metabox_container').html('<div class="images-containerBG"><div class="single-imageBG"><span class="delete">X</span>  <img data-targetid="wow_pageSetting_backgroundImage" class="attachment-100x100 wp-post-image" witdh="100" height="100" src="' + attachment.url + '"></div></div>');
                 } else {
                     jQuery("#" + id + '_li .background_attachment_metabox_container').html('<div class="images-containerBG">' +
@@ -129,19 +134,6 @@ jQuery(function () {
     });
 
 
-    /* ==========================================================================
-     #Metabox page select visible hide show
-     ========================================================================== */
-    // jQuery('#pageSetting_header_type_selected').on('change', function () {
-    //     var selectVal = jQuery("#pageSetting_header_type_selected option:selected").val();
-    //     if (selectVal == 'header-fixed-costum') {
-    //         jQuery(".header_type_selected_reguired").removeClass('metabox_visible');
-    //         jQuery(".header_type_selected_reguired").addClass('metabox_show');
-    //     } else {
-    //         jQuery(".header_type_selected_reguired").removeClass('metabox_show');
-    //         jQuery(".header_type_selected_reguired").addClass('metabox_visible');
-    //     }
-    // });
 
 
 

@@ -1,24 +1,6 @@
-// jQuery(document).ready(function ($) {
-//                 $('.teknolar li').click(function(){
-//                     $('.teknolar li').removeClass('active');
-//                     $(this).addClass('active');
 
-//                     var index = $('.teknolar li').index(this);
-//                     $('.teknolarYazi li').removeClass('active');
-//                     $('.teknolarYazi li:eq('+index+')').addClass('active');
-
-//                 });
-//             });
 'use strict';
 jQuery.noConflict();
-
-
-
-
-
-
-
-
 
 
     jQuery(document).ready(function ($) {
@@ -26,6 +8,7 @@ jQuery.noConflict();
          #Post-meta class media manager trigger  http://bit.ly/2g83CQ7
          ========================================================================== */
         jQuery('.page_upload_trigger_element').on('click', function (e) {
+            alert ("ddd")
             var _custom_media = true;
             var _orig_send_attachment = wp.media.editor.send.attachment;
             // var send_attachment_bkp = wp.media.editor.send.attachment;
@@ -37,11 +20,12 @@ jQuery.noConflict();
                 if (_custom_media) {
 
                     jQuery("#media_id" ).val(attachment.id);
+                    
                     // $('.custom_media_url').val(attachment.url);
                     // $('.custom_media_id').val(attachment.id);
                     var filename = attachment.url;
                     var file_extension = filename.split('.').pop();//find extension
-                    if (file_extension == "jpg" || file_extension == "jpeg" || file_extension == "png" || file_extension == "gif") {
+                    if (file_extension == "jpg" || file_extension == "jpeg" || file_extension == "png" || file_extension == "gif"  || file_extension == "webp") {
                         jQuery('.background_attachment_metabox_container').html('<div class="images-containerBG"><div class="single-imageBG"><span class="delete">X</span>  <img data-targetid="wow_pageSetting_backgroundImage" class="img-fluid" src="' + attachment.url + '"></div></div>');
                     } else {
                         jQuery('.background_attachment_metabox_container').html('<div class="images-containerBG">' +
@@ -63,6 +47,7 @@ jQuery.noConflict();
         /* ==========================================================================
          #Upload wp manager (Upload Image) metabox  media gallery click  trigger
          ========================================================================== */
+         /*
         // when click on the upload button
         jQuery('.STNCupload_button').on('click', function (e) {
             // json field
@@ -104,6 +89,7 @@ jQuery.noConflict();
             // Now that everything has been set, let's open up the frame.
             st_studio_uploader.open();
         });
+        */
 /**
  
     <input id="image-url" type="text" name="image" />
@@ -133,25 +119,45 @@ jQuery.noConflict();
     wkMedia.open();
   });
 
-$('.permission_check').click(function(e) {
-    //    e.preventDefault();
-    //    alert("dsds");
-        var eventsholded = [];
+
+    /* ==========================================================================
+     #Delete image element
+     ========================================================================== */
+     jQuery(document).on("click touchstart", ".background_attachment_metabox_container .single-imageBG span.delete", function () {
+        //   var imageurl = jQuery(this).parent().find('img').attr('src');
+        var target_id = jQuery(this).parent().find('img').attr('data-targetID');
+        jQuery('#' + target_id).val("");
+        jQuery(this).parent().hide(400);
+    });
+
+    /* ==========================================================================
+     #Delete mp4/mp3 element
+     ========================================================================== */
+    jQuery(document).on("click touchstart", ".background_attachment_metabox_container .single-imageBG span.delete_media", function () {
+        var target_id = jQuery(this).attr('data-targetID');
+        jQuery('#' + target_id).val("");
+        jQuery(this).parent().hide(400);
+    });
+
+    /* ==========================================================================
+     #Delete Gallery manager (metabox gallery) metabox  media gallery views trigger
+     ========================================================================== */
+    jQuery('.images-container').each(function () {
+        var wrapper = jQuery(this);
 
 
-        var event = new Object();
-        event.door_number_permission =    $('#door_number_permission').is(':checked');          
-        // event.square_meters_permission =    $('#square_meters_permission').is(':checked');          
-        event.email_permission =    $('#email_permission').is(':checked');          
-        event.phone_permission =    $('#phone_permission').is(':checked');          
-        event.mobile_phone_permission =    $('#mobile_phone_permission').is(':checked');          
-        event.web_site_permission =    $('#web_site_permission').is(':checked');          
-        event.company_description_permission =    $('#company_description_permission').is(':checked');          
-        event.address_permission =    $('#address_permission').is(':checked');          
-
-        eventsholded.push(event);
-        console.log(JSON.stringify(eventsholded));
-        $('#web_permission').val(JSON.stringify(eventsholded));    
-
+        // delete image from gallery
+        wrapper.find('.single-image span.delete').on('click', function () {
+            var confirmed = confirm('Are you sure?');
+            if (confirmed) {
+                // image url
+                var imageurl = jQuery(this).parent().find('img').attr('data-id');
+                wrapper.parent().find('.media_field_content').val(function (index, value) {
+                    return value.replace(imageurl + ',', '').replace(imageurl, '');
+                });
+                jQuery(this).parent().hide(400);
+            }
         });
+    });
+
  });

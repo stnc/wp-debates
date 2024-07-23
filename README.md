@@ -32,6 +32,8 @@ https://jqueryui.com/sortable/   https://github.com/DubFriend/jquery.repeater/tr
 https://github.com/awps/Accordion.JS
 http://dimsemenov.com/plugins/magnific-popup/
 
+https://github.com/Brutenis/Repeater-Field-JS?tab=readme-ov-file
+
 
 ---speaker sayfasi ??
 ---anasayfanin tasarlanmasi 

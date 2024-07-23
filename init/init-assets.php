@@ -6,7 +6,7 @@ function tvsDebate_admin_enqueue_style()
 
 
 function tvsDebate_script_in_admin($hook) {
-    wp_register_script( 'tvsDebate-admin',plugin_dir_url( __FILE__ ) . '../assets/js/ss-admin.js', "","1.4.28");
+    wp_register_script( 'tvsDebate-admin',plugin_dir_url( __FILE__ ) . '../assets/js/ss-admin.js', "","1.4.41");
     wp_enqueue_script('tvsDebate-admin');
 
     wp_register_script( 'tvsDebate-admin-color',plugin_dir_url( __FILE__ ) . '../assets/js/ss-color-picker-init.js',"","1.4.28");
@@ -24,8 +24,8 @@ if  (tvsDebate_post_type()["post_type"] === 'debate' || tvsDebate_post_type()["g
 
 function ssOnlyDebate_script_in_admin($hook) {
     // wp_register_script( 'tvsDebateOnly-admin',plugin_dir_url( __FILE__ ) . '../assets/js/knockout-min.js', '',true );
-    // wp_register_script( 'tvsDebateOnly-admin',plugin_dir_url( __FILE__ ) . '../assets/js/jquery.repeater.min.js', '',true );
-    wp_register_script( 'tvsDebateOnly-admin',plugin_dir_url( __FILE__ ) . '../assets/js/CloneData.js', "","1.4.28" );
+    wp_register_script( 'tvsDebateOnly-admin',plugin_dir_url( __FILE__ ) . '../assets/js/jquery.repeater.min.js', "","1.4.28");
+    // wp_register_script( 'tvsDebateOnly-admin',plugin_dir_url( __FILE__ ) . '../assets/js/CloneData.js', "","1.4.28" );
     wp_enqueue_script('tvsDebateOnly-admin');
 }
 

@@ -84,7 +84,7 @@ foreach ($speaker_list_json as $key =>  $json_speaker) :
         and the second data-repeater-item would become group-a[1][text-input]
     -->
     <div data-repeater-list="group-a">
-      <div data-repeater-item>
+      <div data-repeater-item="set" class="contro" data-index="1">
       <select id="state_0" class="form-control select2-init" name="speakers[0][opinions]">
                                 <option value="1">FOR</option>
                                 <option value="2">  AGAINST</option>
@@ -92,12 +92,12 @@ foreach ($speaker_list_json as $key =>  $json_speaker) :
                             <input type="text" name="text-input" value="fff"/>
         <input data-repeater-delete type="button" value="Delete"/>
       </div>
-      <div data-repeater-item>
+      <div data-repeater-item="kek"  class="contro" data-index="2">
         <input type="text" name="text-input" value="B"/>
         <input data-repeater-delete type="button" value="Delete"/>
       </div>
     </div>
-    <input data-repeater-create type="button" value="Add"/>
+    <input data-repeater-create type="button"  onclick="myFunction()" value="Add"/>
 </div>
 
 
@@ -215,12 +215,33 @@ endif;
                 }
             },
             ready: function (setIndexes) {
-
+// alert (setIndexes)
             }
         });
 
 
     });
+
+ 
+
+
+
+
+function myFunction() {
+  timeout = setTimeout(alertFunc, 1000);
+}
+
+function alertFunc() {
+    jQuery('div[class="contro"]').each(function(index,item){
+    // if(parseInt($(item).data('index'))>2){
+    //     $(item).html('Testimonial '+(index+1)+' by each loop');
+    // butun elemanlarda gezinecek sonra inputlara bir class verecek mesela pic1 gibi 
+    // }
+console.log (item)
+});
+}
+
+
 </script>
 
 <?php

@@ -18,7 +18,11 @@ jQuery(function () {
         var _orig_send_attachment = wp.media.editor.send.attachment;
         var send_attachment_bkp = wp.media.editor.send.attachment;
         var button = jQuery(this);
-        var id = button.attr('id').replace('_extra', '');
+        var id = button.attr('id').replace('_button', '');
+        var index = button.attr('data-index')
+
+        console.log(id)
+        console.log(index)
         // button.closest('.'+settings.cloneContainer).find("label[for='" + id + "']")
         _custom_media = true;
         wp.media.editor.send.attachment = function (props, attachment) {
@@ -29,11 +33,11 @@ jQuery(function () {
                 var filename = attachment.url;
                 var file_extension = filename.split('.').pop();//find extension
                 if (file_extension == "jpg" || file_extension == "jpeg" || file_extension == "png" || file_extension == "gif"  || file_extension == "webp") {
-                    console.log ("dsdsd")
-                    jQuery("#" + id + '_li .background_attachment_metabox_container').html('<div class="images-containerBG"><div class="single-imageBG"><span class="delete">X</span>  <img data-targetid="wow_pageSetting_backgroundImage" class="attachment-100x100 wp-post-image" witdh="100" height="100" src="' + attachment.url + '"></div></div>');
+                
+                    jQuery("#" + id + '_li .background_attachment_metabox_container').html('<div class="images-containerBG"><div class="single-imageBG"><span class="delete">X</span>  <img data-targetid="speaker_video" class="attachment-100x100 wp-post-image" witdh="100" height="100" src="' + attachment.url + '"></div></div>');
                 } else {
                     jQuery("#" + id + '_li .background_attachment_metabox_container').html('<div class="images-containerBG">' +
-                        '<div style="width: 53px; height: 53px;" class="single-imageBG"><span data-targetid="wow_pageSetting_backgroundImage"  class="delete_media">X</span> ' +
+                        '<div style="width: 53px; height: 53px;" class="single-imageBG"><span data-targetid="speaker_video"  class="delete_media">X</span> ' +
                         '<span style="font-size: 46px" class="info dashicons dashicons-admin-media"></span> </div></div>');
                 }
                 /* important notes jQuery("#" + id + '_li .background_attachment_metabox_container').html('<div class="images-containerBG">' +
@@ -49,6 +53,39 @@ jQuery(function () {
 
 
 
+    /* ==========================================================================
+     #Delete image element
+     ========================================================================== */
+     jQuery(document).on("click touchstart", ".background_attachment_metabox_container .single-imageBG span.delete", function () {
+        alert ("dsds")
+        //   var imageurl = jQuery(this).parent().find('img').attr('src');
+        var target_id = jQuery(this).parent().find('img').attr('data-targetid');
+        jQuery('#' + target_id).val("");
+        jQuery(this).parent().hide(400);
+    });
+
+    /* ==========================================================================
+     #Delete mp4/mp3 element
+     ========================================================================== */
+    jQuery(document).on("click touchstart", ".background_attachment_metabox_container .single-imageBG span.delete_media", function () {
+        var target_id = jQuery(this).attr('data-targetid');
+        jQuery('#' + target_id).val("");
+        jQuery(this).parent().hide(400);
+    });
+
+
+
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
     /* ==========================================================================
      #Upload wp manager (Upload Image) metabox  media gallery click  trigger
      ========================================================================== */
@@ -112,28 +149,6 @@ jQuery(function () {
             }
         });
     });
-
-
-    /* ==========================================================================
-     #Delete image element
-     ========================================================================== */
-     jQuery(document).on("click touchstart", ".background_attachment_metabox_container .single-imageBG span.delete", function () {
-        //   var imageurl = jQuery(this).parent().find('img').attr('src');
-        var target_id = jQuery(this).parent().find('img').attr('data-targetID');
-        jQuery('#' + target_id).val("");
-        jQuery(this).parent().hide(400);
-    });
-
-    /* ==========================================================================
-     #Delete mp4/mp3 element
-     ========================================================================== */
-    jQuery(document).on("click touchstart", ".background_attachment_metabox_container .single-imageBG span.delete_media", function () {
-        var target_id = jQuery(this).attr('data-targetID');
-        jQuery('#' + target_id).val("");
-        jQuery(this).parent().hide(400);
-    });
-
-
 
 
 

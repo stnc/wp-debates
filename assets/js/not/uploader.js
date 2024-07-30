@@ -8,7 +8,6 @@ jQuery.noConflict();
          #Post-meta class media manager trigger  http://bit.ly/2g83CQ7
          ========================================================================== */
         jQuery('.page_upload_trigger_element').on('click', function (e) {
-            alert ("ddd")
             var _custom_media = true;
             var _orig_send_attachment = wp.media.editor.send.attachment;
             // var send_attachment_bkp = wp.media.editor.send.attachment;
@@ -42,6 +41,19 @@ jQuery.noConflict();
             wp.media.editor.open(button);
             return false;
         });
+
+
+     /* ==========================================================================
+     #Delete image element
+     ========================================================================== */
+     jQuery(document).on("click touchstart", ".background_attachment_metabox_container .single-imageBG span.delete", function () {
+        //   var imageurl = jQuery(this).parent().find('img').attr('src');
+        var target_id = jQuery(this).parent().find('img').attr('data-targetID');
+        jQuery('#' + target_id).val("");
+        jQuery(this).parent().hide(400);
+     });
+
+
 
  
         /* ==========================================================================
@@ -95,6 +107,7 @@ jQuery.noConflict();
     <input id="image-url" type="text" name="image" />
   <input id="upload-button" type="button" class="button" value="Upload Image" />
  */
+/*
   var wkMedia;
   $('#upload-button').click(function(e) {
     e.preventDefault();
@@ -118,17 +131,8 @@ jQuery.noConflict();
     // Open the upload dialog
     wkMedia.open();
   });
+*/
 
-
-    /* ==========================================================================
-     #Delete image element
-     ========================================================================== */
-     jQuery(document).on("click touchstart", ".background_attachment_metabox_container .single-imageBG span.delete", function () {
-        //   var imageurl = jQuery(this).parent().find('img').attr('src');
-        var target_id = jQuery(this).parent().find('img').attr('data-targetID');
-        jQuery('#' + target_id).val("");
-        jQuery(this).parent().hide(400);
-    });
 
     /* ==========================================================================
      #Delete mp4/mp3 element
@@ -142,7 +146,7 @@ jQuery.noConflict();
     /* ==========================================================================
      #Delete Gallery manager (metabox gallery) metabox  media gallery views trigger
      ========================================================================== */
-    jQuery('.images-container').each(function () {
+   /* jQuery('.images-container').each(function () {
         var wrapper = jQuery(this);
 
 
@@ -159,5 +163,5 @@ jQuery.noConflict();
             }
         });
     });
-
+*/
  });

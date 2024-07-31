@@ -72,57 +72,86 @@ function tvsDebate_selected_add_meta_box()
 
 function tvsDebate_selected_html($post)
 {
-    wp_nonce_field("_speaker_selected_nonce", "speaker_selected_nonce");
+    wp_nonce_field("_video_selected_nonce", "video_selected_nonce");
 
+    $json_video_list = tvsDebate_selected_get_meta_simple('tvsDebateMB_videoList');
 
+    // echo  "<pre>";
 
+    // print_r ($json_video_list);
 
-    $speaker_list_db = tvsDebate_selected_get_meta_simple('tvsDebateMB_speakerList');
-    $speaker_list_json = json_decode($speaker_list_db, true);
-    // print_r($speaker_list_json);
-// die;
-    if ($speaker_list_json):
-        foreach ($speaker_list_json as $key => $json_speaker):
+    $json_video_list = json_decode($json_video_list, true);
+    // die;
+    if ($json_video_list):
+        foreach ($json_video_list as $key => $json_video):
             ?>
 
+            <div id="stnc-video-container">
+                <div class="panel-body container-item-video">
+
+                    <div class="panel-body">
+                        <div class="stnc-row2">
 
 
-            <div class="repeater1">
-                <!--
-        The value given to the data-repeater-list attribute will be used as the
-        base of rewritten name attributes.  In this example, the first
-        data-repeater-item's name attribute would become group-a[0][text-input],
-        and the second data-repeater-item would become group-a[1][text-input]
-    -->
-                <div data-repeater-list="group-a">
+                            <div data-repeater-list="speaker">
+
+                              
+                                    <!-- widgetBody -->
+                             
+                                    <fieldset class="stnc-row item panel panel-default" style="border: 1px solid black; padding: 10px;" data-repeater-item class="rep-element">
+                                    <legend style="width: auto;padding:10px;">Video </legend>
 
 
-                    <div data-repeater-item class="rep-element">
+                                        <div class="column column-25 ">
+                                            <div class="form-group">
+                                                <label class="control-label" style="color:blue" for="youtube">Youtube Video
+                                                    URL</label><br>
+                                                <input type="text" id="youtube" class="form-control"
+                                                    value="<?php echo isset($json_video_list[$key]["youtube"]) ? $json_video_list[$key]["youtube"] : ''; ?>"
+                                                    name="videos[0][youtube]" maxlength="128">
+                                            </div>
+                                        </div>
 
-                        <label for="speaker_video"></label>
-                        <input type="text" value="" style="display:none1;" id="speaker_video">
+                                        <div class="column column-25 ">
+                                            <input type="text" name="speaker_name" value="" class="speaker_video_inputC"
+                                                id="speaker_video_input1" style="display:none1;">
 
-                        <a id="speaker_video_button" data-index="1"
-                            class="page_upload_trigger_element button button-primary button-large">Select</a>
-                        <br>
-                        <div id="speaker_video_li">
-                            <div class="background_attachment_metabox_container"></div>
+                                            <a data-index="1" data-name="speaker_video"
+                                                class="page_upload_trigger_element button button-primary button-large">Select</a>
+
+
+                                            <br>
+                                            <div class="speaker_video_listC" id="speaker_video_list1">
+                                                <div class="background_attachment_metabox_container"></div>
+                                            </div>
+
+
+                                        </div>
+
+
+                                        <div class="column column-33 ">
+                                            <div class="form-group">
+                                                <label class="control-label" style="color:blue"
+                                                    for="description">Description</label>
+                                                <textarea name="videos[0][description]" style="display: block;" rows='5'
+                                                    cols='50'><?php echo isset($json_video_list[$key]["description"]) ? $json_video_list[$key]["description"] : ''; ?></textarea>
+                                            </div>
+                                        </div>
+
+                                        <input data-repeater-delete type="button" value="Delete" />
+
+
+
+                                    
+
+
+                                </fieldset>
+                            </div>
+                            <input data-repeater-create type="button" onclick="myFunction()" value="Add" />
                         </div>
-
-
-
-                        <input data-repeater-delete type="button" value="Delete" />
                     </div>
-
-
-
                 </div>
-                <input data-repeater-create type="button" onclick="myFunction()" value="Add" />
             </div>
-
-
-
-            <!-- <hr> -->
             <?php
         endforeach;
         ?>
@@ -203,11 +232,7 @@ function tvsDebate_selected_html($post)
     ?>
 
     <div class="row">
-        <div class="col-sm-6">
-            <a href="javascript:;" class="pull-right stnc-button-primary" id="add-more"><i class="fa fa-plus"></i>
-            </a>
-            <div class="clearfix"></div>
-        </div>
+
 
 
     </div>
@@ -221,7 +246,7 @@ function tvsDebate_selected_html($post)
         jQuery(document).ready(function () {
 
 
-            jQuery('.repeater1').repeater({
+            jQuery('.stnc-row2').repeater({
                 // defaultValues: {
                 //     'textarea-input': 'foo',
                 //     'text-input': 'stnc',
@@ -255,6 +280,8 @@ function tvsDebate_selected_html($post)
         }
 
         function alertFunc() {
+
+
             jQuery('div[class="rep-element"]').each(function (index, item) {
                 var i = 1;
                 // if(parseInt($(item).data('index'))>2){
@@ -262,8 +289,12 @@ function tvsDebate_selected_html($post)
                 // butun elemanlarda gezinecek sonra inputlara bir class verecek mesela pic1 gibi 
                 // }
                 i = index + 1;
-                jQuery(item).children(".ida").addClass("myClass" + i);
-                // console.log(item)
+                jQuery(item).children(".speaker_video_inputC").removeAttr('id');
+                jQuery(item).children(".speaker_video_listC").removeAttr('id');
+                jQuery(item).children(".page_upload_trigger_element").attr('data-index', i);
+                jQuery(item).children(".speaker_video_inputC").attr('id', "speaker_video_input" + i);
+                jQuery(item).children(".speaker_video_listC").attr('id', "speaker_video_list" + i);
+
             });
         }
 

@@ -465,7 +465,7 @@ ul.thumbnails.image_picker_selector li .thumbnail.selected {
  span.delete,
 span.delete_media {
     position: absolute;
-    top: 0;
+    /* top: 0; */
     right: 0;
     display: none;
     cursor: pointer;

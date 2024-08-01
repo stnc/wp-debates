@@ -6,8 +6,8 @@ function tvsDebate_admin_enqueue_style()
 
 
 function tvsDebate_script_in_admin($hook) {
-    wp_register_script( 'tvsDebate-admin',plugin_dir_url( __FILE__ ) . '../assets/js/ss-admin.js', "","1.4.41");
-    wp_enqueue_script('tvsDebate-admin');
+    // wp_register_script( 'tvsDebate-admin',plugin_dir_url( __FILE__ ) . '../assets/js/ss-admin.js', "","1.4.41");
+    // wp_enqueue_script('tvsDebate-admin');
 
     wp_register_script( 'tvsDebate-admin-color',plugin_dir_url( __FILE__ ) . '../assets/js/ss-color-picker-init.js',"","1.4.28");
     wp_enqueue_script('tvsDebate-admin-color');

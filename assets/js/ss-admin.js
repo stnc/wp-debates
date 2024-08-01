@@ -21,7 +21,7 @@ jQuery(function () {
         // var id = button.attr('data-name').replace('_button', '');  //<a  data-index="1" data-name="speaker_video_button"    console.log(id)
         var id = button.attr('data-name');    
         
-        var index = button.attr('data-index')
+        var index = button.attr('data-index');
     
      
         // button.closest('.'+settings.cloneContainer).find("label[for='" + id + "']")
@@ -36,10 +36,10 @@ jQuery(function () {
                 console.log("#" + id + '_list'+ index + ' .background_attachment_metabox_container')
                 if (file_extension == "jpg" || file_extension == "jpeg" || file_extension == "png" || file_extension == "gif"  || file_extension == "webp") {
                 
-                    jQuery("#" + id + '_list'+ index + ' .background_attachment_metabox_container').html('<div class="images-containerBG"><div class="single-imageBG"><span class="delete">X</span>  <img data-targetid="speaker_video" class="attachment-100x100 wp-post-image" witdh="100" height="100" src="' + attachment.url + '"></div></div>');
+                    jQuery("#" + id + '_list'+ index + ' .background_attachment_metabox_container').html('<div class="images-containerBG"><div class="single-imageBG"><span class="delete">X</span>  <img data-targetid="speaker_video_input'+ index +'" class="attachment-100x100 wp-post-image" witdh="100" height="100" src="' + attachment.url + '"></div></div>');
                 } else {
                     jQuery("#" + id + '_list'+ index + ' .background_attachment_metabox_container').html('<div class="images-containerBG">' +
-                        '<div style="width: 53px; height: 53px;" class="single-imageBG"><span data-targetid="speaker_video"  class="delete_media">X</span> ' +
+                        '<div style="width: 53px; height: 53px;" class="single-imageBG"><span data-targetid="speaker_video_input'+ index +'"  class="delete_media">X</span> ' +
                         '<span style="font-size: 46px" class="info dashicons dashicons-admin-media"></span> </div></div>');
                 }
                 /* important notes jQuery("#" + id + '_li .background_attachment_metabox_container').html('<div class="images-containerBG">' +
@@ -59,7 +59,6 @@ jQuery(function () {
      #Delete image element
      ========================================================================== */
      jQuery(document).on("click touchstart", ".background_attachment_metabox_container .single-imageBG span.delete", function () {
-        alert ("dsds")
         //   var imageurl = jQuery(this).parent().find('img').attr('src');
         var target_id = jQuery(this).parent().find('img').attr('data-targetid');
         jQuery('#' + target_id).val("");

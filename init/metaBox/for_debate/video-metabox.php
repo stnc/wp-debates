@@ -1,21 +1,16 @@
 <?php
 
 
-if (tvsDebate_post_type()["post_type"] === "debate" || tvsDebate_post_type()["get_type"] === "debate") {
-    if (is_admin()) {
-        add_action("load-post.php", "tvsDebate_debate_video_init_metabox");
-        add_action("load-post-new.php", "tvsDebate_debate_video_init_metabox");
-    }
-}
+
+/***SIDEBAR Speaker select METABOX (ONLY debate )  ****/
 
 
-function str_replace_json($search, $replace, $subject)
+function tvs_cc($data)
 {
-    return json_decode(str_replace($search, $replace, json_encode($subject)));
+    return sanitize_text_field(wp_unslash($data));
 }
 
-
-function tvsDebate_video_selected_save($post_id)
+function tvsDebate_selected_save($post_id)
 {
     if (wp_is_post_autosave($post_id)) {
         return;
@@ -29,18 +24,16 @@ function tvsDebate_video_selected_save($post_id)
         return $post_id;
     }
 
-    if (isset($_POST["videos"])) {
 
-        // FIXME:  here should be html and " cleaning this with foreach
 
-        $selectedOptionlist_video = $_POST["videos"];
-        // $selectedOptionlist_video = $_POST["videos"] ["description"];
-        // // $selectedOptionlist_video = str_replace(  '"', "'",  $selectedOptionlist_video);
-        // print_r(   $_POST["videos"]);
-        // print_r(   $selectedOptionlist_video);
-        // die;
-        $selectedOptionlist_video = json_encode($selectedOptionlist_video, true);
-        update_post_meta($post_id, "tvsDebateMB_videoList", sanitize_text_field($selectedOptionlist_video));
+    $initialData_ = array();
+
+    if (isset($_POST["speakers"])) {
+        foreach ($_POST["speakers"] as $key => $data) {
+            $initialData_[$key] = ["speaker" => tvs_cc($data['speaker']), "introduction" => tvs_cc($data['introduction']), "opinions" => tvs_cc($data['opinions'])];
+        }
+        $json_data = json_encode($initialData_);
+        update_post_meta($post_id, "tvsDebateMB_speakerList", $json_data);
     }
 }
 
@@ -48,23 +41,26 @@ function tvsDebate_video_selected_save($post_id)
 
 
 
-
+if (tvsDebate_post_type()["post_type"] === "debate" || tvsDebate_post_type()["get_type"] === "debate") {
+    if (is_admin()) {
+        add_action("load-post.php", "tvsDebate_debate_init_metabox");
+        add_action("load-post-new.php", "tvsDebate_debate_init_metabox");
+    }
+}
 /*register metabox */
-function tvsDebate_debate_video_init_metabox()
+function tvsDebate_debate_init_metabox()
 {
     // add meta box
-    add_action("add_meta_boxes", "tvsDebate_selected_video_add_meta_box");
+    add_action("add_meta_boxes", "tvsDebate_selected_add_meta_box");
     // metabox save
-    add_action("save_post", "tvsDebate_video_selected_save");
+    add_action("save_post", "tvsDebate_selected_save");
 }
-
-
-function tvsDebate_selected_video_add_meta_box()
+function tvsDebate_selected_add_meta_box()
 {
     add_meta_box(
-        "tvs_debate_vide_metabox",
-        __("Videos", "debateLang"),
-        "tvsDebate_video_selected_html",
+        "tvs_debate_metabox",
+        __("Video", "debateLang"),
+        "tvsDebate_selected_html",
         "debate",
         "normal", // normal  side  advanced
         "default"
@@ -74,7 +70,7 @@ function tvsDebate_selected_video_add_meta_box()
 
 
 
-function tvsDebate_video_selected_html($post)
+function tvsDebate_selected_html($post)
 {
     wp_nonce_field("_video_selected_nonce", "video_selected_nonce");
 
@@ -85,196 +81,219 @@ function tvsDebate_video_selected_html($post)
     // print_r ($json_video_list);
 
     $json_video_list = json_decode($json_video_list, true);
-
-    // $json_video_list=str_replace_json( '"', "'",  $json_video_list);
-
-    // [{"youtube":"https://www.youtube.com/watch?v=-4A4XzRx0UY","youtubePicture":"https://i.ytimg.com/vi/uS3wEQGuqbc/hqdefault.jpg","description":"ll "},{"youtube":"https://www.youtube.com/watch?v=aUhDzk1pSKY","youtubePicture":"https://media.ssyoutube.com/get?__sig=jYQKWNdOMWMrTgHL4X_RgQ&__expires=1718306046&uri=httpsi.ytimg.comviaUhDzk1pS","description":""}]
-
-    // print_r ($json_video_list);
-// die;
+    // die;
     if ($json_video_list):
         foreach ($json_video_list as $key => $json_video):
+            $key = $key + 1;
             ?>
 
 
-            <div id="stnc-video-container">
-                <div class="panel-body container-item-video">
-                    <fieldset class="item panel panel-default" style="border: 1px solid black; padding: 10px;">
-                        <!-- widgetBody -->
+            <div class="repeater-tvsvideos">
+
+
+                <div class="rep-video" data-repeater-list="tvsvideos">
+
+
+                    <!-- widgetBody -->
+
+                    <fieldset style="border: 1px solid black; padding: 10px;" data-repeater-item class="rep-element">
                         <legend style="width: auto;padding:10px;">Video </legend>
-                        <div class="panel-body">
-                            <div class="stnc-row">
 
-
-
-
-
-
-                            
-                                <div class="column column-25 ">
-                                    <div class="form-group">
-                                        <label class="control-label" style="color:blue" for="youtube">Youtube Video URL</label><br>
-                                        <input type="text" id="youtube" class="form-control"
-                                            value="<?php echo isset($json_video_list[$key]["youtube"]) ? $json_video_list[$key]["youtube"] : ''; ?>"
-                                            name="videos[0][youtube]" maxlength="128">
-                                    </div>
+                        <div class="stnc-row ">
+                            <div class="column column-25 ">
+                                <div class="form-group">
+                                    <label class="control-label" style="color:blue" for="youtube_link">Youtube Video
+                                        URL</label><br>
+                                    <input type="text" id="youtube_link" class="form-control"
+                                        value="<?php echo isset($json_video_list[$key]["youtube_link"]) ? $json_video_list[$key]["youtube_link"] : ''; ?>"
+                                        name="youtube_link" maxlength="128">
                                 </div>
+                            </div>
 
-                                <div class="column column-25 ">
-                                    <label for="stnc_wp_kiosk_Metabox_video"></label>
-                                    <input type="text" value="" class="" style="display:none;" name="stnc_wp_kiosk_Metabox_video"
-                                        id="stnc_wp_kiosk_Metabox_video">
+                            <div class="column column-25 ">
+                                <input type="text" name="youtubePicture"
+                                    value="<?php echo isset($json_video_list[$key]["youtubePicture"]) ? $json_video_list[$key]["youtubePicture"] : ''; ?>"
+                                    class="tvs_videometa_inputC" id="tvs_videometa_input<?php echo $key ?>" style="display:none1;">
 
-                                    <input id="stnc_wp_kiosk_Metabox_video_extra1"
-                                        class="page_upload_trigger_element button button-primary button-large"
-                                         name="videos[0][picture]" type="button" value="Select Picture">
-                                        
-                                    <!-- <span class="form_hint">Etc</span> -->
-                                    <br>
-                                    <div id="stnc_wp_kiosk_Metabox_video_li">
-                                    <div class="background_attachment_metabox_container">
-                                      
-                                      </div>
+                                <a data-index="<?php echo $key ?>" data-name="tvs_videometa"
+                                    class="page_upload_trigger_element button button-primary button-large">Select Picture</a>
 
-                                    </div>
-                                   
-                                    
+                                <br>
+                                <div class="tvs_videometa_listC" id="tvs_videometa_list<?php echo $key ?>">
+                                    <div class="background_attachment_metabox_container"></div>
                                 </div>
 
 
-
-
-
-
-
-
-
-                                <div class="column column-33 ">
-                                    <div class="form-group">
-                                        <label class="control-label" style="color:blue" for="description">Description</label>
-                                        <textarea name="videos[0][description]" style="display: block;" rows='5'
-                                            cols='50'><?php echo isset($json_video_list[$key]["description"]) ? $json_video_list[$key]["description"] : ''; ?></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="column column-10 ">
-                                    <div>
-                                        <a href="javascript:void(0)"
-                                            class="remove-item-video stnc-button-primary remove-social-media">X</a>
-                                    </div>
-                                </div>
 
                             </div>
 
 
+                            <div class="column column-33 ">
+                                <div class="form-group">
+                                    <label class="control-label" style="color:blue" for="description">Description</label>
+                                    <textarea name="description" style="display: block;" rows='8'
+                                        cols='57'><?php echo isset($json_video_list[$key]["description"]) ? $json_video_list[$key]["description"] : ''; ?></textarea>
+                                </div>
+                            </div>
+
+                            <div class="column column-10 ">
+                                <input data-repeater-delete type="button" class=" button button-primary button-large"
+                                    value="Delete" />
+                            </div>
+
                         </div>
+
+
+
                     </fieldset>
                 </div>
 
-
+                <input data-repeater-create type="button" class=" button button-secondary button-large" style="margin:10px"
+                    onclick="myFunction()" value="Add" />
             </div>
-            <!-- <hr> -->
+
             <?php
         endforeach;
         ?>
 
     <?php else: ?>
 
-        <div id="stnc-video-container">
-            <div class="panel-body container-item-video">
-                <fieldset class="item panel panel-default" style="border: 1px solid black; padding: 10px;">
-                    <!-- widgetBody -->
-                    <legend style="width: auto;padding:10px;">Video </legend>
-                    <div class="panel-body">
-                        <div class="stnc-row">
 
-                            <div class="column column-25">
-                                <div class="form-group">
-                                    <label class="control-label" style="color:blue" for="youtube">Youtube Video URL</label>
-                                    <input type="text" id="youtube" class="form-control" value="" name="videos[0][youtube]"
-                                        maxlength="128">
-                                </div>
-                            </div>
-
-
-
-                            <div class="column column-25">
-                                <div class="form-group">
-                                    <label class="control-label" style="color:blue" for="youtubePicture">Youtube Video
-                                        Picture</label>
-                                    <input type="text" id="youtubePicture" class="form-control" name="videos[0][youtubePicture]"
-                                        maxlength="128">
-                                </div>
-                            </div>
-
-
-                            <div class="column column-33">
-                                <div class="form-group">
-                                    <label class="control-label" style="color:blue" for="description">Description</label>
-                                    <textarea name="videos[0][description]" style="display: block;" rows='5'
-                                        cols='50'> </textarea>
-
-                                </div>
-                            </div>
-
-                            <div class="column column-10">
-                                <div>
-                                    <a href="javascript:void(0)"
-                                        class="remove-item-video stnc-button-primary remove-social-media">X</a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </fieldset>
-            </div>
-        </div>
 
         <?php
     endif;
     ?>
 
-
     <div class="row">
-        <div class="col-sm-6">
-            <a href="javascript:;" class="pull-right stnc-button-primary" id="add-more-video"><i class="fa fa-plus"></i></a>
-            <div class="clearfix"></div>
-        </div>
+
+
+
+    </div>
+    <div style="color:red;background-color:black;padding:5px;">If the speaker has not been determined yet, please select
+        the
+        <strong>"Later (Not Clear Yet)"</strong> option.
     </div>
 
 
 
-    <script type="text/javascript">
+    <script>
         jQuery(document).ready(function () {
-            jQuery('a#add-more-video').cloneData({
-                mainContainerId: 'stnc-video-container', // Main container Should be ID
-                cloneContainer: 'container-item-video', // Which you want to clone
-                removeButtonClass: 'remove-item-video', // Remove button for remove cloned HTML
-                removeConfirm: true, // default true confirm before delete clone item
-                removeConfirmMessage: 'Are you sure want to delete?', // confirm delete message
-                //append: '<a href="javascript:void(0)" class="remove-item btn btn-sm btn-danger remove-social-media">Remove</a>', // Set extra HTML append to clone HTML
-                minLimit: 0, // Default 1 set minimum clone HTML required
-                maxLimit: 8, // Default unlimited or set maximum limit of clone HTML
-                defaultRender: 1,
-                /*  init: function() {
-                      console.info(':: Initialize Plugin ::');
-                  },
-                  beforeRender: function() {
-                      console.info(':: Before rendered callback called');
-                  },
-                  afterRender: function() {
-                      console.info(':: After rendered callback called');
-                      //jQuery(".selectpicker").selectpicker('refresh');
-                  },
-                  afterRemove: function() {
-                      console.warn(':: After remove callback called');
-                  },
-                  beforeRemove: function() {
-                      console.warn(':: Before remove callback called');
-                  }*/
+
+
+            /* ==========================================================================
+                #Post-meta class media manager trigger  http://bit.ly/2g83CQ7
+                ========================================================================== */
+
+            jQuery(document).on('click', '.page_upload_trigger_element', function (e) {
+
+                var _custom_media = true;
+                var _orig_send_attachment = wp.media.editor.send.attachment;
+                var send_attachment_bkp = wp.media.editor.send.attachment;
+                var button = jQuery(this);
+                // var id = button.attr('data-name').replace('_button', '');  //<a  data-index="1" data-name="tvs_videometa_button"    console.log(id)
+                var id = button.attr('data-name');
+
+                var index = button.attr('data-index');
+
+
+                // button.closest('.'+settings.cloneContainer).find("label[for='" + id + "']")
+                _custom_media = true;
+                wp.media.editor.send.attachment = function (props, attachment) {
+                    if (_custom_media) {
+
+                        jQuery("#" + id + '_input' + index).val(attachment.url);
+
+                        var filename = attachment.url;
+                        var file_extension = filename.split('.').pop();//find picture extension
+                        console.log("#" + id + '_list' + index + ' .background_attachment_metabox_container')
+                        if (file_extension == "jpg" || file_extension == "jpeg" || file_extension == "png" || file_extension == "gif" || file_extension == "webp") {
+
+                            jQuery("#" + id + '_list' + index + ' .background_attachment_metabox_container').html('<div class="images-containerBG"><div class="single-imageBG"><span class="delete">X</span>  <img data-targetid="tvs_videometa_input' + index + '" class="attachment-100x100 wp-post-image" witdh="100" height="100" src="' + attachment.url + '"></div></div>');
+                        } else {
+                            jQuery("#" + id + '_list' + index + ' .background_attachment_metabox_container').html('<div class="images-containerBG">' +
+                                '<div style="width: 53px; height: 53px;" class="single-imageBG"><span data-targetid="tvs_videometa_input' + index + '"  class="delete_media">X</span> ' +
+                                '<span style="font-size: 46px" class="info dashicons dashicons-admin-media"></span> </div></div>');
+                        }
+                        /* important notes jQuery("#" + id + '_li .background_attachment_metabox_container').html('<div class="images-containerBG">' +
+                         '<div class="single-imageBG_"><span class="info">'+attachment.url+'</span></div></div>');*/
+
+                    } else {
+                        return _orig_send_attachment.apply(this, [props, attachment]);
+                    }
+                };
+                wp.media.editor.open(button);
+                return false;
+            });
+
+
+
+            /* ==========================================================================
+             #Delete image element
+             ========================================================================== */
+            jQuery(document).on("click touchstart", ".background_attachment_metabox_container .single-imageBG span.delete", function () {
+                //   var imageurl = jQuery(this).parent().find('img').attr('src');
+                var target_id = jQuery(this).parent().find('img').attr('data-targetid');
+                jQuery('#' + target_id).val("");
+                jQuery(this).parent().hide(400);
+            });
+
+
+
+            jQuery('.repeater-tvsvideos').repeater({
+                // defaultValues: {
+                //     'textarea-input': 'foo',
+                //     'text-input': 'stnc',
+                //     'select-input': 'B',
+                //     'checkbox-input': ['A', 'B'],
+                //     'radio-input': 'B'
+                // },
+                show: function () {
+                    jQuery(this).slideDown();
+                },
+                hide: function (deleteElement) {
+                    if (confirm('Are you sure you want to delete this element?')) {
+                        jQuery(this).slideUp(deleteElement);
+                    }
+                },
+                ready: function (setIndexes) {
+                    // alert (setIndexes)
+                }
+            });
+
+
+        });
+
+
+
+
+
+
+        function myFunction() {
+            timeout = setTimeout(alertFunc, 1000);
+        }
+
+        function alertFunc() {
+
+
+            jQuery('fieldset[class="rep-element"]').each(function (index, item) {
+                var i = 1;
+                // if(parseInt($(item).data('index'))>2){
+                //     $(item).html('Testimonial '+(index+1)+' by each loop');
+                // butun elemanlarda gezinecek sonra inputlara bir class verecek mesela pic1 gibi 
+                // }
+                i = index + 1;
+                console.log("de" + i)
+
+                //  jQuery(item).parent().find(".tvs_videometa_inputC").removeAttr('id');
+                //  jQuery(item).parent().find(".tvs_videometa_listC").removeAttr('id');
+                jQuery(item).children().find(".page_upload_trigger_element").attr('data-index', i);
+                jQuery(item).children().find(".tvs_videometa_inputC").attr('id', "tvs_videometa_input" + i);
+                jQuery(item).children().find(".tvs_videometa_listC").attr('id', "tvs_videometa_list" + i);
 
             });
-        });
+        }
+
+
     </script>
 
     <?php

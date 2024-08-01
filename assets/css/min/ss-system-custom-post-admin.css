@@ -464,7 +464,7 @@ ul.thumbnails.image_picker_selector li .thumbnail.selected {
  span.delete,
  span.delete,
 span.delete_media {
-    position: absolute;
+  /*  position: absolute;*/
     /* top: 0; */
     right: 0;
     display: none;
@@ -477,6 +477,7 @@ span.delete_media {
     background: #fff;
     padding: 7px 12px;
     font-weight: bold;
+    border: 1px solid #000;
 }
 
  span.delete,

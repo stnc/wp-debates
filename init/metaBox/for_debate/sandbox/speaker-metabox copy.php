@@ -5,11 +5,8 @@
 /***SIDEBAR Speaker select METABOX (ONLY debate )  ****/
 
 
-function tvs_cc($data ){
-   return  sanitize_text_field( wp_unslash( $data ) );
-}
 
-function tvsDebate_selected_save($post_id) {
+function tvsDebate_speaker_selected_save($post_id) {
     if (wp_is_post_autosave($post_id)) {
         return;
     }
@@ -41,26 +38,31 @@ function tvsDebate_selected_save($post_id) {
 
 if (tvsDebate_post_type() ["post_type"] === "debate" || tvsDebate_post_type() ["get_type"] === "debate") {
     if (is_admin()) {
-        add_action("load-post.php", "tvsDebate_debate_init_metabox");
-        add_action("load-post-new.php", "tvsDebate_debate_init_metabox");
+        add_action("load-post.php", "tvsDebate_speaker_init_metabox");
+        add_action("load-post-new.php", "tvsDebate_speaker_init_metabox");
     }
 }
 /*register metabox */
-function tvsDebate_debate_init_metabox() {
+function tvsDebate_speaker_init_metabox() {
     // add meta box
-    add_action("add_meta_boxes", "tvsDebate_selected_add_meta_box");
+    add_action("add_meta_boxes", "tvsDebate_speaker_selected_add_meta_box");
     // metabox save
-    add_action("save_post", "tvsDebate_selected_save");
+    add_action("save_post", "tvsDebate_speaker_selected_save");
 }
-function tvsDebate_selected_add_meta_box() {
-    add_meta_box("tvs_debate_metabox", __("Speaker", "debateLang"), "tvsDebate_selected_html", "debate", "normal", // normal  side  advanced
+function tvsDebate_speaker_selected_add_meta_box() {
+    add_meta_box(
+        "tvs_debate_speaker_metabox", 
+    __("Speaker", "debateLang"),
+     "tvsDebate_speaker_selected_html",
+      "debate", 
+      "normal", // normal  side  advanced
     "default");
 }
 
 
 
 
-function tvsDebate_selected_html($post) {
+function tvsDebate_speaker_selected_html($post) {
     wp_nonce_field("_speaker_selected_nonce", "speaker_selected_nonce"); 
 
 

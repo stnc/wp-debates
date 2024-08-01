@@ -1,5 +1,22 @@
 <?php 
 //--------------debate-------------
+
+
+function tvsDebate_selected_get_meta_simple($value) {
+    global $post;
+    return get_post_meta($post->ID, $value, true);
+}
+
+
+
+function tvs_cc($data)
+{
+    return sanitize_text_field(wp_unslash($data));
+}
+
+
+
+
 function tvsDebate_debate_options_()
 {
 	include('for_debate/metabox_options.php');
@@ -11,20 +28,11 @@ function tvsDebate_debate_options_()
 if (tvsDebate_post_type()["get_type"] == 'debate' || tvsDebate_post_type()["post_type"] == 'debate' ) {
 	tvsDebate_debate_options_();
 
-// include ("for_debate/spekear-metabox.php");
-include ("for_debate/video-metabox.php");
-// include ("for_debate/related-metabox.php");
+include 'for_debate/speaker-metabox.php';
+include 'for_debate/video-metabox.php';
+include "for_debate/related-metabox.php";
 
 }
-
-function tvsDebate_selected_get_meta_simple($value) {
-    global $post;
-    return get_post_meta($post->ID, $value, true);
-}
-
-
-
-
 
 
 

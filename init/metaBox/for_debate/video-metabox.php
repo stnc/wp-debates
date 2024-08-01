@@ -5,12 +5,9 @@
 /***SIDEBAR Speaker select METABOX (ONLY debate )  ****/
 
 
-function tvs_cc($data)
-{
-    return sanitize_text_field(wp_unslash($data));
-}
 
-function tvsDebate_selected_save($post_id)
+
+function tvsDebate_video_selected_save($post_id)
 {
     if (wp_is_post_autosave($post_id)) {
         return;
@@ -28,12 +25,12 @@ function tvsDebate_selected_save($post_id)
 
     $initialData_ = array();
 
-    if (isset($_POST["speakers"])) {
-        foreach ($_POST["speakers"] as $key => $data) {
-            $initialData_[$key] = ["speaker" => tvs_cc($data['speaker']), "introduction" => tvs_cc($data['introduction']), "opinions" => tvs_cc($data['opinions'])];
+    if (isset($_POST["tvs_videos"])) {
+        foreach ($_POST["tvs_videos"] as $key => $data) {
+            $initialData_[$key] = ["youtube_link" => tvs_cc($data['youtube_link']), "youtubePicture" => tvs_cc($data['youtubePicture']), "description" => tvs_cc($data['description'])];
         }
         $json_data = json_encode($initialData_);
-        update_post_meta($post_id, "tvsDebateMB_speakerList", $json_data);
+        update_post_meta($post_id, "tvsDebateMB_videoList", $json_data);
     }
 }
 
@@ -43,24 +40,24 @@ function tvsDebate_selected_save($post_id)
 
 if (tvsDebate_post_type()["post_type"] === "debate" || tvsDebate_post_type()["get_type"] === "debate") {
     if (is_admin()) {
-        add_action("load-post.php", "tvsDebate_debate_init_metabox");
-        add_action("load-post-new.php", "tvsDebate_debate_init_metabox");
+        add_action("load-post.php", "tvsDebate_video_init_metabox");
+        add_action("load-post-new.php", "tvsDebate_video_init_metabox");
     }
 }
 /*register metabox */
-function tvsDebate_debate_init_metabox()
+function tvsDebate_video_init_metabox()
 {
     // add meta box
-    add_action("add_meta_boxes", "tvsDebate_selected_add_meta_box");
+    add_action("add_meta_boxes", "tvsDebate_selected_video_add_meta_box");
     // metabox save
-    add_action("save_post", "tvsDebate_selected_save");
+    add_action("save_post", "tvsDebate_video_selected_save");
 }
-function tvsDebate_selected_add_meta_box()
+function tvsDebate_selected_video_add_meta_box()
 {
     add_meta_box(
-        "tvs_debate_metabox",
+        "tvs_debate_video_metabox",
         __("Video", "debateLang"),
-        "tvsDebate_selected_html",
+        "tvsDebate_video_selected_html",
         "debate",
         "normal", // normal  side  advanced
         "default"
@@ -70,31 +67,33 @@ function tvsDebate_selected_add_meta_box()
 
 
 
-function tvsDebate_selected_html($post)
+function tvsDebate_video_selected_html($post)
 {
     wp_nonce_field("_video_selected_nonce", "video_selected_nonce");
 
     $json_video_list = tvsDebate_selected_get_meta_simple('tvsDebateMB_videoList');
 
-    // echo  "<pre>";
+    //  echo  "<pre>";
 
-    // print_r ($json_video_list);
+    //  print_r ($json_video_list);
 
     $json_video_list = json_decode($json_video_list, true);
+    // print_r ($json_video_list);
+    // print_r ($json_video_list[0]["youtube_link"]);
     // die;
     if ($json_video_list):
-        foreach ($json_video_list as $key => $json_video):
-            $key = $key + 1;
-            ?>
+        ?>
 
 
-            <div class="repeater-tvsvideos">
+        <div class="repeater-tvsvideos">
 
 
-                <div class="rep-video" data-repeater-list="tvsvideos">
+            <div class="rep-video" data-repeater-list="tvs_videos">
+                <?php
 
-
-                    <!-- widgetBody -->
+                foreach ($json_video_list as $key => $json_video):
+                    $keyNew = $key + 1;
+                    ?>
 
                     <fieldset style="border: 1px solid black; padding: 10px;" data-repeater-item class="rep-element">
                         <legend style="width: auto;padding:10px;">Video </legend>
@@ -102,29 +101,34 @@ function tvsDebate_selected_html($post)
                         <div class="stnc-row ">
                             <div class="column column-25 ">
                                 <div class="form-group">
-                                    <label class="control-label" style="color:blue" for="youtube_link">Youtube Video
-                                        URL</label><br>
+                                    <label class="control-label" style="color:blue" for="youtube_link">Youtube Video URL</label><br>
                                     <input type="text" id="youtube_link" class="form-control"
-                                        value="<?php echo isset($json_video_list[$key]["youtube_link"]) ? $json_video_list[$key]["youtube_link"] : ''; ?>"
+                                        value="<?php echo isset($json_video["youtube_link"]) ? $json_video["youtube_link"] : ''; ?>"
                                         name="youtube_link" maxlength="128">
                                 </div>
                             </div>
 
                             <div class="column column-25 ">
                                 <input type="text" name="youtubePicture"
-                                    value="<?php echo isset($json_video_list[$key]["youtubePicture"]) ? $json_video_list[$key]["youtubePicture"] : ''; ?>"
-                                    class="tvs_videometa_inputC" id="tvs_videometa_input<?php echo $key ?>" style="display:none1;">
+                                    value="<?php echo isset($json_video["youtubePicture"]) ? $json_video["youtubePicture"] : ''; ?>"
+                                    class="tvs_videometa_inputC" id="tvs_videometa_input<?php echo $keyNew ?>"
+                                    style="display:none;">
 
-                                <a data-index="<?php echo $key ?>" data-name="tvs_videometa"
+                                <a data-index="<?php echo $keyNew ?>" data-name="tvs_videometa"
                                     class="page_upload_trigger_element button button-primary button-large">Select Picture</a>
 
                                 <br>
-                                <div class="tvs_videometa_listC" id="tvs_videometa_list<?php echo $key ?>">
-                                    <div class="background_attachment_metabox_container"></div>
+                                <div class="tvs_videometa_listC" id="tvs_videometa_list<?php echo $keyNew ?>">
+                                    <div class="background_attachment_metabox_container">
+                                        <div class="images-containerBG">
+                                            <div class="single-imageBG"><span class="delete">X</span>
+                                                <img data-targetid="tvs_videometa_input" class="attachment-100x100 wp-post-image"
+                                                    witdh="100" height="100"
+                                                    src="<?php echo isset($json_video["youtubePicture"]) ? $json_video["youtubePicture"] : ''; ?>">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-
-
-
                             </div>
 
 
@@ -132,7 +136,7 @@ function tvsDebate_selected_html($post)
                                 <div class="form-group">
                                     <label class="control-label" style="color:blue" for="description">Description</label>
                                     <textarea name="description" style="display: block;" rows='8'
-                                        cols='57'><?php echo isset($json_video_list[$key]["description"]) ? $json_video_list[$key]["description"] : ''; ?></textarea>
+                                        cols='57'><?php echo isset($json_video["description"]) ? $json_video["description"] : ''; ?></textarea>
                                 </div>
                             </div>
 
@@ -146,33 +150,77 @@ function tvsDebate_selected_html($post)
 
 
                     </fieldset>
-                </div>
+                    <?php
+                endforeach;
+                ?>
 
-                <input data-repeater-create type="button" class=" button button-secondary button-large" style="margin:10px"
-                    onclick="myFunction()" value="Add" />
             </div>
 
-            <?php
-        endforeach;
-        ?>
+            <input data-repeater-create type="button" class=" button button-secondary button-large" style="margin:10px"
+                onclick="videoFunction()" value="Add" />
+        </div>
+
+
 
     <?php else: ?>
 
+        <div class="repeater-tvsvideos">
 
+
+            <div class="rep-video" data-repeater-list="tvs_videos">
+                <fieldset style="border: 1px solid black; padding: 10px;" data-repeater-item class="rep-element">
+                    <legend style="width: auto;padding:10px;">Video </legend>
+
+                    <div class="stnc-row ">
+                        <div class="column column-25 ">
+                            <div class="form-group">
+                                <label class="control-label" style="color:blue" for="youtube_link">Youtube Video URL</label><br>
+                                <input type="text" id="youtube_link" class="form-control" value="" name="youtube_link"
+                                    maxlength="128">
+                            </div>
+                        </div>
+
+                        <div class="column column-25 ">
+                            <input type="text" name="youtubePicture" value="" class="tvs_videometa_inputC"
+                                id="tvs_videometa_input" style="display:none;">
+
+                            <a data-index="" data-name="tvs_videometa"
+                                class="page_upload_trigger_element button button-primary button-large">Select Picture</a>
+
+                            <br>
+                            <div class="tvs_videometa_listC" id="tvs_videometa_list">
+                                <div class="background_attachment_metabox_container"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="column column-33 ">
+                            <div class="form-group">
+                                <label class="control-label" style="color:blue" for="description">Description</label>
+                                <textarea name="description" style="display: block;" rows='8' cols='57'></textarea>
+                            </div>
+                        </div>
+
+                        <div class="column column-10 ">
+                            <input data-repeater-delete type="button" class=" button button-primary button-large"
+                                value="Delete" />
+                        </div>
+
+                    </div>
+
+
+
+                </fieldset>
+            </div>
+
+            <input data-repeater-create type="button" class=" button button-secondary button-large" style="margin:10px"
+                onclick="videoFunction()" value="Add" />
+        </div>
 
         <?php
     endif;
     ?>
 
-    <div class="row">
-
-
-
-    </div>
-    <div style="color:red;background-color:black;padding:5px;">If the speaker has not been determined yet, please select
-        the
-        <strong>"Later (Not Clear Yet)"</strong> option.
-    </div>
 
 
 
@@ -268,13 +316,11 @@ function tvsDebate_selected_html($post)
 
 
 
-        function myFunction() {
-            timeout = setTimeout(alertFunc, 1000);
+        function videoFunction() {
+            setTimeout(videoFunc, 1000);
         }
 
-        function alertFunc() {
-
-
+        function videoFunc() {
             jQuery('fieldset[class="rep-element"]').each(function (index, item) {
                 var i = 1;
                 // if(parseInt($(item).data('index'))>2){
@@ -283,18 +329,13 @@ function tvsDebate_selected_html($post)
                 // }
                 i = index + 1;
                 console.log("de" + i)
-
                 //  jQuery(item).parent().find(".tvs_videometa_inputC").removeAttr('id');
                 //  jQuery(item).parent().find(".tvs_videometa_listC").removeAttr('id');
                 jQuery(item).children().find(".page_upload_trigger_element").attr('data-index', i);
                 jQuery(item).children().find(".tvs_videometa_inputC").attr('id', "tvs_videometa_input" + i);
                 jQuery(item).children().find(".tvs_videometa_listC").attr('id', "tvs_videometa_list" + i);
-
             });
         }
-
-
     </script>
-
     <?php
 }

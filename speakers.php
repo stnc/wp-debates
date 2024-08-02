@@ -126,7 +126,7 @@ require_once ("functions-tvs.php");
 														</div>
 														<div class="col-auto d-none d-lg-block">
 															<?php if (has_post_thumbnail($speakerId)):
-																$image = wp_get_attachment_image_src(get_post_thumbnail_id($speakerId), 'thumbnail');
+																$image = wp_get_attachment_image_src(get_post_thumbnail_id($speakerId), 'medium');
 																?>
 																<img width="300" height="300" src="<?php echo $image[0]; ?>">
 															<?php endif; ?>

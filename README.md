@@ -25,6 +25,9 @@ https://stackoverflow.com/questions/11261883/how-to-get-the-wordpress-post-thumb
 single page sayfasinin nasil gorunecegi ? 
 
 
+options spearker php de 	echo "Can't Display The Content"; mi gorunsun yonlendirme mi yapsin 
+
+
 options video da otomatik oynatma ve ses calma icin ayar olabilir 
 
 video sayfalarinin listelenmesi 

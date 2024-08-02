@@ -27,7 +27,12 @@ function tvsDebate_video_selected_save($post_id)
 
     if (isset($_POST["tvs_videos"])) {
         foreach ($_POST["tvs_videos"] as $key => $data) {
-            $initialData_[$key] = ["youtube_link" => tvs_cc($data['youtube_link']), "youtubePicture" => tvs_cc($data['youtubePicture']), "description" => tvs_cc($data['description'])];
+            $yLink=  tvs_cc($data['youtube_link']);
+            $yLink=tvs_youtubeLinkParse($yLink);
+            // echo "<pre>";
+            // print_r( $yLink);
+            // die;
+            $initialData_[$key] = ["youtube_link" => $yLink[0][1], "youtubePicture" => tvs_cc($data['youtubePicture']), "description" => tvs_cc($data['description'])];
         }
         $json_data = json_encode($initialData_);
         update_post_meta($post_id, "tvsDebateMB_videoList", $json_data);
@@ -103,7 +108,7 @@ function tvsDebate_video_selected_html($post)
                                 <div class="form-group">
                                     <label class="control-label" style="color:blue" for="youtube_link">Youtube Video URL</label><br>
                                     <input type="text" id="youtube_link" class="form-control"
-                                        value="<?php echo isset($json_video["youtube_link"]) ? $json_video["youtube_link"] : ''; ?>"
+                                        value="<?php echo isset($json_video["youtube_link"]) ? "https://www.youtube.com/watch?v=".$json_video["youtube_link"] : ''; ?>"
                                         name="youtube_link" maxlength="128">
                                 </div>
                             </div>
@@ -121,11 +126,27 @@ function tvsDebate_video_selected_html($post)
                                 <div class="tvs_videometa_listC" id="tvs_videometa_list<?php echo $keyNew ?>">
                                     <div class="background_attachment_metabox_container">
                                         <div class="images-containerBG">
+                                        <?php if (isset($json_video["youtubePicture"])): ?>
                                             <div class="single-imageBG"><span class="delete">X</span>
-                                                <img data-targetid="tvs_videometa_input" class="attachment-100x100 wp-post-image"
-                                                    witdh="100" height="100"
-                                                    src="<?php echo isset($json_video["youtubePicture"]) ? $json_video["youtubePicture"] : ''; ?>">
-                                            </div>
+                                                
+
+                                             <?php /*if (has_post_thumbnail( 4676 ) ) {
+                                                echo "dsd";
+                                                $image = wp_get_attachment_image_src( get_post_thumbnail_id(4676), 'thumbnail' );
+                                                echo $image = $image[0]; 
+                                            } */
+                                                                                                
+                                                   
+                                                   // $attachment_id = get_post_thumbnail_id($json_video["youtubePicture"]);
+                                                     $url = wp_get_attachment_url( $json_video["youtubePicture"],'thumbnail' );
+                                                    
+                                                   // echo $url = wp_get_attachment_url(get_post_thumbnail_id($json_video["youtubePicture"]), 'thumbnail');
+                                                     ?>
+                                                    <img data-targetid="tvs_videometa_input<?php echo $keyNew ?>" class="attachment-100x100 wp-post-image"
+                                                    witdh="100" height="100" src="<?php echo $url ?>" />
+                                                  
+                                            </div> 
+                                             <?php  endif;   ?>
                                         </div>
                                     </div>
                                 </div>
@@ -248,8 +269,10 @@ function tvsDebate_video_selected_html($post)
                 _custom_media = true;
                 wp.media.editor.send.attachment = function (props, attachment) {
                     if (_custom_media) {
+                     
+                        jQuery("#" + id + '_input' + index).val(attachment.id);
+                        // jQuery("#" + id + '_input' + index).val(attachment.url);
 
-                        jQuery("#" + id + '_input' + index).val(attachment.url);
 
                         var filename = attachment.url;
                         var file_extension = filename.split('.').pop();//find picture extension
@@ -288,13 +311,14 @@ function tvsDebate_video_selected_html($post)
 
 
             jQuery('.repeater-tvsvideos').repeater({
-                // defaultValues: {
-                //     'textarea-input': 'foo',
-                //     'text-input': 'stnc',
-                //     'select-input': 'B',
-                //     'checkbox-input': ['A', 'B'],
-                //     'radio-input': 'B'
-                // },
+                defaultValues: {
+                    // 'textarea-input': 'foo',
+                     'img': '',
+                    // 'text-input': 'stnc',
+                    // 'select-input': 'B',
+                    // 'checkbox-input': ['A', 'B'],
+                    // 'radio-input': 'B'
+                },
                 show: function () {
                     jQuery(this).slideDown();
                 },

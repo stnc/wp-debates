@@ -24,6 +24,9 @@ https://stackoverflow.com/questions/11261883/how-to-get-the-wordpress-post-thumb
  
 single page sayfasinin nasil gorunecegi ? 
 
+
+options video da otomatik oynatma ve ses calma icin ayar olabilir 
+
 video sayfalarinin listelenmesi 
 oylama sistemi olacak mi ?  #V2
 

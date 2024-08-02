@@ -1,6 +1,12 @@
 <?php 
 //--------------debate-------------
 
+function tvs_youtubeLinkParse($str){
+	//https://regex101.com/r/rq2KLv/1/codegen?language=php
+	$re = '/(?:https?:\/\/)?(?:www\.)?youtu(?:\.be\/|be.com\/\S*(?:watch|embed)(?:(?:(?=\/[-a-zA-Z0-9_]{11,}(?!\S))\/)|(?:\S*v=|v\/)))([-a-zA-Z0-9_]{11,})/m';
+    preg_match_all($re, $str, $matches, PREG_SET_ORDER, 0);
+	return $matches;
+}
 
 function tvsDebate_selected_get_meta_simple($value) {
     global $post;

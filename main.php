@@ -52,13 +52,6 @@ require_once (tvsDebate_init_Path .'c_sidebar.php');
 require_once (tvsDebate_init_Path .'init-assets.php');
 require_once ('customPage.php');
 
-function tvsDebate_init_languages() {
-	// Retrieve the directory for the internationalization files
-    load_plugin_textdomain('debateLang', false, dirname(plugin_basename(__FILE__)) . '/languages/');
-}
-add_action( 'plugins_loaded', 'tvsDebate_init_languages' );
-
-
 
 
 // include "other/customTaxonomies.php";

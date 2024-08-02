@@ -1,5 +1,5 @@
 # Debate System 
-
+         $src = wp_get_attachment_image_src( 4746, 'thumbnail', false, '' );
 D:\laragon\www\debates\wp-content\themes\porto\inc\plugins\plugins.php  /// satir  10 $plugin = PORTO_PLUGINS . '/sidebar-generator/sidebar_generator.php';
 
 

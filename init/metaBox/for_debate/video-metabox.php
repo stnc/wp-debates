@@ -129,12 +129,7 @@ function tvsDebate_video_selected_html($post)
                                         <?php if (isset($json_video["youtubePicture"])): ?>
                                             <div class="single-imageBG"><span class="delete">X</span>
                                                 
-
-                                             <?php /*if (has_post_thumbnail( 4676 ) ) {
-                                                echo "dsd";
-                                                $image = wp_get_attachment_image_src( get_post_thumbnail_id(4676), 'thumbnail' );
-                                                echo $image = $image[0]; 
-                                            } */
+                                             <?php
                                                                                                 
                                                    
                                                    // $attachment_id = get_post_thumbnail_id($json_video["youtubePicture"]);
@@ -243,7 +238,7 @@ function tvsDebate_video_selected_html($post)
     ?>
 
 
-
+<?php wp_reset_postdata(); ?>
 
     <script>
         jQuery(document).ready(function () {

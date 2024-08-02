@@ -16,16 +16,12 @@ require_once ("functions-tvs.php");
 				array(
 					// 'post_type'   => get_post_type(),
 					// 'posts_per_page' => 4,
-					'post_type' => 'debate',
+					//'post_type' => 'debate',
 					'post_status' => 'publish',
 					'orderby' => 'id',
 					'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
-					'tax_query' => array(
-
-						'taxonomy' => 'topics',
-						'field' => 'id',
-						'term' => '64'
-
+			     	'tax_query' => array(
+						array('taxonomy' => 'topics', 'field' => 'slug', 'terms' => array('special-debates'))
 					)
 				)
 			);
@@ -36,7 +32,7 @@ require_once ("functions-tvs.php");
 						<?php
 						$debate_count = 0;
 						while ($the_query->have_posts()):
-							$debate_count++;
+							 $debate_count++;
 							$the_query->the_post();
 							?>
 							<div
@@ -91,13 +87,8 @@ require_once ("functions-tvs.php");
 											<?php else: ?>
 												<div class="col-lg-12">
 												<?php endif; ?>
-
 												<div class="post-content">
-
-
 													<?php
-
-													// gerek yok ??? 
 													if (is_sticky() && is_home() && !is_paged()) {
 														printf('<span class="sticky-post">%s</span>', esc_html__('Featured', 'porto'));
 													}
@@ -155,7 +146,7 @@ require_once ("functions-tvs.php");
 														?>
 														<div class="col">
 															<div class="card shadow-sm">
-																<a href="#inline-video<?php echo $debate_count ?>" class="debateBox"
+																<a href="#inline-video<?php echo $debate_count.$key ?>" class="debateBox"
 																	data-glightbox="width: 700; height: auto;">
 																	<?php if (!empty($src)): ?>
 																		<img src="<?php echo $src[0] ?>"
@@ -165,7 +156,7 @@ require_once ("functions-tvs.php");
 																	<?php endif ?>
 																</a>
 
-																<div id="inline-video<?php echo $debate_count ?>" style="display: none">
+																<div id="inline-video<?php echo $debate_count.$key ?>" style="display: none">
 																	<div class="inline-inner">
 																		<h4 class="text-center"><?php echo get_the_title($debateID) ?>
 																		</h4>

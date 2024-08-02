@@ -24,6 +24,13 @@ https://stackoverflow.com/questions/11261883/how-to-get-the-wordpress-post-thumb
  
 single page sayfasinin nasil gorunecegi ? 
 
+https://stackoverflow.com/questions/26070898/i-want-to-display-custom-taxonomies-list-in-home-page-wordpress
+https://stackoverflow.com/questions/39652122/how-to-list-all-category-from-custom-post-type bu kategorilri bulma icindir options icine verilecek 
+
+https://wordpress.stackexchange.com/questions/84921/how-do-i-query-a-custom-post-type-with-a-custom-taxonomy
+
+
+https://pagely.com/blog/create-wordpress-custom-category-pages/  bu eklentiyi incele 
 
 options spearker php de 	echo "Can't Display The Content"; mi gorunsun yonlendirme mi yapsin 
 

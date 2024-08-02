@@ -179,7 +179,10 @@ function tvs_speacial_meta()
 	// echo "<pre>";
 	// print_r($speaker_list_json);
 	if ($speaker_list_json[0]["speaker"] != "0") :
-		echo '<ul style="border:1px solid black">';
+		echo ' <div class="form-1-box  fadeInUp animated" >
+		<fieldset class="form-group border p-3--" style=" padding:5px ">
+               					<legend style="margin:0" class="w-auto px-2">Speakers</legend>
+		<ul style=" list-style-type: none; padding:5px ">';
 		foreach ($speaker_list_json as $key => $json_speaker) {
 
 			if (1 == $json_speaker["opinions"])
@@ -191,7 +194,7 @@ function tvs_speacial_meta()
 			echo '<li><strong>' . get_the_title($json_speaker["speaker"]) . '</strong> ' . $json_speaker["introduction"] . ' <span style="color:red"> ' . $opinions . '  </span> </li>';
 
 		}
-		echo '</ul>';
+		echo ' </ul></fieldset></div>';
 	endif;
 }
 

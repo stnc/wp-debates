@@ -19,13 +19,9 @@ require_once ("functions-tvs.php");
 					'post_type' => 'debate',
 					'post_status' => 'publish',
 					'orderby' => 'id',
-					'paged' => get_query_var('paged') ? get_query_var('paged') : 1, 
-					'tax_query' => array(
-					
-							'taxonomy' => 'topics',
-							'field'    => 'id',
-							'term'     =>  '60'
-						
+					'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
+				'tax_query' => array(
+						array('taxonomy' => 'topics', 'field' => 'slug', 'terms' => array('past-debates'))
 					)
 				)
 			);
@@ -34,12 +30,13 @@ require_once ("functions-tvs.php");
 				<div class="page-debates clearfix">
 					<div class="row debate-row archive-debate-row">
 						<?php
-						$event_count = 0;
+						$debate_count = 0;
 						while ($the_query->have_posts()):
-							$event_count++;
+							$debate_count++;
 							$the_query->the_post();
 							?>
-							<div class="col-lg-12  col-md-12 offset-lg-0 offset-md-2 custom-sm-margin-bottom-1 p-b-lg single-debate">
+							<div
+								class="col-lg-12  col-md-12 offset-lg-0 offset-md-2 custom-sm-margin-bottom-1 p-b-lg single-debate">
 
 								<?php
 								$opinionPage = get_post_meta(get_the_ID(), 'tvsDebateMB_opinion', true);
@@ -75,12 +72,12 @@ require_once ("functions-tvs.php");
 									<div class="row">
 										<?php if (count($featured_images)): ?>
 											<div class="col-lg-5">
-											<div class="featured-image" style="margin-bottom: 10px">
+												<div class="featured-image" style="margin-bottom: 10px">
 													<?php if (has_post_thumbnail()):
 														the_post_thumbnail('large', array('class' => 'alignleft-'));
 													else:
 														$url = wp_get_attachment_url(get_post_thumbnail_id($debateID), 'full'); ?>
-													  <img src="<?php echo $url ?>" />
+														<img src="<?php echo $url ?>" />
 													<?php endif ?>
 												</div>
 											</div>
@@ -137,7 +134,7 @@ require_once ("functions-tvs.php");
 										}
 										?>
 
-<div class="container">
+										<div class="container">
 											<h4 class="fw-light">Videos</h4>
 											<?php
 											$video_list_db = get_post_meta(get_the_ID(), 'tvsDebateMB_videoList', true);
@@ -153,16 +150,16 @@ require_once ("functions-tvs.php");
 														?>
 														<div class="col">
 															<div class="card shadow-sm">
-																<a href="#inline-video<?php echo $debate_count ?>" class="debateBox"
+																<a href="#inline-video<?php echo $debate_count.$key ?>" class="debateBox"
 																	data-glightbox="width: 700; height: auto;">
 																	<?php if (!empty($src)): ?>
 																		<img src="<?php echo $src[0] ?>"
 																			style="max-width:none!important; height: 120px !important; width: 120px !important; padding:2px"
-																			alt="featured-image<?php echo $key ?>"/>
+																			alt="featured-image<?php echo $key ?>" />
 																	<?php endif ?>
 																</a>
 
-																<div id="inline-video<?php echo $debate_count ?>" style="display: none">
+																<div id="inline-video<?php echo $debate_count.$key ?>" style="display: none">
 																	<div class="inline-inner">
 																		<h4 class="text-center"><?php echo get_the_title($debateID) ?>
 																		</h4>

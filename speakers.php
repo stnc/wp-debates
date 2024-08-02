@@ -73,7 +73,7 @@ require_once ("functions-tvs.php");
 								$post = get_post($id);
 								// print_r($post);
 								$title = apply_filters('the_title', $post->post_title);
-								echo '<h2 class="entry-title"> <a href="'.get_permalink($id).'"> ' . $title . '</a> </h2>';
+								echo '<h2 class="entry-title"> <a href="'.get_permalink($id).'"><strong style="color:black">FOR </strong>' . $title . '  <strong style="color:black">- Speakers</strong></a> </h2>';
 								tvs_meta_tags("Speakers List - " . $title);
 
 								$speaker_list_db = get_post_meta($id, 'tvsDebateMB_speakerList', true);

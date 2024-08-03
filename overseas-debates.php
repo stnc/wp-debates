@@ -143,7 +143,7 @@ require_once ("functions-tvs.php");
 
 											if ($json_video_list):
 												?>
-												<div class="row row-cols-1 row-cols-sm-2 row-cols-md-6 g-6">
+												<div class="row row-cols-2 row-cols-sm-4 row-cols-md-6 g-3">
 													<?php
 													foreach ($json_video_list as $key => $video):
 														$src = wp_get_attachment_image_src($video["youtubePicture"], 'thumbnail', false, '');
@@ -162,7 +162,7 @@ require_once ("functions-tvs.php");
 																<div id="inline-video<?php echo $debate_count . $key ?>"
 																	style="display: none">
 																	<div class="inline-inner">
-																		<h4 class="text-center"><?php echo get_the_title($debateID) ?>
+																		<h4 class="text-center"><?php echo get_the_title(get_the_ID()) ?>
 																		</h4>
 																		<div class="text-center">
 
@@ -176,8 +176,7 @@ require_once ("functions-tvs.php");
 																				<?php echo $video["description"] ?>
 																			</p>
 																		</div>
-																		<a class="gtrigger-close inline-close-btn" href="#">Close
-																			Box</a>
+																		<a class="gtrigger-close inline-close-btn" href="#">Close</a>
 																	</div>
 																</div>
 															</div>

@@ -22,6 +22,14 @@ https://stackoverflow.com/questions/11261883/how-to-get-the-wordpress-post-thumb
 
 # TODO 
  
+single debates sayfasina 
+transcrptu ve opions ve speakerlara link verme eklenecek 
+
+speaker icin ayri bir sayfa hazilanabilir 
+
+metabox larda hic veri olmamasi sorun cikariyor ----
+
+
 single page sayfasinin nasil gorunecegi ? 
 
 https://stackoverflow.com/questions/26070898/i-want-to-display-custom-taxonomies-list-in-home-page-wordpress

@@ -49,7 +49,7 @@ function tvsDebate_register_debate_type()
             'excerpt',
             'editor',
             'thumbnail',
-            'custom-fields'
+            // 'custom-fields'
         )
     );
 

@@ -15,11 +15,14 @@ function tvsDebate_post_type()
     $tvsDebate_post_type_postID = isset ($_GET['post']) ? $_GET['post'] : null;
     $tvsDebate_get_type = get_post_type($tvsDebate_post_type_postID);
     $tvsDebate_post_type = isset ($_REQUEST['post_type']) ? $_REQUEST['post_type'] : 'post';
+
+
     return array(
         "post_id" =>  $tvsDebate_post_type_postID ,
         "get_type" => $tvsDebate_get_type,
         "post_type" => $tvsDebate_post_type,
     );
+    
 }
 
 define('tvsDebate_init_Path', plugin_dir_path(__FILE__) . 'init/');
@@ -35,6 +38,7 @@ require_once (tvsDebate_init_Path .'c_debate-custom-type.php');
 
 require_once (tvsDebate_init_Path .'c_debate-speaker_custom-type.php');
 require_once (tvsDebate_init_Path .'c_debate-transcript_custom-type.php');
+require_once (tvsDebate_init_Path .'c_debate-press_custom-type.php');
 require_once (tvsDebate_init_Path .'c_debate-opinions_custom-type.php');
 
 require_once (tvsDebate_init_Path . "metaBox/class.metabox-engine.php");

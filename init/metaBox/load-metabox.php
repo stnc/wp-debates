@@ -28,7 +28,12 @@ function tvsDebate_debate_options_()
 	include('for_debate/metabox_options.php');
 	 $tvsDebate_debate_options['0'] = $tvs_debate_OptionsPageSetting;
 	 new ssSytemMetaboxEngine($tvsDebate_debate_options, 'tvs_debate-setting', true);
+
+
+
+
 }
+
 
 
 if (tvsDebate_post_type()["get_type"] == 'debate' || tvsDebate_post_type()["post_type"] == 'debate' ) {
@@ -40,6 +45,19 @@ include "for_debate/related-metabox.php";
 
 }
 
+
+
+function tvsDebate_press_options_()
+{
+	 include('for_press/metabox_options.php');
+	 $tvsDebate_press_options['0'] = $tvs_press_OptionsPageSetting;
+	 new ssSytemMetaboxEngine($tvsDebate_press_options, 'tvs_debate-setting', true);
+
+}
+
+if (tvsDebate_post_type()["get_type"] == 'press' || tvsDebate_post_type()["post_type"] == 'press' ) {
+	tvsDebate_press_options_();
+}
 
 
 

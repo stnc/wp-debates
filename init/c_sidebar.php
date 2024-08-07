@@ -57,6 +57,18 @@ function tvs_past_debates_setup() {
 add_action('widgets_init', 'tvs_past_debates_setup');
 
 
+function tvs_index_widget() {
+    // register sidebar
+    $rs_sidebar_opts = array(
+        'name' => __('TVS Index Year'),
+        'id' => 'tvs-press-index',
+        'description' => __('TVS Index Year'),
+        'before_widget' => '',
+        'after_widget' => ''
+    );
+    register_sidebar($rs_sidebar_opts);
+}
+add_action('widgets_init', 'tvs_index_widget');
 
 /// **** This feature will be activated in V2.0.0 -- end *****  
 

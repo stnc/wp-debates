@@ -3,7 +3,12 @@ require_once ("functions-tvs.php");
 ?>
 <div class="row">
 	<div class="col-lg-3">
-		<?php dynamic_sidebar('tvs-special-debates'); ?>
+		<?php 
+			//  $l=get_post_meta(4164, "sidebar_menu", true );
+			 
+		dynamic_sidebar('tvs-special-debates'); 
+		//wp_nav_menu( array( "menu"=> $l,'theme_location' => 'header-top-menu' ) );
+		?>
 	</div>
 
 

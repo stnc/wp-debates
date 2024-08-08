@@ -4,7 +4,10 @@ require_once ("functions-tvs.php");
 ?>
 <div class="row">
 	<div class="col-lg-3">
-		<?php dynamic_sidebar('tvs-overseas-debates'); ?>
+		<?php
+	
+		
+		 dynamic_sidebar('tvs-overseas-debates'); ?>
 	</div>
 
 

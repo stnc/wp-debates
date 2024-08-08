@@ -4,10 +4,10 @@ require_once ("functions-tvs.php");
 <div class="row">
 	<div class="col-lg-3">
 		<?php 
-			//  $l=get_post_meta(4164, "sidebar_menu", true );
-			 
-		dynamic_sidebar('tvs-special-debates'); 
-		//wp_nav_menu( array( "menu"=> $l,'theme_location' => 'header-top-menu' ) );
+	//dynamic_sidebar('tvs-special-debates'); 
+		$sidebarMenu=get_post_meta(get_the_ID(), "sidebar_menu", true );
+
+		wp_nav_menu( array( "menu"=> $sidebarMenu,'theme_location' => 'header-top-menu' ) );
 		?>
 	</div>
 

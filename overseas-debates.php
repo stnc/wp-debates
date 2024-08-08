@@ -5,9 +5,11 @@ require_once ("functions-tvs.php");
 <div class="row">
 	<div class="col-lg-3">
 		<?php
-	
-		
-		 dynamic_sidebar('tvs-overseas-debates'); ?>
+		// dynamic_sidebar('tvs-overseas-debates');
+		$sidebarMenu=get_post_meta(get_the_ID(), "sidebar_menu", true );
+		wp_nav_menu( array( "menu"=> $sidebarMenu,'theme_location' => 'header-top-menu' ) );
+		 
+		 ?>
 	</div>
 
 

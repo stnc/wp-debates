@@ -50,11 +50,11 @@ require_once (tvsDebate_pages_Path ."about/about.php");
 
 
 //---- SIDEBAR 
-require_once (tvsDebate_init_Path .'c_sidebar.php');
-
+// require_once (tvsDebate_init_Path .'c_sidebar.php');
 
 require_once (tvsDebate_init_Path .'init-assets.php');
-require_once ('customPage.php');
+require_once ('customPage-Engine.php');
+
 
 
 

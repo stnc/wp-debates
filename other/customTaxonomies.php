@@ -1,7 +1,7 @@
 <?php 
 
 
-
+/* bu post altina categories gibi yeni bir alan eklenmesini saglar */
 
 /*  metabox cat  */
 

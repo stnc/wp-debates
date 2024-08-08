@@ -99,7 +99,6 @@ $json_related_list= json_decode($json_related_list, true);
                 } else {
                     $selected = "";
                     echo '<option ' . $selected . ' value="'.  $opinion->ID . '">' .$opinion->post_title .'</option>';
-    
                 }
             }
             }

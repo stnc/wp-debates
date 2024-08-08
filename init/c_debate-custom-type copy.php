@@ -134,7 +134,20 @@ function tvs_add_form_field_tvsPressMBSidebarMenuSelect() { ?>
     <?php wp_nonce_field( basename( __FILE__ ), 'tvsPressMB_SidebarMenu_nonce' ); ?>
     <div class="form-field term-meta-text-wrap"> 
         <label for="term-meta-text"><?php _e( 'Sidebar Menu', 'debateLang' ); ?></label>
-        <input type="text" name="tvsPressMBSidebarMenuSelect" id="term-meta-text" value="" class="term-meta-text-field" />
+        <select  type="text" name="tvsPressMBSidebarMenuSelect" id="term-meta-text" name="tvsDebateMB_opinion" id="tvsDebateMB_opinion">
+
+        <?php
+    $menus = get_terms( 'nav_menu' );
+      $menus = array_combine( wp_list_pluck( $menus, 'term_id' ), wp_list_pluck( $menus, 'name' ) );
+        if ($menus) {
+            echo '<option  value="0">Select Opinion</option>';
+            foreach ( $menus as $location => $description ) {
+                    echo '<option  value="'.  $location. '">' .$description.'</option>';
+                }
+            }
+            
+?>
+       </select>
     </div>
 <?php }
 
@@ -149,14 +162,31 @@ function tvs_edit_form_field_tvsPressMBSidebarMenuSelect( $term ) {
 
     if ( ! $value )
         $value = ""; 
-    
+
+        $menus = get_terms( 'nav_menu' );
+        $menus = array_combine( wp_list_pluck( $menus, 'term_id' ), wp_list_pluck( $menus, 'name' ) );
     ?>
 
     <tr class="form-field term-meta-text-wrap">
         <th scope="row"><label for="term-meta-text"><?php _e( 'Sidebar Menu', 'debateLang' ); ?></label></th>
         <td>
             <?php wp_nonce_field( basename( __FILE__ ), 'tvsPressMB_SidebarMenu_nonce' ); ?>
-            <input type="text" name="tvsPressMBSidebarMenuSelect" id="term-meta-text" value="<?php echo esc_attr( $value ); ?>" class="term-meta-text-field"  />
+            <!-- <input value="<?php echo esc_attr( $value ); ?>" class="term-meta-text-field"  /> -->
+            <select  type="text" name="tvsPressMBSidebarMenuSelect" id="term-meta-text" name="tvsDebateMB_opinion" id="tvsDebateMB_opinion">
+            <?php
+            if ($menus) {
+            echo '<option  value="0">Select Opinion</option>';
+            foreach ( $menus as $location => $description ) {
+                if ( $value ==  $location) {
+                    $selected = "selected";
+                    echo '<option ' . $selected . ' value="'.  $location. '">' .$description.'</option>';
+                } else {
+                    $selected = "";
+                    echo '<option ' . $selected . ' value="'.  $location . '">' .$description .'</option>';
+                }
+            }
+            } ?>
+              </select>
         </td>
     </tr>
 <?php }

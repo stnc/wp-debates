@@ -102,6 +102,8 @@ add_action('init', 'tvsDebate_create_cat_taxonomies', 0);
 
 
 // REGISTER TERM META
+//edit_topics, create_topics , manage_edit-topics_columns  = mesela  burada dikkat edilmesi gereken dosya isimlerindeki   "topics" kelimesinin register taxomideki isimle ayni olmasi 
+////edit_topics, create_topics, manage_edit-topics_columns = for example, the word "topics" in the file names must be the same as the name in the record taxonomy. 
 
 add_action( 'init', '___register_term_meta_text' );
 

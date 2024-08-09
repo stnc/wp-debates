@@ -71,6 +71,7 @@ class STNC_PageTemplater {
 			'overseas-debates.php' =>  'Overseas Debates',
 			'special-debates.php' =>  ' Special Debates',
 			'speakers.php' =>  ' Speaker',
+			'presslistPage.php' =>  ' News Page',
 			// 'page-properties.php' =>  ' Pro',
 		);
 

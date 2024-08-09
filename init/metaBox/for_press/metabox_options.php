@@ -53,7 +53,7 @@ $tvs_press_OptionsPageSetting = array(
 			// 'title' => __('Categories Link', 'debateLang'),
 			'title' => "",
 			'type' => 'info',
-			'description' => '  <a href=" /wp-admin/edit-tags.php?taxonomy=index&post_type=press">Categories Link</a>  ',
+			'description' => '  <a href=" /wp-admin/edit-tags.php?taxonomy=presslist&post_type=press">Categories Link</a>  ',
 			'style' => '',
 			'class' => '',
 			'class_li' => '',

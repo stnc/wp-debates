@@ -22,6 +22,10 @@ https://stackoverflow.com/questions/11261883/how-to-get-the-wordpress-post-thumb
 
 # TODO 
  
+-----http://debates.test/attend-the-debates/   bu css 
+http://debates.test/presslist/2023/  css and metabox 
+videolardaki background kalkacak 
+
 single debates sayfasina 
 transcrptu ve opions ve speakerlara link verme eklenecek 
 

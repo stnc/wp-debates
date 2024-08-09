@@ -13,7 +13,6 @@ function tvsDebate_register_debate_type()
         'edit_item' =>__( 'Edit Debate', 'debateLang' ) ,
         'new_item' => __( 'New Debate', 'debateLang' ) ,
         'view' => __( 'Show Debate', 'debateLang' ) ,
-        'view' => __( 'Show Debate', 'debateLang' ) ,
         'search_term' => __( 'Debate Search', 'debateLang' ) ,
         'parent' => __('Sub Debate', 'debateLang'),
         'not_found' =>  __('There are no debatees added', 'debateLang'),
@@ -85,6 +84,7 @@ function tvsDebate_create_cat_taxonomies()
         'show_ui' => true,
         'query_var' => true,
         'with_front' => true,
+        'show_in_nav_menus' => true,
         'show_in_menu' => "edit.php?post_type=debate",
         'rewrite' => array('slug' => 'topics'),
     ));
@@ -101,109 +101,155 @@ add_action('init', 'tvsDebate_create_cat_taxonomies', 0);
 
 
 
-// REGISTER TERM META
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// REGISTER TERM META  
 //edit_topics, create_topics , manage_edit-topics_columns  = mesela  burada dikkat edilmesi gereken dosya isimlerindeki   "topics" kelimesinin register taxomideki isimle ayni olmasi 
 ////edit_topics, create_topics, manage_edit-topics_columns = for example, the word "topics" in the file names must be the same as the name in the record taxonomy. 
 
-add_action( 'init', 'tvs_register_tvsPressMBSidebarMenuSelect' );
+add_action( 'init', 'tvs_register_TopicMBSidebarMenuSelect' );
 
-function tvs_register_tvsPressMBSidebarMenuSelect() {
+function tvs_register_TopicMBSidebarMenuSelect() {
 
-    register_meta( 'term', 'tvsPressMB_SidebarMenu', 'tvs_sanitize_tvsPressMBSidebarMenuSelect' );
+    register_meta( 'term', 'tvsTopicsMB_SidebarMenu', 'sanitize_text_field' );
 }
 
-// SANITIZE DATA
 
-function tvs_sanitize_tvsPressMBSidebarMenuSelect ( $value ) {
-    return sanitize_text_field ($value);
-}
 
 // GETTER (will be sanitized)
 
-function tvs_get_tvsPressMBSidebarMenuSelect( $term_id ) {
-  $value = get_term_meta( $term_id, 'tvsPressMB_SidebarMenu', true );
-  $value = tvs_sanitize_tvsPressMBSidebarMenuSelect( $value );
+function tvs_get_TopicMBSidebarMenuSelect( $term_id ) {
+  $value = get_term_meta( $term_id, 'tvsTopicsMB_SidebarMenu', true );
+  $value = sanitize_text_field( $value );
   return $value;
 }
 
 // ADD FIELD TO CATEGORY TERM PAGE
 
-add_action( 'topics_add_form_fields', 'tvs_add_form_field_tvsPressMBSidebarMenuSelect' );
+add_action( 'topics_add_form_fields', 'tvs_add_form_field_TopicMBSidebarMenuSelect' );
 
-function tvs_add_form_field_tvsPressMBSidebarMenuSelect() { ?>
-    <?php wp_nonce_field( basename( __FILE__ ), 'tvsPressMB_SidebarMenu_nonce' ); ?>
+function tvs_add_form_field_TopicMBSidebarMenuSelect() { ?>
+    <?php wp_nonce_field( basename( __FILE__ ), 'tvsTopicsMB_SidebarMenu_nonce' ); ?>
     <div class="form-field term-meta-text-wrap"> 
         <label for="term-meta-text"><?php _e( 'Sidebar Menu', 'debateLang' ); ?></label>
-        <input type="text" name="tvsPressMBSidebarMenuSelect" id="term-meta-text" value="" class="term-meta-text-field" />
+        <select  type="text" name="tvsTopicsMBSidebarMenuSelect" id="term-meta-text" name="tvsDebateMB_opinion" id="tvsDebateMB_opinion">
+
+        <?php
+    $menus = get_terms( 'nav_menu' );
+      $menus = array_combine( wp_list_pluck( $menus, 'term_id' ), wp_list_pluck( $menus, 'name' ) );
+        if ($menus) {
+            echo '<option  value="0">Select Opinion</option>';
+            foreach ( $menus as $location => $description ) {
+                    echo '<option  value="'.  $location. '">' .$description.'</option>';
+                }
+            }
+            
+?>
+       </select>
     </div>
 <?php }
 
 
 // ADD FIELD TO CATEGORY EDIT PAGE
 
-add_action( 'topics_edit_form_fields', 'tvs_edit_form_field_tvsPressMBSidebarMenuSelect' );
+add_action( 'topics_edit_form_fields', 'tvs_edit_form_field_TopicMBSidebarMenuSelect' );
 
-function tvs_edit_form_field_tvsPressMBSidebarMenuSelect( $term ) {
+function tvs_edit_form_field_TopicMBSidebarMenuSelect( $term ) {
 
-    $value  = tvs_get_tvsPressMBSidebarMenuSelect( $term->term_id );
+    $value  = tvs_get_TopicMBSidebarMenuSelect( $term->term_id );
 
     if ( ! $value )
         $value = ""; 
-    
+
+        $menus = get_terms( 'nav_menu' );
+        $menus = array_combine( wp_list_pluck( $menus, 'term_id' ), wp_list_pluck( $menus, 'name' ) );
     ?>
 
     <tr class="form-field term-meta-text-wrap">
         <th scope="row"><label for="term-meta-text"><?php _e( 'Sidebar Menu', 'debateLang' ); ?></label></th>
         <td>
-            <?php wp_nonce_field( basename( __FILE__ ), 'tvsPressMB_SidebarMenu_nonce' ); ?>
-            <input type="text" name="tvsPressMBSidebarMenuSelect" id="term-meta-text" value="<?php echo esc_attr( $value ); ?>" class="term-meta-text-field"  />
+            <?php wp_nonce_field( basename( __FILE__ ), 'tvsTopicsMB_SidebarMenu_nonce' ); ?>
+            <!-- <input value="<?php echo esc_attr( $value ); ?>" class="term-meta-text-field"  /> -->
+            <select  type="text" name="tvsTopicsMBSidebarMenuSelect" id="tvsTopicsMBSidebarMenuSelectID" name="tvsDebateMB_opinion" id="tvsDebateMB_opinion">
+            <?php
+            if ($menus) {
+            echo '<option  value="0">Select Opinion</option>';
+            foreach ( $menus as $location => $description ) {
+                if ( $value ==  $location) {
+                    $selected = "selected";
+                    echo '<option ' . $selected . ' value="'.  $location. '">' .$description.'</option>';
+                } else {
+                    $selected = "";
+                    echo '<option ' . $selected . ' value="'.  $location . '">' .$description .'</option>';
+                }
+            }
+            } ?>
+              </select>
         </td>
     </tr>
 <?php }
 
+add_action( 'edit_topics',   'tvs_save_TopicsMBSidebarMenuSelect' );
+add_action( 'create_topics', 'tvs_save_TopicsMBSidebarMenuSelect' );
 
-// SAVE TERM META (on term edit & create)
-
-add_action( 'edit_topics',   'tvs_save_tvsPressMBSidebarMenuSelect' );
-add_action( 'create_topics', 'tvs_save_tvsPressMBSidebarMenuSelect' );
-
-function tvs_save_tvsPressMBSidebarMenuSelect( $term_id ) {
+function tvs_save_TopicsMBSidebarMenuSelect( $term_id ) {
 
     // verify the nonce --- remove if you don't care
-    if ( ! isset( $_POST['tvsPressMB_SidebarMenu_nonce'] ) || ! wp_verify_nonce( $_POST['tvsPressMB_SidebarMenu_nonce'], basename( __FILE__ ) ) )
+    if ( ! isset( $_POST['tvsTopicsMB_SidebarMenu_nonce'] ) || ! wp_verify_nonce( $_POST['tvsTopicsMB_SidebarMenu_nonce'], basename( __FILE__ ) ) )
         return;
 
-    $old_value  = tvs_get_tvsPressMBSidebarMenuSelect( $term_id );
-    $new_value = isset( $_POST['tvsPressMBSidebarMenuSelect'] ) ? tvs_sanitize_tvsPressMBSidebarMenuSelect ( $_POST['tvsPressMBSidebarMenuSelect'] ) : '';
+    $old_value  = tvs_get_TopicMBSidebarMenuSelect( $term_id );
+    $new_value = isset( $_POST['tvsTopicsMBSidebarMenuSelect'] ) ? sanitize_text_field ( $_POST['tvsTopicsMBSidebarMenuSelect'] ) : '';
 
 
     if ( $old_value && '' === $new_value )
-        delete_term_meta( $term_id, 'tvsPressMB_SidebarMenu' );
+        delete_term_meta( $term_id, 'tvsTopicsMB_SidebarMenu' );
 
     else if ( $old_value !== $new_value )
-        update_term_meta( $term_id, 'tvsPressMB_SidebarMenu', $new_value );
+        update_term_meta( $term_id, 'tvsTopicsMB_SidebarMenu', $new_value );
 }
+
+
+
 
 // MODIFY COLUMNS (add our meta to the list)
 
-add_filter( 'manage_edit-topics_columns', 'tvs_edit_term_columns', 10, 3 );
+add_filter( 'manage_edit-topics_columns', 'tvs_edit_topics_term_columns', 10, 3 );
 
-function tvs_edit_term_columns( $columns ) {
+function tvs_edit_topics_term_columns( $columns ) {
 
-    $columns['tvsPressMB_SidebarMenu'] = __( 'Sidebar Menu', 'debateLang' );
+    $columns['tvsTopicsMB_SidebarMenu'] = __( 'Sidebar Menu', 'debateLang' );
 
     return $columns;
 }
 
 // RENDER COLUMNS (render the meta data on a column)
 
-add_filter( 'manage_topics_custom_column', 'tvs_manage_term_custom_column', 10, 3 );
+add_filter( 'manage_topics_custom_column', 'tvs_manage_topics_term_custom_column', 10, 3 );
 
-function tvs_manage_term_custom_column( $out, $column, $term_id ) {
+function tvs_manage_topics_term_custom_column( $out, $column, $term_id ) {
 
-    if ( 'tvsPressMB_SidebarMenu' === $column ) {
+    if ( 'tvsTopicsMB_SidebarMenu' === $column ) {
 
-        $value  = tvs_get_tvsPressMBSidebarMenuSelect( $term_id );
+        $value  = tvs_get_TopicMBSidebarMenuSelect( $term_id );
 
         if ( ! $value )
             $value = '';

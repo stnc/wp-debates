@@ -143,7 +143,7 @@ function tvs_kama_paginate_links_data(array $args): array
 }
 
 
-function tvs_frontpage_metabox($id)
+function tvs_frontpage_metabox(int $id): string
 {
 	$transcriptUrl = "";
 	$opinionUrl = "";
@@ -172,7 +172,7 @@ function tvs_frontpage_metabox($id)
 }
 
 
-function tvs_speacial_meta()
+function tvs_speacial_meta():void
 {
 	$speaker_list_db = get_post_meta(get_the_ID(), 'tvsDebateMB_speakerList', true);
 	$speaker_list_json = json_decode($speaker_list_db, true);
@@ -198,7 +198,7 @@ function tvs_speacial_meta()
 	endif;
 }
 
-function tvs_pagination_options($links_data, $pageType)
+function tvs_pagination_options($links_data, $pageType):void
 {
 	?>
 
@@ -243,7 +243,7 @@ function tvs_pagination_options($links_data, $pageType)
 }
 
 
-function tvs_wp_pagination($the_query){
+function tvs_wp_pagination(object $the_query):string{
 
 		echo "<div> wordpress style   pagination </div>";
 $big = 999999999; // need an unlikely integer

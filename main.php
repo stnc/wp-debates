@@ -53,7 +53,8 @@ require_once (tvsDebate_pages_Path ."about/about.php");
 // require_once (tvsDebate_init_Path .'c_sidebar.php');
 
 require_once (tvsDebate_init_Path .'init-assets.php');
-require_once ('customPage-Engine.php');
+
+require_once ('theme_page_templates/theme_page_templates-engine.php');
 
 
 

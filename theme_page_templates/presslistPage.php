@@ -29,8 +29,8 @@ require_once ("functions-tvs.php");
 			);
 			?>
 			<?php if ($the_query->have_posts()): ?>
-				<div class="page-debates clearfix">
-					<div class="row debate-row archive-debate-row">
+				<div class="page-presslist clearfix">
+					<div class="row presslist-row archive-presslist-row">
 						<?php
 						$news_count = 0;
 						while ($the_query->have_posts()):
@@ -38,7 +38,7 @@ require_once ("functions-tvs.php");
 							$the_query->the_post();
 							?>
 							<div
-								class="col-lg-12  col-md-12 offset-lg-0 offset-md-2 custom-sm-margin-bottom-1 p-b-lg single-debate">
+								class="col-lg-12  col-md-12 offset-lg-0 offset-md-2 custom-sm-margin-bottom-1 single-presslist">
 								<?php
 								global $porto_settings;
 								$post_layout = 'medium';
@@ -58,7 +58,7 @@ require_once ("functions-tvs.php");
 													<?php if (has_post_thumbnail()):
 														the_post_thumbnail('large', array('class' => 'alignleft-'));
 													else:
-														$url = wp_get_attachment_url(get_post_thumbnail_id($debateID), 'full'); ?>
+														$url = wp_get_attachment_url(get_post_thumbnail_id(get_the_ID()), 'full'); ?>
 														<img src="<?php echo $url ?>" />
 													<?php endif ?>
 												</div>
@@ -76,8 +76,12 @@ require_once ("functions-tvs.php");
 													}
 													?>
 
-													<h2 class="entry-title"><a
-															href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+													<!-- <h2 class="entry-title"><a href="<?php //the_permalink(); ?>"><?php //the_title(); ?></a></h2> -->
+													<h2 class="entry-title"><a target="_blank" href="<?php echo get_post_meta(get_the_ID(), 'tvsPressMB_pressUrl', true); ?>"><?php the_title(); ?></a></h2>
+													<strong><?php echo get_post_meta(get_the_ID(), 'tvsPressMB_pressPublication', true); ?></strong>
+													<br>
+													<strong><?php echo get_post_meta(get_the_ID(), 'tvsPressMB_pressDate', true); ?></strong>
+													
 
 
 													<?php
@@ -103,11 +107,11 @@ require_once ("functions-tvs.php");
 														echo '</div>';
 													}
 													?>
-													<div style="float:right">
+													<!-- <div style="float:right">
 														<span class="d-block float-sm-end mt-3 mt-sm-0">
-														   <a class="btn btn-xs btn-default text-xs text-uppercase" href="http://debates.test/press/test/">Read more...</a>
+														   <a class="btn btn-xs btn-default text-xs text-uppercase" href="<?php //echo get_post_meta(get_the_ID(), 'tvsPressMB_pressUrl', true); ?>">Read more...</a>
 														</span>
-													</div>
+													</div> -->
 												</div>
 											</div>
 										</div>

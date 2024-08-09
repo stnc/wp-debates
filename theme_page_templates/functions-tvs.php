@@ -1,7 +1,5 @@
 <?php
 
-
-
 function tvs_kama_paginate_links_data(array $args): array
 {
 	//https://wp-kama.com/function/paginate_links
@@ -155,7 +153,7 @@ function tvs_frontpage_metabox(int $id): string
 	$speaker_list = get_post_meta($id, 'tvsDebateMB_speakerList', true);
 	$speaker_list_json = json_decode($speaker_list, true);
 
-	if ($speaker_list_json[0]["speaker"] != "0") {
+	if ($speaker_list_json[0]["speaker"] != "0" || $speaker_list_json[0]["speaker"] != 0)  {
 		$speaker = '<li><a href="/speakers?list=' . $id . '">Speakers</a></li>';
 	}
 
@@ -172,26 +170,27 @@ function tvs_frontpage_metabox(int $id): string
 }
 
 
-function tvs_speacial_meta():void
+function tvs_speakers_metabox():void
 {
 	$speaker_list_db = get_post_meta(get_the_ID(), 'tvsDebateMB_speakerList', true);
 	$speaker_list_json = json_decode($speaker_list_db, true);
 	// echo "<pre>";
 	// print_r($speaker_list_json);
-	if ($speaker_list_json[0]["speaker"] != "0") :
+	if ($speaker_list_json[0]["speaker"] != "0" || $speaker_list_json[0]["speaker"] != 0) :
 		echo ' <div class="form-1-box  fadeInUp animated" >
 		<fieldset class="form-group border p-3--" style=" padding:5px ">
-               					<legend style="margin:0" class="w-auto px-2">Speakers</legend>
+               					<legend style="margin:0;color:black" class="w-auto px-2">Speakers</legend>
 		<ul style=" list-style-type: none; padding:5px ">';
 		foreach ($speaker_list_json as $key => $json_speaker) {
-
+			$spekerLink=get_the_permalink($json_speaker["speaker"]);
+			$spekerLink='<a style="color:#777777;text-decoration: underline;" href="'.$spekerLink.'">'.get_the_title($json_speaker["speaker"]).'</a>';
 			if (1 == $json_speaker["opinions"])
 				$opinions = "FOR";
 
 			if (2 == $json_speaker["opinions"])
 				$opinions = "AGAINST";
 
-			echo '<li><strong>' . get_the_title($json_speaker["speaker"]) . '</strong> ' . $json_speaker["introduction"] . ' <span style="color:red"> ' . $opinions . '  </span> </li>';
+			echo '<li><strong>' . $spekerLink . '</strong> ' . $json_speaker["introduction"] . ' <span style="color:red"> ' . $opinions . '  </span> </li>';
 
 		}
 		echo ' </ul></fieldset></div>';

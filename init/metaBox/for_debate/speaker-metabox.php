@@ -30,6 +30,8 @@ function tvsDebate_speaker_selected_save($post_id)
         }
         $json_data = json_encode($initialData_);
         update_post_meta($post_id, "tvsDebateMB_speakerList", $json_data);
+    } else {
+        delete_post_meta($post_id, "tvsDebateMB_speakerList");
     }
 }
 

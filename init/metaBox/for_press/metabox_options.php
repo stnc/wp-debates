@@ -1,6 +1,6 @@
-<?php
-$tvs_press_themeName = 'tvs_press';
-$tvs_press_prefix_press = $tvs_press_themeName . "_Metabox_";//imporntant -- becase this is database name 
+<?php 
+$tvs_press_themeName = 'tvsPress';
+$tvs_press_prefix_press = $tvs_press_themeName . "MB_";//imporntant -- becase this is database name 
 $tvs_press_OptionsPageSetting = array(
 	'name' => $tvs_press_prefix_press . 'meta-box-page',
 	'nonce' => 'tvs_studio_press',
@@ -16,7 +16,7 @@ $tvs_press_OptionsPageSetting = array(
 
 
 		array(
-			'name' => $tvs_press_prefix_press . 'press_url',
+			'name' => $tvs_press_prefix_press . 'pressUrl',
 			'title' => __('URL', 'debateLang'),
 			'type' => 'text',
 			'description' => '',
@@ -27,7 +27,7 @@ $tvs_press_OptionsPageSetting = array(
 
 
 		array(
-			'name' => $tvs_press_prefix_press . 'press_publication',
+			'name' => $tvs_press_prefix_press . 'pressPublication',
 			'title' => __('Press Publication', 'debateLang'),
 			'type' => 'text',
 			'description' => '',
@@ -37,7 +37,7 @@ $tvs_press_OptionsPageSetting = array(
 		),
 
 		array(
-			'name' => $tvs_press_prefix_press . 'press_date',
+			'name' => $tvs_press_prefix_press . 'pressDate',
 			'title' => __('Press Date', 'debateLang'),
 			'type' => 'text',
 			'description' => '',
@@ -46,10 +46,10 @@ $tvs_press_OptionsPageSetting = array(
 			'class_li' => '',
 		),
 
-
+		
 
 		array(
-			'name' => $tvs_press_prefix_press . 'press_dates',
+			'name' => $tvs_press_prefix_press . 'link',
 			// 'title' => __('Categories Link', 'debateLang'),
 			'title' => "",
 			'type' => 'info',

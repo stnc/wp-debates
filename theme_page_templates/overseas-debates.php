@@ -110,12 +110,12 @@ require_once ("functions-tvs.php");
 													porto_render_rich_snippets(false);
 													if (!empty($porto_settings['blog-excerpt'])) {
 														echo porto_get_excerpt($porto_settings['blog-excerpt-length'], false);
-														tvs_speacial_meta(get_the_ID());
+														tvs_speakers_metabox(get_the_ID());
 													} else {
 
 														echo '<div class="entry-content">';
 														echo porto_the_content();
-														tvs_speacial_meta(get_the_ID());
+														tvs_speakers_metabox(get_the_ID());
 														wp_link_pages(
 															array(
 																'before' => '<div class="page-links"><span class="page-links-title">' . esc_html__('Pages:', 'porto') . '</span>',
@@ -154,7 +154,7 @@ require_once ("functions-tvs.php");
 														$src = wp_get_attachment_image_src($video["youtubePicture"], 'thumbnail', false, '');
 														?>
 														<div class="col">
-															<div class="card shadow-sm">
+															<div class="card- shadow-sm-">
 																<a href="#inline-video<?php echo $debate_count . $key ?>"
 																	class="debateBox" data-glightbox="width: 700; height: auto;">
 																	<?php if (!empty($src)): ?>

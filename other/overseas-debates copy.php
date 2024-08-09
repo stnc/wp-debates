@@ -116,12 +116,12 @@ require_once ("functions-tvs.php");
 													porto_render_rich_snippets(false);
 													if (!empty($porto_settings['blog-excerpt'])) {
 														echo porto_get_excerpt($porto_settings['blog-excerpt-length'], false);
-														tvs_speacial_meta();
+														tvs_speakers_metabox();
 													} else {
 
 														echo '<div class="entry-content">';
 														echo porto_the_content();
-														tvs_speacial_meta();
+														tvs_speakers_metabox();
 														wp_link_pages(
 															array(
 																'before' => '<div class="page-links"><span class="page-links-title">' . esc_html__('Pages:', 'porto') . '</span>',

@@ -1,12 +1,5 @@
 <?php
-
-
-
 /***SIDEBAR Speaker select METABOX (ONLY debate )  ****/
-
-
-
-
 function tvsDebate_video_selected_save($post_id)
 {
     if (wp_is_post_autosave($post_id)) {
@@ -32,10 +25,12 @@ function tvsDebate_video_selected_save($post_id)
             // echo "<pre>";
             // print_r( $yLink);
             // die;
-            $initialData_[$key] = ["youtube_link" => $yLink[0][1], "youtubePicture" => tvs_cc($data['youtubePicture']), "description" => tvs_cc($data['description'])];
+            $initialData_[$key] = ["youtube_link" => $yLink[0][1], "title" => tvs_cc($data['title']) ,"youtubePicture" => tvs_cc($data['youtubePicture']), "description" => tvs_cc($data['description'])];
         }
         $json_data = json_encode($initialData_);
         update_post_meta($post_id, "tvsDebateMB_videoList", $json_data);
+    } else {
+        delete_post_meta($post_id, "tvsDebateMB_videoList");
     }
 }
 
@@ -105,12 +100,23 @@ function tvsDebate_video_selected_html($post)
 
                         <div class="stnc-row ">
                             <div class="column column-25 ">
+
+                            <div class="form-group">
+                                    <label class="control-label" style="color:blue" for="title">Title</label><br>
+                                    <input type="text" id="title" class="form-control"
+                                        value="<?php echo isset($json_video["title"]) ? $json_video["title"] : ''; ?>"
+                                        name="title" maxlength="128">
+                                </div>
+
+
                                 <div class="form-group">
                                     <label class="control-label" style="color:blue" for="youtube_link">Youtube Video URL</label><br>
                                     <input type="text" id="youtube_link" class="form-control"
                                         value="<?php echo isset($json_video["youtube_link"]) ? "https://www.youtube.com/watch?v=".$json_video["youtube_link"] : ''; ?>"
                                         name="youtube_link" maxlength="128">
                                 </div>
+
+                               
                             </div>
 
                             <div class="column column-25 ">
@@ -189,6 +195,12 @@ function tvsDebate_video_selected_html($post)
 
                     <div class="stnc-row ">
                         <div class="column column-25 ">
+
+                        <div class="form-group">
+                                    <label class="control-label" style="color:blue" for="title">Title</label><br>
+                                    <input type="text" id="title" class="form-control" value="Later (Not Clear Yet)" name="title" maxlength="128">
+                                </div>
+
                             <div class="form-group">
                                 <label class="control-label" style="color:blue" for="youtube_link">Youtube Video URL</label><br>
                                 <input type="text" id="youtube_link" class="form-control" value="" name="youtube_link"
@@ -309,7 +321,7 @@ function tvsDebate_video_selected_html($post)
                 defaultValues: {
                     // 'textarea-input': 'foo',
                      'img': '',
-                    // 'text-input': 'stnc',
+                     'text-input': 'Later (Not Clear Yet)',
                     // 'select-input': 'B',
                     // 'checkbox-input': ['A', 'B'],
                     // 'radio-input': 'B'

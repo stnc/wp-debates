@@ -152,9 +152,10 @@ function tvs_frontpage_metabox(int $id): string
 
 	$speaker_list = get_post_meta($id, 'tvsDebateMB_speakerList', true);
 	$speaker_list_json = json_decode($speaker_list, true);
-
+    if ($speaker_list_json) {
 	if ($speaker_list_json[0]["speaker"] != "0" || $speaker_list_json[0]["speaker"] != 0)  {
 		$speaker = '<li><a href="/speakers?list=' . $id . '">Speakers</a></li>';
+	}
 	}
 
 	if ($transcriptPage != "0") {
@@ -176,11 +177,13 @@ function tvs_speakers_metabox():void
 	$speaker_list_json = json_decode($speaker_list_db, true);
 	// echo "<pre>";
 	// print_r($speaker_list_json);
+	if ($speaker_list_json) :
 	if ($speaker_list_json[0]["speaker"] != "0" || $speaker_list_json[0]["speaker"] != 0) :
 		echo ' <div class="form-1-box  fadeInUp animated" >
 		<fieldset class="form-group border p-3--" style=" padding:5px ">
                					<legend style="margin:0;color:black" class="w-auto px-2">Speakers</legend>
 		<ul style=" list-style-type: none; padding:5px ">';
+		$spekerLink="";
 		foreach ($speaker_list_json as $key => $json_speaker) {
 			$spekerLink=get_the_permalink($json_speaker["speaker"]);
 			$spekerLink='<a style="color:#777777;text-decoration: underline;" href="'.$spekerLink.'">'.get_the_title($json_speaker["speaker"]).'</a>';
@@ -195,7 +198,82 @@ function tvs_speakers_metabox():void
 		}
 		echo ' </ul></fieldset></div>';
 	endif;
+	endif;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function tvs_video_metabox($count):void
+{
+
+$video_list_db = get_post_meta(get_the_ID(), 'tvsDebateMB_videoList', true);
+$json_video_list = json_decode($video_list_db, true);
+if (!$json_video_list || $json_video_list[0]["title"] != "Later (Not Clear Yet)" ):
+	?>
+<div class="container">
+<h4 class="fw-light">Videos</h4>
+	<div class="row row-cols-2 row-cols-sm-4 row-cols-md-6 g-3">
+		<?php
+		foreach ($json_video_list as $key => $video):
+			$src = wp_get_attachment_image_src($video["youtubePicture"], 'thumbnail', false, '');
+			?>
+			<div class="col">
+				<div class="card- shadow-sm-">
+					<a href="#inline-video<?php echo $count.$key ?>" class="debateBox"
+						data-glightbox="width: 700; height: auto;">
+						<?php if (!empty($src)): ?>
+							<img src="<?php echo $src[0] ?>"
+								style="max-width:none!important; height: 120px !important; width: 120px !important; padding:2px"
+								 alt="<?php echo $video["title"] ?>" />
+						<?php endif ?>
+						<span> 	<?php echo $video["title"] ?>  </span>
+					</a>
+
+					<div id="inline-video<?php echo $count.$key ?>" style="display: none">
+						<div class="inline-inner">
+						<h4 class="text-center">	<?php echo $video["title"] ?> </h4>
+							<div class="text-center">
+
+								<iframe width="600" height="400"
+									src="https://www.youtube.com/embed/<?php echo $video["youtube_link"] ?>?autoplay=0&mute=1  "
+									title="YouTube video player" frameborder="0"
+									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+									referrerpolicy="strict-origin-when-cross-origin"
+									allowfullscreen></iframe>
+								<p>
+									<?php echo $video["description"] ?>
+								</p>
+							</div>
+							<a class="gtrigger-close inline-close-btn" href="#">Close</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		<?php endforeach; ?>
+	</div>
+</div> 
+<?php endif; ?>
+
+
+<?php
+}
+
+
+
+
+
 
 function tvs_pagination_options($links_data, $pageType):void
 {

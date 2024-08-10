@@ -138,57 +138,7 @@ require_once ("functions-tvs.php");
 										}
 										?>
 
-										<div class="container">
-											<h4 class="fw-light">Videos</h4>
-											<?php
-											$video_list_db = get_post_meta(get_the_ID(), 'tvsDebateMB_videoList', true);
-
-											$json_video_list = json_decode($video_list_db, true);
-
-											if ($json_video_list):
-												?>
-												<div class="row row-cols-2 row-cols-sm-4 row-cols-md-6 g-3">
-													<?php
-													foreach ($json_video_list as $key => $video):
-														$src = wp_get_attachment_image_src($video["youtubePicture"], 'thumbnail', false, '');
-														?>
-														<div class="col">
-															<div class="card- shadow-sm-">
-																<a href="#inline-video<?php echo $debate_count.$key ?>" class="debateBox"
-																	data-glightbox="width: 700; height: auto;">
-																	<?php if (!empty($src)): ?>
-																		<img src="<?php echo $src[0] ?>"
-																			style="max-width:none!important; height: 120px !important; width: 120px !important; padding:2px"
-																			alt="featured-image<?php echo $key ?>" />
-																	<?php endif ?>
-																</a>
-
-																<div id="inline-video<?php echo $debate_count.$key ?>" style="display: none">
-																	<div class="inline-inner">
-																		<h4 class="text-center"><?php echo get_the_title(get_the_ID()) ?>
-																		</h4>
-																		<div class="text-center">
-
-																			<iframe width="600" height="400"
-																				src="https://www.youtube.com/embed/<?php echo $video["youtube_link"] ?>?autoplay=0&mute=1  "
-																				title="YouTube video player" frameborder="0"
-																				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-																				referrerpolicy="strict-origin-when-cross-origin"
-																				allowfullscreen></iframe>
-																			<p>
-																				<?php echo $video["description"] ?>
-																			</p>
-																		</div>
-																		<a class="gtrigger-close inline-close-btn" href="#">Close</a>
-																	</div>
-																</div>
-															</div>
-
-														</div>
-													<?php endforeach; ?>
-												</div>
-											<?php endif; ?>
-										</div>
+                                 <?php tvs_video_metabox($debate_count); 	?>
 
 								</article>
 

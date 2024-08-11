@@ -73,18 +73,17 @@ $json_related_list= json_decode($json_related_list, true);
 ?>
 
 
-<div class="wp-core-ui  ss-metabox-form" style="">
+<div class="wp-core-ui  ss-metabox-form">
     <ul>
         <li>
             <h2 data-required="pageSetting_background_repeat"><strong>Related Data </strong></h2>
         </li>
 
 
-        <li id="tvsDebateMB_opinion_li"><label for="tvsDebateMB_opinion">Select Opinion</label>
+        <li id="tvsDebateMB_opinion_li">
+            <label for="tvsDebateMB_opinion">Select Opinion</label>
             <select name="tvsDebateMB_opinion" id="tvsDebateMB_opinion">
-
-
-                <?php
+        <?php
 			$list_opinion_db = tvsDebate_selected_get_meta_simple('tvsDebateMB_opinion');
             //print_r($list_opinion_db);
             $args = array("posts_per_page" => -1, "orderby" => "title", "order" => "asc", 'post_type' => 'opinion', 'post_status' => array('publish', 'future', 'private'));
@@ -103,53 +102,45 @@ $json_related_list= json_decode($json_related_list, true);
             }
             }
 		 ?>
-
             </select>
             <span class="form_hint">Please Select Opinion</span>
         </li>
 
 
 
-        <li id="tvsDebateMB_transcript_li"><label for="tvsDebateMB_transcript">Select Transcript</label>
+        <li id="tvsDebateMB_transcript_li">
+            <label for="tvsDebateMB_transcript">Select Transcript</label>
             <select name="tvsDebateMB_transcript" id="tvsDebateMB_transcript">
-       
-
             <?php
-  $list_transcript_db = tvsDebate_selected_get_meta_simple('tvsDebateMB_transcript');
-//   print_r($list_transcript_db);
-//   die;
-  $args = array("posts_per_page" => -1, "orderby" => "title", "order" => "asc", 'post_type' => 'transcript', 'post_status' => array('publish', 'future', 'private'));
-  $transcripts = get_posts($args);
+                $list_transcript_db = tvsDebate_selected_get_meta_simple('tvsDebateMB_transcript');
+                //   print_r($list_transcript_db);
+                //   die;
+                $args = array("posts_per_page" => -1, "orderby" => "title", "order" => "asc", 'post_type' => 'transcript', 'post_status' => array('publish', 'future', 'private'));
+                $transcripts = get_posts($args);
 
-  if ($transcripts) {
-    echo '<option  value="0">Select Transcript</option>';
-  foreach ($transcripts as $transcript) {
-      if ($transcript->ID == $list_transcript_db) {
-          $selected = "selected";
-          echo '<option ' . $selected . ' value="'.  $transcript->ID . '">' .$transcript->post_title .'</option>';
-      } else {
-          $selected = "";
-          echo '<option ' . $selected . ' value="'.  $transcript->ID . '">' .$transcript->post_title .'</option>';
+                if ($transcripts) {
+                    echo '<option  value="0">Select Transcript</option>';
+                foreach ($transcripts as $transcript) {
+                    if ($transcript->ID == $list_transcript_db) {
+                        $selected = "selected";
+                        echo '<option ' . $selected . ' value="'.  $transcript->ID . '">' .$transcript->post_title .'</option>';
+                    } else {
+                        $selected = "";
+                        echo '<option ' . $selected . ' value="'.  $transcript->ID . '">' .$transcript->post_title .'</option>';
 
-      }
-  }
-  }
-?>
-
-
+                    }
+                }
+                }
+                ?>
 
             </select>
             <span class="form_hint">Please Select Transcript</span>
         </li>
 
 
-        </li>
+       
     </ul>
 </div>
-
-
-
-
 
 <?php
 }

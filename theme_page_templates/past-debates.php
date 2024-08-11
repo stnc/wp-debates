@@ -24,7 +24,7 @@ require_once ("functions-tvs.php");
 					'post_status' => 'publish',
 					'orderby' => 'id',
 					'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
-				'tax_query' => array(
+				    'tax_query' => array(
 						array('taxonomy' => 'topics', 'field' => 'slug', 'terms' => array('past-debates'))
 					)
 				)

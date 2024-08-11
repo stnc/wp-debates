@@ -43,14 +43,10 @@ require_once ("functions-tvs.php");
 							?>
 							<div
 								class="col-lg-12  col-md-12 offset-lg-0 offset-md-2 custom-sm-margin-bottom-1 p-b-lg single-debate">
-
 								<?php
-
 								global $porto_settings;
-
 								$post_layout = 'medium';
 								$featured_images = porto_get_featured_images();
-
 								$post_class = array();
 								$post_class[] = 'post post-' . $post_layout;
 								if (isset($porto_settings['post-title-style']) && 'without-icon' == $porto_settings['post-title-style']) {
@@ -90,10 +86,7 @@ require_once ("functions-tvs.php");
 											<?php else: ?>
 												<div class="col-lg-12">
 												<?php endif; ?>
-
 												<div class="post-content">
-
-
 													<?php
 
 													// gerek yok ??? 
@@ -138,12 +131,8 @@ require_once ("functions-tvs.php");
 											echo porto_filter_output($post_meta);
 										}
 										?>
-
                                    <?php tvs_video_metabox($debate_count); 	?>
-
 								</article>
-
-
 							</div>
 						<?php endwhile ?>
 

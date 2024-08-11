@@ -1,23 +1,25 @@
-<?php 
+<?php
 //--------------debate-------------
 
-function tvs_youtubeLinkParse($str){
+function tvs_youtubeLinkParse($str)
+{
 	//https://regex101.com/r/rq2KLv/1/codegen?language=php
 	$re = '/(?:https?:\/\/)?(?:www\.)?youtu(?:\.be\/|be.com\/\S*(?:watch|embed)(?:(?:(?=\/[-a-zA-Z0-9_]{11,}(?!\S))\/)|(?:\S*v=|v\/)))([-a-zA-Z0-9_]{11,})/m';
-    preg_match_all($re, $str, $matches, PREG_SET_ORDER, 0);
+	preg_match_all($re, $str, $matches, PREG_SET_ORDER, 0);
 	return $matches;
 }
 
-function tvsDebate_selected_get_meta_simple($value) {
-    global $post;
-    return get_post_meta($post->ID, $value, true);
+function tvsDebate_selected_get_meta_simple($value)
+{
+	global $post;
+	return get_post_meta($post->ID, $value, true);
 }
 
 
 
 function tvs_cc($data)
 {
-    return sanitize_text_field(wp_unslash($data));
+	return sanitize_text_field(wp_unslash($data));
 }
 
 
@@ -25,23 +27,19 @@ function tvs_cc($data)
 
 function tvsDebate_debate_options_()
 {
-	include('for_debate/metabox_options.php');
-	 $tvsDebate_debate_options['0'] = $tvs_debate_OptionsPageSetting;
-	 new ssSytemMetaboxEngine($tvsDebate_debate_options, 'tvs_debate-setting', true);
-
-
-
-
+	include ('for_debate/metabox_options.php');
+	$tvsDebate_debate_options['0'] = $tvs_debate_OptionsPageSetting;
+	new ssSytemMetaboxEngine($tvsDebate_debate_options, 'tvs_debate-setting', true);
 }
 
 
 
-if (tvsDebate_post_type()["get_type"] == 'debate' || tvsDebate_post_type()["post_type"] == 'debate' ) {
-	tvsDebate_debate_options_();
+if (tvsDebate_post_type()["get_type"] == 'debate' || tvsDebate_post_type()["post_type"] == 'debate') {
+	//tvsDebate_debate_options_();
 
-include 'for_debate/speaker-metabox.php';
-include 'for_debate/video-metabox.php';
-include "for_debate/related-metabox.php";
+	include 'for_debate/speaker-metabox.php';
+	include 'for_debate/video-metabox.php';
+	include "for_debate/related-metabox.php";
 
 }
 
@@ -49,13 +47,13 @@ include "for_debate/related-metabox.php";
 
 function tvsDebate_press_options_()
 {
-	 include('for_press/metabox_options.php');
-	 $tvsDebate_press_options['0'] = $tvs_press_OptionsPageSetting;
-	 new ssSytemMetaboxEngine($tvsDebate_press_options, 'tvs_debate-setting', true);
+	include ('for_press/metabox_options.php');
+	$tvsDebate_press_options['0'] = $tvs_press_OptionsPageSetting;
+	new ssSytemMetaboxEngine($tvsDebate_press_options, 'tvs_debate-setting', true);
 
 }
 
-if (tvsDebate_post_type()["get_type"] == 'press' || tvsDebate_post_type()["post_type"] == 'press' ) {
+if (tvsDebate_post_type()["get_type"] == 'press' || tvsDebate_post_type()["post_type"] == 'press') {
 	tvsDebate_press_options_();
 }
 

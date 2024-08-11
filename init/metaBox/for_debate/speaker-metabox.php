@@ -243,19 +243,13 @@ function tvsDebate_speaker_selected_html($post)
     endif;
     ?>
 
-
     <div style="color:red;background-color:black;padding:5px;">If the speaker has not been determined yet, please select the
         <strong>"Later (Not Clear Yet)"</strong> option.
     </div>
 
 
-
-
     <script>
         jQuery(document).ready(function () {
-
-
-
             jQuery('.repeater-speaker').repeater({
                 // defaultValues: {
                 //     'textarea-input': 'foo',
@@ -276,14 +270,7 @@ function tvsDebate_speaker_selected_html($post)
                     // alert (setIndexes)
                 }
             });
-
-
         });
-
-
-
-
-
 
     </script>
 

@@ -20,8 +20,20 @@ How to get the WordPress post thumbnail (featured image) URL?
 
 https://stackoverflow.com/questions/11261883/how-to-get-the-wordpress-post-thumbnail-featured-image-url
 
+date time icin 
+https://flatpickr.js.org/examples/
+
 # TODO 
  
+tarih icin singe debate ye bak 
+
+https://pexetothemes.com/wordpress-functions/wp_date/
+
+https://code.tutsplus.com/displaying-the-date-and-time-in-the-loop--cms-32237t
+
+https://www.google.com/search?q=wordress+how+to+find+datetime+which+day&client=firefox-b-1-d&sca_esv=13893f5a13ed50a0&sca_upv=1&sxsrf=ADLYWIJTfgeS_AOvnop5r2dh-dFrjPVSKA%3A1723317650995&ei=kr23ZuC1PJWxur8PhrLwoQ8&ved=0ahUKEwjgxrDDkuuHAxWVmO4BHQYZPPQQ4dUDCBA&uact=5&oq=wordress+how+to+find+datetime+which+day&gs_lp=Egxnd3Mtd2l6LXNlcnAiJ3dvcmRyZXNzIGhvdyB0byBmaW5kIGRhdGV0aW1lIHdoaWNoIGRheTIIEAAYgAQYogQyCBAAGIAEGKIEMggQABiABBiiBDIIEAAYgAQYogQyCBAAGIAEGKIESJ8gUKUJWOsbcAN4AZABAJgBZqABkweqAQM4LjK4AQPIAQD4AQGYAg2gAr8HwgIKEAAYsAMY1gQYR8ICChAhGKABGMMEGAqYAwCIBgGQBgiSBwQxMC4zoAe1MA&sclient=gws-wiz-serp
+
+
 -----http://debates.test/attend-the-debates/   bu css 
 ---- http://debates.test/presslist/2023/  css and metabox 
 videolardaki background kalkacak 

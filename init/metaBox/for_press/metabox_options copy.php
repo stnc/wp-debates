@@ -37,7 +37,7 @@ $tvs_press_OptionsPageSetting = array(
 		),
 
 		array(
-			'type' => 'date',
+			'type' => 'text',
 			'name' => $tvs_press_prefix_press . 'pressDate',
 			'title' => __('Press Date', 'debateLang'),
 			'description' => '',

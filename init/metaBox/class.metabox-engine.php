@@ -11,12 +11,12 @@ class ssSytemMetaboxEngine
 	private $fields;
 	private $current_id;
 	private $SaveMethodSingle;
-	private $tvsDebate_meta_key_debate = 'ss-setting'; // TODO : changes name 
+	private $stncMBmeta_key_debate = 'ss-setting'; // TODO : changes name 
 
-	public function __construct($fields, $tvsDebate_meta_key_debate, $SaveMethodSingle = false)
+	public function __construct($fields, $stncMBmeta_key_debate, $SaveMethodSingle = false)
 	{
 
-		$this->meta_key = $tvsDebate_meta_key_debate;
+		$this->meta_key = $stncMBmeta_key_debate;
 		$this->SaveMethodSingle = $SaveMethodSingle;
 
 		if (is_admin()) {
@@ -62,10 +62,10 @@ class ssSytemMetaboxEngine
 			foreach ($this->fields as $fields) {
 				foreach ($fields['fields'] as $key => $field) {
 					if ($field['type'] == 'gmap') {
-						$post_meta_ = isset ($_POST[$field['name']]) ? ($_POST[$field['name']]) : '';
+						$post_meta_ = isset($_POST[$field['name']]) ? ($_POST[$field['name']]) : '';
 						update_post_meta($post_id, $field['name'], $post_meta_);
 					} else {
-						$post_meta_ = isset ($_POST[$field['name']]) ? sanitize_text_field($_POST[$field['name']]) : '';
+						$post_meta_ = isset($_POST[$field['name']]) ? sanitize_text_field($_POST[$field['name']]) : '';
 						update_post_meta($post_id, $field['name'], $post_meta_);
 					}
 				}
@@ -74,9 +74,9 @@ class ssSytemMetaboxEngine
 			foreach ($this->fields as $fields) {
 				foreach ($fields['fields'] as $key => $field) {
 					if ($field['type'] == 'gmap') {
-						$post_meta_[$field['name']] = isset ($_POST[$field['name']]) ? $_POST[$field['name']] : '';
+						$post_meta_[$field['name']] = isset($_POST[$field['name']]) ? $_POST[$field['name']] : '';
 					} else {
-						$post_meta_[$field['name']] = isset ($_POST[$field['name']]) ? sanitize_text_field($_POST[$field['name']]) : '';
+						$post_meta_[$field['name']] = isset($_POST[$field['name']]) ? sanitize_text_field($_POST[$field['name']]) : '';
 					}
 				}
 			}
@@ -111,47 +111,41 @@ class ssSytemMetaboxEngine
 		$fields = ($field_arg['args']);
 		// wp_nonce_field('my_meta_box_nonce', 'meta_box_nonce');
 		echo '<input type="hidden" name="' . $this->nonce . '" value="', wp_create_nonce(basename(__FILE__)), '" />';
-		echo '<div class="wp-core-ui  ss-metabox-form" style="' . $fields['style'] . '"  class="' . $fields['class'] . $fields['name'] . '"><ul>';
+		echo '<div class="pico ss-metabox-form2" style="' . $fields['style'] . '"  class="' . $fields['class'] . $fields['name'] . '"><section class="grid3">';
 
 		if ($fields['title_h2']) {
-			echo '<li><h2  data-required="pageSetting_background_repeat"><strong>' . $fields['title'] . '</strong></h2> </li>';
+			echo '<div><h2  data-required="pageSetting_background_repeat"><strong>' . $fields['title'] . '</strong></h2> </div>';
 		}
 
 		foreach ($fields['fields'] as $key => $values) {
 
 			switch ($values['type']) {
 				case 'info':
-					echo '<li class="' . $values['class_li'] . '"  id="' . $values['name'] . '_li"> <h2><strong>' . $values['title'] . '</strong></h2>  <br>   <span style="padding-left: 15px;">' . $values['description'] . '</span>     <hr>   </li>';
+					echo '<div class="' . $values['class_li'] . '"  id="' . $values['name'] . '_li"> <h2><strong>' . $values['title'] . '</strong></h2>  <br>   <div style="padding-left: 15px;">' . $values['description'] . '</div>     <hr>   </div>';
 					break;
 
-				case 'image_select':
-					echo '<li  class="' . $values['class_li'] . '" id="' . $values['name'] . '_li"><label for="' . $values['name'] . '">' . $values['title'] . '</label>
-                <select  style="' . $values['style'] . '" class="image_select_metabox image-picker show-labels ' . $values['class'] . '"  name="' . $values['name'] . '" id="' . $values['name'] . '">
-                ' . $this->post_options_image_select($values['options'], $values['name']) . '
-                </select>
-               ' . $this->post_options_description($values['description']) . '</li>';
-					break;
+
 
 				case 'select':
-					echo '<li class="' . $values['class_li'] . '" id="' . $values['name'] . '_li"><label for="' . $values['name'] . '">' . $values['title'] . '</label>
+					echo '<div class="' . $values['class_li'] . '" id="' . $values['name'] . '_li"><label for="' . $values['name'] . '">' . $values['title'] . '</label>
                 <select  style="' . $values['style'] . '"  class="' . $values['class'] . '"  name="' . $values['name'] . '" id="' . $values['name'] . '">
-                ' . $this->post_options_select($values['options'], $values['name']) . '
+                ' . $this->post_options_select($values['values'], $values['name']) . '
                 </select>
-               ' . $this->post_options_description($values['description']) . '</li>';
+               ' . $this->post_options_description($values['description']) . '</div>';
 					break;
 
-					
+
 
 				case 'textarea':
-					echo '<li class="' . $values['class_li'] . '" id="' . $values['name'] . '_li"><label for="' . $values['name'] . '">' . $values['title'] . '</label>
+					echo '<div class="' . $values['class_li'] . '" id="' . $values['name'] . '_li"><label for="' . $values['name'] . '">' . $values['title'] . '</label>
                  <textarea name="' . $values['name'] . '" class="' . $values['class'] . '" style="' . $values['style'] . '"  id="' . $values['name'] . '" cols="40" rows="6" >' . $this->get_meta($values['name']) . '</textarea>
-               ' . $this->post_options_description($values['description']) . '</li>';
+               ' . $this->post_options_description($values['description']) . '</div>';
 					break;
 
 				case 'text':
-					echo '<li class="' . $values['class_li'] . '" id="' . $values['name'] . '_li"><label for="' . $values['name'] . '">' . $values['title'] . '</label>
+					echo '<div class="' . $values['class_li'] . '" id="' . $values['name'] . '_li"><label for="' . $values['name'] . '">' . $values['title'] . '</label>
               <input type="text" value="' . $this->get_meta($values['name']) . '" class="' . $values['class'] . '" style="' . $values['style'] . '"  name="' . $values['name'] . '" id="' . $values['name'] . '"/>
-               ' . $this->post_options_description($values['description']) . '</li>';
+               ' . $this->post_options_description($values['description']) . '</div>';
 					break;
 
 				case 'hidden':
@@ -162,75 +156,86 @@ class ssSytemMetaboxEngine
 
 
 				case 'checkbox':
-					echo '<li id="' . $values['class_li'] . '_li"><label for="' . $values['name'] . '">' . $values['title'] . '</label>
+					echo '<div id="' . $values['name'] . '_li"><label for="' . $values['name'] . '">' . $values['title'] . '</label>
               <input type="checkbox" value="on"  ' . $this->post_options_checked($values['name']) . '   class="' . $values['class'] . '" style="' . $values['style'] . '"  name="' . $values['name'] . '" id="' . $values['name'] . '"/>
-               ' . $this->post_options_description($values['description']) . '</li>';
+               ' . $this->post_options_description($values['description']) . '</div>';
 					break;
 
-					
-				case 'gmap':
-					echo '<li class="' . $values['class_li'] . '" id="' . $values['name'] . '_li"><label for="' . $values['name'] . '">' . $values['title'] . '</label>
-                 <textarea name="' . $values['name'] . '" class="' . $values['class'] . '" style="' . $values['style'] . '"  id="' . $values['name'] . '" cols="40" rows="6" >' . $this->get_meta($values['name']) . '</textarea>
-               ' . $this->post_options_description($values['description']) . '</li>';
-					break;
 
-				case 'embed':
-					echo '<li class="' . $values['class_li'] . '" id="' . $values['name'] . '_li"><label for="' . $values['name'] . '">' . $values['title'] . '</label>
-              <input type="text" value="' . $this->get_meta($values['name']) . '" class="' . $values['class'] . '" style="' . $values['style'] . '"  name="' . $values['name'] . '" id="' . $values['name'] . '"/>
-               ' . $this->post_options_description($values['description']) . '</li>';
-					break;
+
 
 				case 'radio':
-					echo '<li class="' . $values['class_li'] . '" id="' . $values['name'] . '_li"><label for="' . $values['name'] . '">' . $values['title'] . '</label>';
+					echo '<div class="' . $values['class_li'] . '" id="' . $values['name'] . '"><fieldset><legend class="' . $values['class'] . '" id="' . $values['name'] . '_li"><strong>' . $values['title'] . '</strong></legend>';
 					foreach ($values['values'] as $key => $value) {
-						echo ' <input type="radio" value="' . $key . '"  ' . $this->post_options_radio($values['name'], $key) . '  class="' . $values['class'] . '" style="' . $values['style'] . '"  name="' . $values['name'] . '" id="' . $values['name'] . '"/>';
-						echo '<span>' . $value . '</span>';
+						echo '<label for="' . $values['name'] . $key . '">';
+						echo ' <input id="' . $values['name'] . $key . '" type="radio" value="' . $key . '"  ' . $this->post_options_radio($values['name'], $key) . '    name="' . $values['name'] . '" />';
+						echo $value;
+						echo '</label>';
 					}
-
-					echo $this->post_options_description($values['description']) . '</li>';
+					echo $this->post_options_description($values['description']) . '</div></fieldset>';
 					break;
+
+		
+					case 'switch':
+						echo '<div id="' . $values['name'] . '_li"><label for="' . $values['name'] . '">' . $values['title'] . '</label>
+				  <input type="checkbox" role="switch" value="on"  ' . $this->post_options_checked($values['name']) . '   class="' . $values['class'] . '" style="' . $values['style'] . '"  name="' . $values['name'] . '" id="' . $values['name'] . '"/>
+				   ' . $this->post_options_description($values['description']) . '</div>';
+						break;
+
 
 				case 'color':
-					echo '<li class="' . $values['class_li'] . '" id="' . $values['name'] . '_li"><label for="' . $values['name'] . '">' . $values['title'] . '</label>
-              <input type="text" value="' . $this->get_meta($values['name']) . '"  class="ch-color-picker ' . $values['class'] . '" style="' . $values['style'] . 'background-color:' . $this->get_meta($values['name']) . '" name="' . $values['name'] . '" id="' . $values['name'] . '"/>
-               ' . $this->post_options_description($values['description']) . '</li>';
+					echo '<div class="' . $values['class_li'] . '" id="' . $values['name'] . '_li">
+					<label for="' . $values['name'] . '">' . $values['title'] . '</label>
+              <input type="color" value="' . $this->get_meta($values['name']) . '"  class="' . $values['class'] . '" style="' . $values['style'] .'" name="' . $values['name'] . '" id="' . $values['name'] . '"/>
+               ' . $this->post_options_description($values['description']) . '</div>';
 					break;
 
+
+					case 'date':
+						echo '<div class="' . $values['class_li'] . '" id="' . $values['name'] . '_li">
+						<label for="' . $values['name'] . '">' . $values['title'] . '</label>
+				  <input type="date" value="' . $this->get_meta($values['name']) . '"  class="' . $values['class'] . '" style="' . $values['style'] . '" name="' . $values['name'] . '" id="' . $values['name'] . '"/>
+				   ' . $this->post_options_description($values['description']) . '</div>';
+						break;
+
+
+
+					//TODO: future #important
 				/*UPLOAD */
 				case 'upload':
-					echo '<li class="' . $values['class_li'] . '" id="' . $values['name'] . '_li"><label for="' . $values['name'] . '">' . $values['title'] . '</label>
+					echo '<div class="' . $values['class_li'] . '" id="' . $values['name'] . '_li"><label for="' . $values['name'] . '">' . $values['title'] . '</label>
               <input type="text" value="' . $this->get_meta($values['name']) . '"  class="' . $values['class'] . '" style="display:none;' . $values['style'] . '" name="' . $values['name'] . '" id="' . $values['name'] . '"/>
               <input  id="' . $values['name'] . '_extra"   class="page_upload_trigger_element button button-primary button-large" name="' . $values['name'] . '_extra" type="button" value="' . $values['button_text'] . '" />
         ' . $this->post_options_description($values['description']) . '
         <br>
         <div class="background_attachment_metabox_container">';
-					if (!empty ($this->get_meta($values['name']))) {
+					if (!empty($this->get_meta($values['name']))) {
 						$fileExtension = $this->fileExtension($this->get_meta($values['name']));
 						if ($fileExtension == "jpg" || $fileExtension == "jpeg" || $fileExtension == "png" || $fileExtension == "gif") {
-							echo '<div class="images-containerBG"><div class="single-imageBG"><span class="delete">X</span>';
+							echo '<div class="images-containerBG"><div class="single-imageBG"><div class="delete">X</div>';
 							echo '  <img  data-targetID="' . $values['name'] . '" alt="' . $values['name'] . '" class="attachment-100x100 wp-post-image" witdh="100" height="100" src="' . $this->get_meta($values['name']) . '">';
 							echo '</div></div>';
 						} else {
 							?>
 							<div class="images-containerBG">
 								<div style="width: 53px; height: 53px;" class="single-imageBG">
-									<span data-targetID="<?php echo $values['name'] ?>" class="delete_media">X</span>
-									<span style="font-size: 46px" class="info dashicons dashicons-admin-media"></span>
+									<div data-targetID="<?php echo $values['name'] ?>" class="delete_media">X</div>
+									<div style="font-size: 46px" class="info dashicons dashicons-admin-media"></div>
 								</div>
 							</div>
 							<?php
 						}
 					}
-					echo '</div></li>';
+					echo '</div></div>';
 					break;
 
-				// Media Gallery Code
+				// Media Gallery Code 		//TODO: future #important
 				case 'media-gallery':
 					$imagewow2 = array();
 					$imagesID = array();
 					$pictures = "";
 					$imagesBUll_ = $this->get_meta($values['name']);
-					if (!empty ($imagesBUll_)) {
+					if (!empty($imagesBUll_)) {
 						$imagesBUlls = explode(',', $imagesBUll_);
 						$imagesBUlls = array_unique($imagesBUlls);
 
@@ -240,15 +245,15 @@ class ssSytemMetaboxEngine
 							}
 						}
 					}
-					if (!empty ($imagesBUlls)):
+					if (!empty($imagesBUlls)):
 						foreach ($imagesBUlls as $imagesBUll):
 							$imagewow = wp_get_attachment_image_src(($imagesBUll), 'thumb');
 							$imagewow2[] = $imagewow[0];
 							$imagesID[] = $imagesBUll;
-							$pictures .= '<div class="single-image" ><span class="delete"> X</span ><img data-id="' . $imagesBUll . '" src="' . $imagewow[0] . '" alt="sd"/></div >';
+							$pictures .= '<div class="single-image" ><div class="delete"> X</div ><img data-id="' . $imagesBUll . '" src="' . $imagewow[0] . '" alt="sd"/></div >';
 						endforeach;
 					endif;
-					echo '<li class="' . $values['class_li'] . '" id="' . $values['name'] . '_li">
+					echo '<div class="' . $values['class_li'] . '" id="' . $values['name'] . '_li">
                                 <div class="drop_meta_item gallery">
 	                            <label for="' . $values['name'] . '">' . $values['title'] . '</label>
 	                            <div class="st_studio-metadata">
@@ -260,11 +265,11 @@ class ssSytemMetaboxEngine
 	                            </div>
 	                            </div>
 	                            </div>
-	                      </li>';
+	                      </div>';
 					break;
 			}
 		}
-		echo '  </ul>
+		echo '  </section>
     </div>';
 	}
 
@@ -276,25 +281,7 @@ class ssSytemMetaboxEngine
 
 
 
-	/**
-	 * engine select option list
-	 */
-	private function post_options_image_select($arrays, $name)
-	{
-		//echo '<pre>';print_r($arrays);
-		$out = '';
-		$meta = $this->get_meta($name);
-		foreach ($arrays as $key => $option) {
-			///echo $key;		echo '<pre>';
 
-			if ($meta == $key) {
-				$out .= '<option data-img-label="' . $arrays[$key]['title'] . '"  data-img-src="' . $arrays[$key]['img'] . '" value="' . $key . '" selected="selected"> ' . $arrays[$key]['title'] . '</option>';
-			} else {
-				$out .= '<option data-img-label="' . $arrays[$key]['title'] . '"  data-img-src="' . $arrays[$key]['img'] . '" value="' . $key . '" > ' . $arrays[$key]['title'] . '</option>';
-			}
-		}
-		return $out;
-	}
 
 
 	/**
@@ -318,12 +305,12 @@ class ssSytemMetaboxEngine
 	{
 		global $post;
 		$field = get_post_meta($post->ID, $this->meta_key, true);
-		if (!empty ($field)) {
+		if (!empty($field)) {
 			if (array_key_exists($value, $field)) {
 				$field = $field[$value];
 			}
 		}
-		if (!empty ($field)) {
+		if (!empty($field)) {
 			return is_array($field) ? stripslashes_deep($field) : stripslashes(wp_kses_decode_entities($field));
 		} else {
 			return false;
@@ -347,7 +334,7 @@ class ssSytemMetaboxEngine
 	private function post_options_description($value)
 	{
 		if ($value != '') {
-			return '<span class="form_hint">' . $value . '</span>';
+			return '<div class="form_hint">' . $value . '</div>';
 		} else {
 			return '';
 		}
@@ -403,6 +390,10 @@ class ssSytemMetaboxEngine
 	 */
 	private function post_options_radio($id, $value)
 	{
-		return $this->get_meta($id) === $value ? "checked" : "";
+		// print_r( $id);
+		// var_dump( $this->get_meta($id));
+		// var_dump( $value);
+		// //  (string) "name"//
+		return $this->get_meta($id) === (string) $value ? "checked" : "";
 	}
 }

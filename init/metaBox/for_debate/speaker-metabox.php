@@ -102,7 +102,7 @@ function tvsDebate_speaker_selected_html($post)
                                         <label class="control-label" style="color:green" for="state_0">Select Speaker </label> <br>
 
 
-                                        <select class="form-control select2-init" name="speaker">
+                                        <select class="form-control " name="speaker">
                                             <option value="0"> Later (Not Clear Yet) </option>
                                             <?php
                                             $args = array("posts_per_page" => -1, "orderby" => "title", "order" => "asc", 'post_type' => 'speaker', 'post_status' => array('publish', 'future', 'private'));
@@ -141,7 +141,7 @@ function tvsDebate_speaker_selected_html($post)
                                     <div class="form-group">
                                         <label class="control-label" style="color:red" for="state_0"> Opinions</label>
 
-                                        <select id="state_0" class="form-control select2-init" name="opinions">
+                                        <select id="state_0" class="form-control " name="opinions">
                                             <option value="1" <?php if (1 == $json_speaker["opinions"])
                                                 echo "selected"; ?>>FOR
                                             </option>
@@ -190,7 +190,7 @@ function tvsDebate_speaker_selected_html($post)
                                 <label class="control-label" style="color:green" for="state_0">Select Speaker </label> <br>
 
 
-                                <select class="form-control select2-init" name="speaker">
+                                <select class="form-control " name="speaker">
                                     <option value="0"> Later (Not Clear Yet) </option>
                                     <?php
                                     $args = array("posts_per_page" => -1, "orderby" => "title", "order" => "asc", 'post_type' => 'speaker', 'post_status' => array('publish', 'future', 'private'));
@@ -213,16 +213,16 @@ function tvsDebate_speaker_selected_html($post)
                         <div class="col-12 col-md-3 col-sm-6">
                             <div class="form-group">
                                 <label class="control-label" style="color:blue" for="introduction">Introduction</label> <br>
-                                <input type="text" id="introduction" style="width: 500px;" class="form-control"
+                                <input type="text" id="introduction"  class="form-control"
                                     name="introduction" maxlength="128">
                             </div>
                         </div>
 
-                        <div class="col-12 col-md-3 col-sm-6" style="float: left;">
+                        <div class="col-12 col-md-3 col-sm-6" >
                             <div class="form-group">
                                 <label class="control-label" style="color:red" for="state_0"> Opinions</label> <br>
 
-                                <select id="state_0" class="form-control select2-init" name="opinions">
+                                <select id="state_0" class="form-control " name="opinions">
                                     <option value="1">FOR</option>
                                     <option value="2"> AGAINST</option>
                                 </select>
@@ -231,7 +231,7 @@ function tvsDebate_speaker_selected_html($post)
 
                         <div class="col-12 col-md-2 col-sm-6">
                             <div class="form-group ">
-                                <input data-repeater-delete type="button" class=" button button-primary button-large"
+                                <input data-repeater-delete type="button" style="float: right;" class=" button button-primary button-large"
                                     value="X" />
                             </div>
                         </div>

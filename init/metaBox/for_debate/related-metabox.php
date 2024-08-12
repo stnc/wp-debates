@@ -73,8 +73,8 @@ $json_related_list= json_decode($json_related_list, true);
 ?>
 
 
-<div class="wp-core-ui  ss-metabox-form">
-    <ul>
+<div class="wp-core-ui  ss-metabox-form widthOverride">
+    <ul style="width:50%">
         <li>
             <h2 data-required="pageSetting_background_repeat"><strong>Related Data </strong></h2>
         </li>

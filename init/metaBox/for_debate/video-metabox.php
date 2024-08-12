@@ -93,60 +93,61 @@ function tvsDebate_video_selected_html($post)
                 ?>
                     <fieldset style="border: 1px solid black; padding: 10px;" data-repeater-item class="rep-element">
                         <legend style="width: auto;padding:10px;">Video </legend>
-                        <div class="container">
-                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label class="control-label" style="color:blue" for="title">Title</label>
-                                    <br>
-                                    <input type="text" id="title" class="form-control" value="
-                                <?php echo isset($json_video["title"]) ? $json_video["title"] : ''; ?>" name="title" maxlength="128">
+                        <div class="container-fluid stnc-grid ss-metabox-form">
+                            <div class="row ">
+                                <div class="col-12 col-md-3 col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label" style="color:blue" for="title">Title</label>
+                                        <br>
+                                        <input type="text" id="title" class="form-control" value="<?php echo isset($json_video["title"]) ? $json_video["title"] : ''; ?>" name="title"
+                                            maxlength="128">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" style="color:blue" for="youtube_link">Youtube Video URL</label>
+                                        <br>
+                                        <input type="text" id="youtube_link" class="form-control" value="<?php echo isset($json_video["youtube_link"]) ? "https://www.youtube.com/watch?v=" . $json_video["youtube_link"] : ''; ?>"
+                                            name="youtube_link" maxlength="128">
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label" style="color:blue" for="youtube_link">Youtube Video URL</label>
-                                    <br>
-                                    <input type="text" id="youtube_link" class="form-control"
-                                        value="
-                                        <?php echo isset($json_video["youtube_link"]) ? "https://www.youtube.com/watch?v=" . $json_video["youtube_link"] : ''; ?>" name="youtube_link" maxlength="128">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <input type="text" name="youtubePicture" value="
-                                            <?php echo isset($json_video["youtubePicture"]) ? $json_video["youtubePicture"] : ''; ?>"
-                                        class="tvs_videometa_inputC" id="tvs_videometa_input
+                                <div class="col-12 col-md-3 col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" name="youtubePicture" value="<?php echo isset($json_video["youtubePicture"]) ? $json_video["youtubePicture"] : ''; ?>"
+                                            class="tvs_videometa_inputC" id="tvs_videometa_input
                                             <?php echo $keyNew ?>" style="display:none;">
-                                    <a data-index="<?php echo $keyNew ?>" data-name="tvs_videometa" class="page_upload_trigger_element button button-primary button-large">Select Picture </a>
-                                    <br>
-                                    <div class="tvs_videometa_listC" id="tvs_videometa_list
+                                        <a data-index="<?php echo $keyNew ?>" data-name="tvs_videometa"
+                                            class="page_upload_trigger_element button button-primary button-large">Select Picture
+                                        </a>
+                                        <br>
+                                        <div class="tvs_videometa_listC" id="tvs_videometa_list
                                                     <?php echo $keyNew ?>">
-                                        <div class="background_attachment_metabox_container">
-                                            <div class="images-containerBG"> <?php if (isset($json_video["youtubePicture"])): ?>
-                                                    <div class="single-imageBG">
-                                                        <span class="delete">X</span> <?php
-                                                        // $attachment_id = get_post_thumbnail_id($json_video["youtubePicture"]);
-                                                        $url = wp_get_attachment_url($json_video["youtubePicture"], 'thumbnail');
-                                                        // echo $url = wp_get_attachment_url(get_post_thumbnail_id($json_video["youtubePicture"]), 'thumbnail');
-                                                        ?> <img data-targetid="tvs_videometa_input
-                                                                    <?php echo $keyNew ?>" class="attachment-100x100 wp-post-image" witdh="100" height="100" src="
+                                            <div class="background_attachment_metabox_container">
+                                                <div class="images-containerBG"> <?php if (isset($json_video["youtubePicture"])): ?>
+                                                        <div class="single-imageBG">
+                                                            <span class="delete">X</span> <?php
+                                                            // $attachment_id = get_post_thumbnail_id($json_video["youtubePicture"]);
+                                                            $url = wp_get_attachment_url($json_video["youtubePicture"], 'thumbnail');
+                                                            // echo $url = wp_get_attachment_url(get_post_thumbnail_id($json_video["youtubePicture"]), 'thumbnail');
+                                                            ?> <img data-targetid="tvs_videometa_input
+                                                                    <?php echo $keyNew ?>"
+                                                                class="attachment-100x100 wp-post-image" witdh="100" height="100" src="
                                                                     <?php echo $url ?>" />
-                                                    </div> <?php endif; ?>
+                                                        </div> <?php endif; ?>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label class="control-label" style="color:blue" for="description">Description</label>
-                                    <textarea name="description" style="display: block;" rows='8' cols='57'><?php echo isset($json_video["description"]) ? $json_video["description"] : ''; ?>
-                                     </textarea>
+                                <div class="col-12 col-md-4 col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label" style="color:blue" for="description">Description</label>
+                                        <textarea name="description" rows="8" cols="55"><?php echo isset($json_video["description"]) ? $json_video["description"] : ''; ?></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-2 col-sm-6">
+                                    <input data-repeater-delete type="button" class=" button button-primary button-large"
+                                        value="X" />
                                 </div>
                             </div>
-                            <div class="col">
-                                <input data-repeater-delete type="button" class=" button button-primary button-large"  value="Delete" />
-                            </div>
-                        </div>
                         </div>
                     </fieldset> <?php
             endforeach;
@@ -160,48 +161,54 @@ function tvsDebate_video_selected_html($post)
     <?php else: ?>
 
         <div class="repeater-tvsvideos">
-        <div class="rep-video" data-repeater-list="tvs_videos">
-          <fieldset style="border: 1px solid black; padding: 10px;" data-repeater-item class="rep-element">
-            <legend style="padding:10px;">Video </legend>
+            <div class="rep-video" data-repeater-list="tvs_videos">
+                <fieldset style="border: 1px solid black; padding: 10px;" data-repeater-item class="rep-element">
+                    <legend style="padding:10px;">Video </legend>
 
-            <div class="container-fluid stnc-grid ss-metabox-form">
-            <div class="row">
-              <div class="col-12 col-md-3 col-sm-6">
-                <div class="form-group">
-                  <label class="control-label" style="color:blue" for="title">Title</label>
-                  <br>
-                  <input type="text" id="title" class="form-control" value="Later (Not Clear Yet)" name="title" maxlength="128">
-                </div>
-                <div class="form-group">
-                  <label class="control-label" style="color:blue" for="youtube_link">Youtube Video URL</label>
-                  <br>
-                  <input type="text" id="youtube_link" class="form-control" value="" name="youtube_link" maxlength="128">
-                </div>
-              </div>
-              <div class="col-12 col-md-3 col-sm-6 ">
-                <input type="text" name="youtubePicture" value="" class="tvs_videometa_inputC" id="tvs_videometa_input" style="display:none;">
-                <a data-index="" data-name="tvs_videometa" class="page_upload_trigger_element button button-primary button-large">Select Picture</a>
-                <br>
-                <div class="tvs_videometa_listC" id="tvs_videometa_list">
-                  <div class="background_attachment_metabox_container"></div>
-                </div>
-              </div>
-              <div class="col-12 col-md-4 col-sm-6">
-                <div class="form-group">
-                  <label class="control-label" style="color:blue" for="description">Description</label>
-                  <textarea name="description" style="display: block;" ></textarea>
-                </div>
-              </div>
-              <div class="col-12 col-md-2 col-sm-6">
-                <input data-repeater-delete style="float: inline-end;" type="button" class=" button button-primary button-large" value="X" />
-              </div>
-            </div>
-            </div>
+                    <div class="container-fluid stnc-grid ss-metabox-form">
+                        <div class="row">
+                            <div class="col-12 col-md-3 col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label" style="color:blue" for="title">Title</label>
+                                    <br>
+                                    <input type="text" id="title" class="form-control" value="Later (Not Clear Yet)"
+                                        name="title" maxlength="128">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" style="color:blue" for="youtube_link">Youtube Video URL</label>
+                                    <br>
+                                    <input type="text" id="youtube_link" class="form-control" value="" name="youtube_link"
+                                        maxlength="128">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 col-sm-6 ">
+                                <input type="text" name="youtubePicture" value="" class="tvs_videometa_inputC"
+                                    id="tvs_videometa_input" style="display:none;">
+                                <a data-index="" data-name="tvs_videometa"
+                                    class="page_upload_trigger_element button button-primary button-large">Select Picture</a>
+                                <br>
+                                <div class="tvs_videometa_listC" id="tvs_videometa_list">
+                                    <div class="background_attachment_metabox_container"></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label" style="color:blue" for="description">Description</label>
+                                    <textarea name="description" rows="8" cols="55" ></textarea>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-2 col-sm-6">
+                                <input data-repeater-delete style="float: inline-end;" type="button"
+                                    class=" button button-primary button-large" value="X" />
+                            </div>
+                        </div>
+                    </div>
 
-          </fieldset>
+                </fieldset>
+            </div>
+            <input data-repeater-create type="button" class=" button button-secondary button-large" style="margin:10px"
+                onclick="videoFunction()" value="Add" />
         </div>
-        <input data-repeater-create type="button" class=" button button-secondary button-large" style="margin:10px" onclick="videoFunction()" value="Add" />
-      </div>
 
         <?php
     endif;

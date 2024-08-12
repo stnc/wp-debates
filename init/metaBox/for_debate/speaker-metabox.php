@@ -81,92 +81,96 @@ function tvsDebate_speaker_selected_html($post)
 // die;
     if ($speaker_list_json):
 
-            ?>
-            <div class="repeater-speaker">
+        ?>
+        <div class="repeater-speaker">
 
 
-                <div class="rep-speaker" data-repeater-list="tvs_speakers">
+            <div class="rep-speaker" data-repeater-list="tvs_speakers">
+
                 <?php
-           
-        foreach ($speaker_list_json as $key => $json_speaker):
-            ?>
+
+                foreach ($speaker_list_json as $key => $json_speaker):
+                    ?>
                     <fieldset data-repeater-item class="rep-element" style="border: 1px solid black; padding: 10px;">
                         <!-- widgetBody -->
                         <legend style="width: auto;padding:10px;">Speaker </legend>
+                        <div class="container-fluid stnc-grid ss-metabox-form">
+                            <div class="row">
 
-                        <div class="stnc-row">
-
-                            <div class="column column-20 ">
-                                <div class="form-group">
-                                    <label class="control-label" style="color:green" for="state_0">Select Speaker </label> <br>
+                                <div class="col-12 col-md-3 col-sm-6 ">
+                                    <div class="form-group">
+                                        <label class="control-label" style="color:green" for="state_0">Select Speaker </label> <br>
 
 
-                                    <select class="form-control select2-init" name="speaker">
-                                        <option value="0"> Later (Not Clear Yet) </option>
-                                        <?php
-                                        $args = array("posts_per_page" => -1, "orderby" => "title", "order" => "asc", 'post_type' => 'speaker', 'post_status' => array('publish', 'future', 'private'));
-                                        $speakers = get_posts($args);
+                                        <select class="form-control select2-init" name="speaker">
+                                            <option value="0"> Later (Not Clear Yet) </option>
+                                            <?php
+                                            $args = array("posts_per_page" => -1, "orderby" => "title", "order" => "asc", 'post_type' => 'speaker', 'post_status' => array('publish', 'future', 'private'));
+                                            $speakers = get_posts($args);
 
-                                        if ($speakers) {
-                                            // echo '<option  value="0">'. _e("Select Speaker", "debateLang") .'</option>';
-                                            foreach ($speakers as $speaker) {
-                                                if ($speaker->ID == $json_speaker["speaker"]) {
-                                                    $selected = "selected";
-                                                    echo '<option ' . $selected . ' value="' . $speaker->ID . '">' . $speaker->post_title . '</option>';
-                                                } else {
-                                                    $selected = "";
-                                                    echo '<option ' . $selected . ' value="' . $speaker->ID . '">' . $speaker->post_title . '</option>';
+                                            if ($speakers) {
+                                                // echo '<option  value="0">'. _e("Select Speaker", "debateLang") .'</option>';
+                                                foreach ($speakers as $speaker) {
+                                                    if ($speaker->ID == $json_speaker["speaker"]) {
+                                                        $selected = "selected";
+                                                        echo '<option ' . $selected . ' value="' . $speaker->ID . '">' . $speaker->post_title . '</option>';
+                                                    } else {
+                                                        $selected = "";
+                                                        echo '<option ' . $selected . ' value="' . $speaker->ID . '">' . $speaker->post_title . '</option>';
 
+                                                    }
                                                 }
                                             }
-                                        }
-                                        ?>
-                                    </select>
+                                            ?>
+                                        </select>
 
 
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-3 col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label" style="color:blue" for="introduction">Introduction</label> <br>
+                                        <input type="text" id="introduction" class="form-control"
+                                            value="<?php echo isset($json_speaker["introduction"]) ? $json_speaker["introduction"] : '' ?> "
+                                            name="introduction" maxlength="128">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-3 col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label" style="color:red" for="state_0"> Opinions</label>
+
+                                        <select id="state_0" class="form-control select2-init" name="opinions">
+                                            <option value="1" <?php if (1 == $json_speaker["opinions"])
+                                                echo "selected"; ?>>FOR
+                                            </option>
+                                            <option value="2" <?php if (2 == $json_speaker["opinions"])
+                                                echo "selected"; ?>>
+                                                AGAINST</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-2 col-sm-6 ">
+                                    <div class="form-group ">
+                                        <input style="float:right" data-repeater-delete type="button"
+                                            class=" button button-primary button-large" value="X" />
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="column column-30">
-                                <div class="form-group">
-                                    <label class="control-label" style="color:blue" for="introduction">Introduction</label> <br>
-                                    <input type="text" id="introduction" style="width: 500px;" class="form-control"
-                                        value="<?php echo isset($json_speaker["introduction"]) ? $json_speaker["introduction"] : '' ?> "
-                                        name="introduction" maxlength="128">
-                                </div>
-                            </div>
-
-                            <div class="column column-10" >
-                                <div class="form-group">
-                                    <label class="control-label" style="color:red" for="state_0"> Opinions</label> <br>
-
-                                    <select id="state_0" class="form-control select2-init" name="opinions">
-                                        <option value="1" <?php if (1 == $json_speaker["opinions"])
-                                            echo "selected"; ?>>FOR
-                                        </option>
-                                        <option value="2" <?php if (2 == $json_speaker["opinions"])
-                                            echo "selected"; ?>>
-                                            AGAINST</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="column column-10 ">
-                                <input data-repeater-delete type="button" class=" button button-primary button-large"
-                                    value="Delete" />
-                            </div>
-
                         </div>
                     </fieldset>
                     <?php
-        endforeach;
-        ?>
-                </div>
-
-                <input data-repeater-create type="button" class=" button button-secondary button-large" style="margin:10px"
-                    value="Add" />
+                endforeach;
+                ?>
 
             </div>
+
+            <input data-repeater-create type="button" class=" button button-secondary button-large" style="margin:10px"
+                value="Add" />
+
+        </div>
 
 
     <?php else: ?>
@@ -178,10 +182,10 @@ function tvsDebate_speaker_selected_html($post)
                 <fieldset data-repeater-item class="rep-element" style="border: 1px solid black; padding: 10px;">
                     <!-- widgetBody -->
                     <legend style="width: auto;padding:10px;">Speaker </legend>
+                    <div class="container-fluid stnc-grid ss-metabox-form">
+                    <div class="row">
 
-                    <div class="stnc-row">
-
-                        <div class="column column-20 ">
+                        <div class="col-12 col-md-3 col-sm-6 ">
                             <div class="form-group">
                                 <label class="control-label" style="color:green" for="state_0">Select Speaker </label> <br>
 
@@ -206,7 +210,7 @@ function tvsDebate_speaker_selected_html($post)
                             </div>
                         </div>
 
-                        <div class="column column-30">
+                        <div class="col-12 col-md-3 col-sm-6">
                             <div class="form-group">
                                 <label class="control-label" style="color:blue" for="introduction">Introduction</label> <br>
                                 <input type="text" id="introduction" style="width: 500px;" class="form-control"
@@ -214,7 +218,7 @@ function tvsDebate_speaker_selected_html($post)
                             </div>
                         </div>
 
-                        <div class="column column-10" style="float: left;">
+                        <div class="col-12 col-md-3 col-sm-6" style="float: left;">
                             <div class="form-group">
                                 <label class="control-label" style="color:red" for="state_0"> Opinions</label> <br>
 
@@ -225,11 +229,14 @@ function tvsDebate_speaker_selected_html($post)
                             </div>
                         </div>
 
-                        <div class="column column-10 ">
-                            <input data-repeater-delete type="button" class=" button button-primary button-large"
-                                value="Delete" />
+                        <div class="col-12 col-md-2 col-sm-6">
+                            <div class="form-group ">
+                                <input data-repeater-delete type="button" class=" button button-primary button-large"
+                                    value="X" />
+                            </div>
                         </div>
 
+                    </div>
                     </div>
                 </fieldset>
             </div>

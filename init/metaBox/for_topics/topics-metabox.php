@@ -104,6 +104,8 @@ function tvs_save_TopicsMBSidebarMenuSelect( $term_id ) {
 
     else if ( $old_value !== $new_value )
         update_term_meta( $term_id, 'tvsTopicsMB_SidebarMenu', $new_value );
+    //        update_term_meta( $term_id, 'layout', "wide-left-sidebar" );//Hidden Elements //porto override 
+
 }
 
 

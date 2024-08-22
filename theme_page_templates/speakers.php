@@ -50,13 +50,11 @@ add_action('wp_head', 'tvs_meta_tags');
 require_once ("functions-tvs.php");
 
 ?>
-<div class="row">
-	<!-- <div class="col-lg-3">
-		<?php //dynamic_sidebar('tvs-special-debates'); ?>
-	</div> -->
 
 
-	<div class="col-lg-12">
+
+
+
 		<div id="content" role="main">
 			<div class="page-debates clearfix">
 				<div class="row debate-row archive-debate-row">
@@ -157,8 +155,7 @@ require_once ("functions-tvs.php");
 				</article>
 			</div>
 		</div>
-	</div>
-</div>
+
 
 <?php
 get_footer();

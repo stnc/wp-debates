@@ -324,7 +324,7 @@ function tvsDebate_video_selected_html($post)
                 // butun elemanlarda gezinecek sonra inputlara bir class verecek mesela pic1 gibi 
                 // }
                 i = index + 1;
-                console.log("de" + i)
+              //  console.log("de" + i)
                 //  jQuery(item).parent().find(".tvs_videometa_inputC").removeAttr('id');
                 //  jQuery(item).parent().find(".tvs_videometa_listC").removeAttr('id');
                 jQuery(item).children().find(".page_upload_trigger_element").attr('data-index', i);

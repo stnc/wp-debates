@@ -2,17 +2,9 @@
 get_header();
 require_once ("functions-tvs.php");
 ?>
-<div class="row">
-	<div class="col-lg-3 sidebar porto-alternative-default left-sidebar mobile-sidebar">
-		<?php
-		// dynamic_sidebar('tvs-overseas-debates');
-		$sidebarMenu=get_post_meta(get_the_ID(), "sidebar_menu", true );
-		wp_nav_menu( array( "menu"=> $sidebarMenu,'theme_location' => 'header-top-menu' ) );
-		 
-		 ?>
-	</div>
 
-	<div class="col-lg-9 main-content">
+
+	
 		<div id="content" role="main">
 			<?php
 			$the_query = new WP_Query(
@@ -145,8 +137,8 @@ require_once ("functions-tvs.php");
 			<?php endif; ?>
 
 		</div>
-	</div>
-</div>
+	
+
 <link rel='stylesheet' href='/wp-content/plugins/tvs-debate/assets/css/min/glightbox.min.css' media='all' />
 <script src="/wp-content/plugins/tvs-debate/assets/js/glightbox.min.js" id="jquery-mag-js"></script>
 <script>

@@ -77,7 +77,7 @@ require_once ("functions-tvs.php");
 				<div class="row debate-row archive-debate-row">
 
 					<div
-						class="col-lg-12  col-md-12 offset-lg-0 offset-md-2 custom-sm-margin-bottom-1 p-b-lg single-debate">
+						class="col-lg-12  col-md-12  custom-sm-margin-bottom-1 p-b-lg single-debate">
 
 						<?php
 						$opinionPage = get_post_meta(get_the_ID(), 'tvsDebateMB_opinion', true);

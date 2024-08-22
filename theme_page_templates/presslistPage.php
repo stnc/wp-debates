@@ -3,7 +3,7 @@ get_header();
 require_once ("functions-tvs.php");
 ?>
 <div class="row">
-	<div class="col-lg-3">
+	<div class="col-lg-3 sidebar porto-alternative-default left-sidebar mobile-sidebar">
 		<?php
 		// dynamic_sidebar('tvs-overseas-debates');
 		$sidebarMenu=get_post_meta(get_the_ID(), "sidebar_menu", true );
@@ -12,7 +12,7 @@ require_once ("functions-tvs.php");
 		 ?>
 	</div>
 
-	<div class="col-lg-9">
+	<div class="col-lg-9 main-content">
 		<div id="content" role="main">
 			<?php
 			$the_query = new WP_Query(
@@ -38,7 +38,7 @@ require_once ("functions-tvs.php");
 							$the_query->the_post();
 							?>
 							<div
-								class="col-lg-12  col-md-12 offset-lg-0 offset-md-2 custom-sm-margin-bottom-1 single-presslist">
+								class="col-lg-12  col-md-12  custom-sm-margin-bottom-1 single-presslist">
 								<?php
 								global $porto_settings;
 								$post_layout = 'medium';

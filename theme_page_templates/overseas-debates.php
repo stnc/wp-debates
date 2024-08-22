@@ -3,17 +3,10 @@ get_header();
 require_once ("functions-tvs.php");
 ?>
 <div class="row">
-	<div class="col-lg-3">
-		<?php
-		// dynamic_sidebar('tvs-overseas-debates');
-		$sidebarMenu=get_post_meta(get_the_ID(), "sidebar_menu", true );
-		wp_nav_menu( array( "menu"=> $sidebarMenu,'theme_location' => 'header-top-menu' ) );
-		 
-		 ?>
-	</div>
 
 
-	<div class="col-lg-9">
+
+	<div class="col-lg-9 main-content">
 
 		<div id="content" role="main">
 
@@ -42,7 +35,7 @@ require_once ("functions-tvs.php");
 							$the_query->the_post();
 							?>
 							<div
-								class="col-lg-12  col-md-12 offset-lg-0 offset-md-2 custom-sm-margin-bottom-1 p-b-lg single-debate">
+								class="col-lg-12  col-md-12  custom-sm-margin-bottom-1 p-b-lg single-debate">
 								<?php
 								global $porto_settings;
 								$post_layout = 'medium';
@@ -155,6 +148,15 @@ require_once ("functions-tvs.php");
 			<?php endif; ?>
 
 		</div>
+	</div>
+
+	<div class="col-lg-3 sidebar porto-alternative-default left-sidebar mobile-sidebar">
+		<?php
+		// dynamic_sidebar('tvs-overseas-debates');
+		$sidebarMenu=get_post_meta(get_the_ID(), "sidebar_menu", true );
+		wp_nav_menu( array( "menu"=> $sidebarMenu,'theme_location' => 'header-top-menu' ) );
+		 
+		 ?>
 	</div>
 </div>
 <link rel='stylesheet' href='/wp-content/plugins/tvs-debate/assets/css/min/glightbox.min.css' media='all' />

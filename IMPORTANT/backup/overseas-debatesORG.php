@@ -49,7 +49,7 @@ require_once ("functions.php");
 							$event_query->the_post();
 							?>
 							<div
-								class="col-lg-12  col-md-12 offset-lg-0 offset-md-2 custom-sm-margin-bottom-1 p-b-lg single-debate">
+								class="col-lg-12  col-md-12 offset-lg-0  custom-sm-margin-bottom-1 p-b-lg single-debate">
 
 
 								<?php

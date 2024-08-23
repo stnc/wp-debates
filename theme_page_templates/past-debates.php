@@ -1,5 +1,6 @@
 <?php get_header(); 
 require_once ("functions-tvs.php");
+$pageName="past-debates";
 ?>
 <?php
 $builder_id = porto_check_builder_condition( 'single' );
@@ -151,11 +152,11 @@ $the_query = new WP_Query(
 		$links_data = tvs_kama_paginate_links_data([
 			'total' => $the_query->max_num_pages,
 			'current' => max(1, get_query_var('paged')),
-			'url_base' => 'http://debates.test/topics/overseas-debates/page/{pagenum}',
+			'url_base' => '\/topics/'.$pageName.'/page/{pagenum}',
 		]);
 		?>
 		<?php if ($links_data): ?>
-			<?php tvs_pagination_options($links_data, "topics") ?>
+			<?php tvs_pagination_options($links_data, "topics",$pageName ) ?>
 		<?php endif; ?>
 		<?php // tvs_wp_pagination($the_query);	 ?>
 	</div>

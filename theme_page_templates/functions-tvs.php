@@ -264,24 +264,24 @@ if (!$json_video_list || $json_video_list[0]["title"] != "Later (Not Clear Yet)"
 
 
 
-function tvs_pagination_options($links_data, $pageType):void
+function tvs_pagination_options($links_data, $pageType,$pageName):void
 {
 	?>
 
 	<?php if ("topics" == $pageType): ?>
 		<div class="pagination-wrap">
 			<div class="pagination" role="navigation">
-				<a class="prev page-numbers" href="/topics/overseas-debates/">
+				<a class="prev page-numbers" href="/topics/<?php echo $pageName?>/">
 					<i class="fas fa-long-arrow-alt-left"></i>&nbsp;&nbsp;Prev </a>
 				<?php foreach ($links_data as $link): ?>
 					<?php if ($link->is_current) { ?>
 						<span aria-current="page" class="page-numbers current"><?php _e($link->page_num) ?></span>
 					<?php } else { ?>
 						<a class="page-numbers"
-							href="/topics/overseas-debates/page/<?php _e($link->page_num) ?>"><?php _e($link->page_num) ?></a>
+							href="/topics/<?php echo $pageName?>/page/<?php _e($link->page_num) ?>"><?php _e($link->page_num) ?></a>
 					<?php } ?>
 				<?php endforeach ?>
-				<a class="next page-numbers" href="/topics/overseas-debates/page/2/">Next&nbsp;&nbsp;
+				<a class="next page-numbers" href="/topics/<?php echo $pageName?>/page/2/">Next&nbsp;&nbsp;
 					<i class="fas fa-long-arrow-alt-right"></i>
 				</a>
 			</div>
@@ -289,17 +289,17 @@ function tvs_pagination_options($links_data, $pageType):void
 	<?php else: ?>
 		<div class="pagination-wrap">
 			<div class="pagination" role="navigation">
-				<a class="prev page-numbers" href="/overseas-debates">
+				<a class="prev page-numbers" href="/<?php echo $pageName?>">
 					<i class="fas fa-long-arrow-alt-left"></i>&nbsp;&nbsp;Prev </a>
 				<?php foreach ($links_data as $link): ?>
 					<?php if ($link->is_current) { ?>
 						<span aria-current="page" class="page-numbers current"><?php _e($link->page_num) ?></span>
 					<?php } else { ?>
 						<a class="page-numbers"
-							href="/overseas-debates/page/<?php _e($link->page_num) ?>"><?php _e($link->page_num) ?></a>
+							href="/<?php echo $pageName?>/page/<?php _e($link->page_num) ?>"><?php _e($link->page_num) ?></a>
 					<?php } ?>
 				<?php endforeach ?>
-				<a class="next page-numbers" href="/overseas-debates/page/2/">Next&nbsp;&nbsp;
+				<a class="next page-numbers" href="/<?php echo $pageName?>/page/2/">Next&nbsp;&nbsp;
 					<i class="fas fa-long-arrow-alt-right"></i>
 				</a>
 			</div>

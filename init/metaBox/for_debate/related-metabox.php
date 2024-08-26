@@ -103,7 +103,7 @@ $json_related_list= json_decode($json_related_list, true);
             }
 		 ?>
             </select>
-            <span class="form_hint">Please Select Opinion</span>
+            <!-- <span class="form_hint">Please Select Opinion</span> -->
         </li>
 
 
@@ -134,7 +134,7 @@ $json_related_list= json_decode($json_related_list, true);
                 ?>
 
             </select>
-            <span class="form_hint">Please Select Transcript</span>
+            <!-- <span class="form_hint">Please Select Transcript</span> -->
         </li>
 
 

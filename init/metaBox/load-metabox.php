@@ -36,12 +36,9 @@ function tvsDebate_debate_options_()
 
 if (tvsDebate_post_type()["get_type"] == 'debate' || tvsDebate_post_type()["post_type"] == 'debate') {
 	//tvsDebate_debate_options_();
-
 	include 'for_debate/speaker-metabox.php';
-
 	include 'for_debate/video-metabox.php';
 	include "for_debate/related-metabox.php";
-
 }
 
 include 'for_topics/topics-metabox.php';
@@ -59,6 +56,18 @@ if (tvsDebate_post_type()["get_type"] == 'press' || tvsDebate_post_type()["post_
 	tvsDebate_press_options_();
 }
 
+
+if (tvsDebate_post_type()["get_type"] == 'speaker' || tvsDebate_post_type()["post_type"] == 'speaker') {
+	include 'for_speaker/metabox_options.php';
+}
+
+if (tvsDebate_post_type()["get_type"] == 'transcript' || tvsDebate_post_type()["post_type"] == 'transcript') {
+	include 'for_transcript/metabox_options.php';
+}
+
+if (tvsDebate_post_type()["get_type"] == 'opinion' || tvsDebate_post_type()["post_type"] == 'opinion') {
+	include 'for_opinion/metabox_options.php';
+}
 
 
 

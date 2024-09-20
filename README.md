@@ -3,7 +3,7 @@
 D:\laragon\www\debates\wp-content\themes\porto\inc\plugins\plugins.php  /// satir  10 $plugin = PORTO_PLUGINS . '/sidebar-generator/sidebar_generator.php';
 
 
-
+http://debates.test/opinion/   --- bu sayfanin adi ne olacak bilmiyorum ? 
 
 
 https://dev.tvsdebates.com/

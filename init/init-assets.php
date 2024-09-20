@@ -38,6 +38,6 @@ if (tvsDebate_post_type()["post_type"] === 'debate' || tvsDebate_post_type()["ge
 add_action( 'wp_enqueue_scripts', 'enqueue_and_register_my_scripts' );
 
 function enqueue_and_register_my_scripts(){
-    wp_register_script( 'my_child_script', get_stylesheet_directory_uri().'/js/custom.js', array(), '1.0.0', true );
+    wp_register_script( 'my_child_script', get_stylesheet_directory_uri().'/assets/js/jquery.magnific-popup.min.js', array(), '1.0.0', true );
     wp_enqueue_script( 'my_child_script' );
 }

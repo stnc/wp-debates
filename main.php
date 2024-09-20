@@ -61,7 +61,7 @@ require_once (tvsDebate_init_Path .'widget/recent_posts.php');
 
 require_once ('theme_page_templates/theme_page_templates-engine.php');
 
-
+require_once(tvsDebate_pages_Path ."configurationPages/init.php");
 
 
 // include "other/customTaxonomies.php";

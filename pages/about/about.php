@@ -1,9 +1,5 @@
 <?php
 
-
-
-
-
 function tvsDebate_about_page()
 {
 
@@ -17,7 +13,7 @@ function tvsDebate_about_page()
   <!-- Our admin page content should all be inside .wrap -->
   <div class="wrap">
     <!-- Print the page title -->
-    <h1> <?php echo __( 'About', 'debateLang' ) ?> </h1>
+    <h1> <?php echo __('About', 'debateLang') ?> </h1>
     <div style="background: #fff;
     border: 1px solid #c3c4c7;
     border-left-width: 4px;
@@ -27,17 +23,13 @@ function tvsDebate_about_page()
 
 
 
-      <strong><?php echo __( 'Info', 'debateLang' ) ?></strong>
-<p><?php echo __( 'About', 'debateLang' ) ?> </p>
+      <strong><?php echo __('Info', 'debateLang') ?></strong>
+      <p><?php echo __('About', 'debateLang') ?> </p>
 
     </div>
 
   </div>
-
-
-
-
-          <?php
+  <?php
 
 
 

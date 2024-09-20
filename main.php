@@ -10,7 +10,7 @@
  */
 
 
-function tvsDebate_post_type()
+function tvsDebate_post_type(): array
 {
     $tvsDebate_post_type_postID = isset ($_GET['post']) ? $_GET['post'] : null;
     $tvsDebate_get_type = get_post_type($tvsDebate_post_type_postID);
@@ -25,7 +25,7 @@ function tvsDebate_post_type()
     
 }
 
-define('tvsDebate_init_Path', plugin_dir_path(__FILE__) . 'init/');
+define('tvsDebate_init_Path', value: plugin_dir_path(__FILE__) . 'init/');
 
 define('tvsDebate_pages_Path', plugin_dir_path(__FILE__) . 'pages/');
 

@@ -1,5 +1,5 @@
 <?php
-function stnc_wp_kiosk_configuration_content(){
+function tvsDebate_configuration_content(){
 
 
     if ( ! current_user_can( 'manage_options' ) ) {
@@ -14,12 +14,12 @@ function stnc_wp_kiosk_configuration_content(){
       <!-- Our admin page content should all be inside .wrap -->
       <div class="wrap">
         <!-- Print the page title -->
-        <h1>Teknopark Ekranlar Ayarlamalar Bolumu <?php //echo esc_html( get_admin_page_title() ); ?></h1>
+        <h1>Setting <?php //echo esc_html( get_admin_page_title() ); ?></h1>
         <!-- Here are our tabs -->
         <nav class="nav-tab-wrapper">
-          <a href="?post_type=stnc_kiosk&page=stncKioskConfig" class="nav-tab <?php if($tab===null):?>nav-tab-active<?php endif; ?>">Döviz & Altın Ayarları</a>
-          <a href="?post_type=stnc_kiosk&page=stncKioskConfig&tab=hava" class="nav-tab <?php if($tab==='hava'):?>nav-tab-active<?php endif; ?>">Hava Durumu Ayarları</a>
-          <a href="?post_type=stnc_kiosk&page=stncKioskConfig&tab=other" class="nav-tab <?php if($tab==='other'):?>nav-tab-active<?php endif; ?>">Diğer Ayarlar</a>
+          <a href="?post_type=debate&page=tvsDebateSetting" class="nav-tab <?php if($tab===null):?>nav-tab-active<?php endif; ?>">Settings</a>
+          <a href="?post_type=debate&page=tvsDebateSetting&tab=hava" class="nav-tab <?php if($tab==='hava'):?>nav-tab-active<?php endif; ?>">Setting test2</a>
+          <a href="?post_type=debate&page=tvsDebateSetting&tab=other" class="nav-tab <?php if($tab==='other'):?>nav-tab-active<?php endif; ?>">Other Setting</a>
         </nav>
         <div class="tab-content">
         <?php switch($tab) :
@@ -37,6 +37,6 @@ function stnc_wp_kiosk_configuration_content(){
       </div>
     <?php
 }
-require ('exchange_tab.php'); 
+require ('debate_tab.php'); 
 require ('weather_tab.php'); 
 require ('other_tab.php'); 

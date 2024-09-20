@@ -2,89 +2,82 @@
 add_action( 'admin_init', 'stncWpKiosk_Other_Settings_init' );
 function stncWpKiosk_Other_Settings_init(  ) {
 
-    register_setting('stncWpKiosk_OtherConfig', 'stncWpKiosk_Other_Settings');
+    // register_setting('stncWpKiosk_OtherConfig', 'stncWpKiosk_Other_Settings');
 
-    add_settings_section(
-        'stncWpKiosk_Other_section',
-        __( 'Diğer Ayarlar', 'wordpress' ),
-        'stncWpKiosk_Other_Settings_section_callback',
-        'stncWpKiosk_OtherConfig'
-    );
+    // add_settings_section(
+    //     'stncWpKiosk_Other_section',
+    //     __( 'Diğer Ayarlar', 'wordpress' ),
+    //     'stncWpKiosk_Other_Settings_section_callback',
+    //     'stncWpKiosk_OtherConfig'
+    // );
+
+
 
     // add_settings_field(
-    //     'stncWpKiosk_text_field_domain_name',
-    //     __( 'Domain Name ', 'wordpress' ),
-    //     'stncWpKiosk_text_field_Other_donain_name_render',
+    //     'stncWpKiosk_text_field_Other_apikey',
+    //     __( 'APi ', 'wordpress' ),
+    //     'stncWpKiosk_text_field_Other_apikey_field_render',
     //     'stncWpKiosk_OtherConfig',
     //     'stncWpKiosk_Other_section'
     // ); 
     
 
-    add_settings_field(
-        'stncWpKiosk_text_field_Other_apikey',
-        __( 'APi ', 'wordpress' ),
-        'stncWpKiosk_text_field_Other_apikey_field_render',
-        'stncWpKiosk_OtherConfig',
-        'stncWpKiosk_Other_section'
-    ); 
     
-
-    
-    add_settings_field(
-        'stncWpKiosk_text_field_Other_orderby',
-        __( 'Resimlerin Sıralanma Şekli', 'wordpress' ),
-        'Other_picture_sort_stncWpKiosk_text_field_render',
-        'stncWpKiosk_OtherConfig',
-        'stncWpKiosk_Other_section'
-    ); 
+    // add_settings_field(
+    //     'stncWpKiosk_text_field_Other_orderby',
+    //     __( 'Resimlerin Sıralanma Şekli', 'wordpress' ),
+    //     'Other_picture_sort_stncWpKiosk_text_field_render',
+    //     'stncWpKiosk_OtherConfig',
+    //     'stncWpKiosk_Other_section'
+    // ); 
     
 
         
-    add_settings_field(
-        'stncWpKiosk_text_field_Other_WeatherShowType',
-        __( 'Hava Durumu Gösterim Tipi', 'wordpress' ),
-        'Other_weather_Other_WeatherShowType_stncWpKiosk_text_field_render',
-        'stncWpKiosk_OtherConfig',
-        'stncWpKiosk_Other_section'
-    );
+    // add_settings_field(
+    //     'stncWpKiosk_text_field_Other_WeatherShowType',
+    //     __( 'Hava Durumu Gösterim Tipi', 'wordpress' ),
+    //     'Other_weather_Other_WeatherShowType_stncWpKiosk_text_field_render',
+    //     'stncWpKiosk_OtherConfig',
+    //     'stncWpKiosk_Other_section'
+    // );
 
 
 
     
-    add_settings_field(
-        'stncWpKiosk_text_field_Other_exchange_status',
-        __( 'Döviz Kapalı olsun', 'wordpress' ),
-        'Other_exchange_status_stncWpKiosk_text_field_render',
-        'stncWpKiosk_OtherConfig',
-        'stncWpKiosk_Other_section'
-    ); 
+    // add_settings_field(
+    //     'stncWpKiosk_text_field_Other_exchange_status',
+    //     __( 'Döviz Kapalı olsun', 'wordpress' ),
+    //     'Other_exchange_status_stncWpKiosk_text_field_render',
+    //     'stncWpKiosk_OtherConfig',
+    //     'stncWpKiosk_Other_section'
+    // ); 
 
-    add_settings_field(
-        'stncWpKiosk_text_field_Other_6today_time',
-        __( '6 gunluk hava durumunun görünme süresi ', 'wordpress' ),
-        'Other_6today_time_stncWpKiosk_text_field_render',
-        'stncWpKiosk_OtherConfig',
-        'stncWpKiosk_Other_section'
-    ); 
-
-
-
-    add_settings_field(
-        'stncWpKiosk_text_field_Other_exchange_weather_renew_time',
-        __( 'Sadece döviz ve hava durumlarına ait verilerin gün içinde yenilenme süresi', 'wordpress' ),
-        'Other_exchange_weather_renew_time_stncWpKiosk_text_field_render',
-        'stncWpKiosk_OtherConfig',
-        'stncWpKiosk_Other_section'
-    ); 
+    // add_settings_field(
+    //     'stncWpKiosk_text_field_Other_6today_time',
+    //     __( '6 gunluk hava durumunun görünme süresi ', 'wordpress' ),
+    //     'Other_6today_time_stncWpKiosk_text_field_render',
+    //     'stncWpKiosk_OtherConfig',
+    //     'stncWpKiosk_Other_section'
+    // ); 
 
 
-    add_settings_field(
-        'stncWpKiosk_text_field_Other_all_page',
-        __('Sayfanın yenilenme süresi', 'wordpress' ),
-        'Other_all_page_renew_stncWpKiosk_text_field_render',
-        'stncWpKiosk_OtherConfig',
-        'stncWpKiosk_Other_section'
-    ); 
+
+    // add_settings_field(
+    //     'stncWpKiosk_text_field_Other_exchange_weather_renew_time',
+    //     __( 'Sadece döviz ve hava durumlarına ait verilerin gün içinde yenilenme süresi', 'wordpress' ),
+    //     'Other_exchange_weather_renew_time_stncWpKiosk_text_field_render',
+    //     'stncWpKiosk_OtherConfig',
+    //     'stncWpKiosk_Other_section'
+    // ); 
+
+
+    // add_settings_field(
+    //     'stncWpKiosk_text_field_Other_all_page',
+    //     __('Sayfanın yenilenme süresi', 'wordpress' ),
+    //     'Other_all_page_renew_stncWpKiosk_text_field_render',
+    //     'stncWpKiosk_OtherConfig',
+    //     'stncWpKiosk_Other_section'
+    // ); 
 }
 
 
@@ -97,13 +90,6 @@ function stncWpKiosk_text_field_Other_apikey_field_render(  ) {
 }
 
 
-function stncWpKiosk_text_field_Other_donain_name_render(  ) {
-    $options = get_option( 'stncWpKiosk_Other_Settings' );
-    ?>
-    <input type='text' name='stncWpKiosk_Other_Settings[stncWpKiosk_text_field_domain_name]' value='<?php   print (isset($options['stncWpKiosk_text_field_domain_name'])) ? $options['stncWpKiosk_text_field_domain_name'] : "";?>'>
-    <small></small>
-  <?php
-}
 
 
 function Other_picture_sort_stncWpKiosk_text_field_render(  ) {
@@ -190,10 +176,11 @@ function stncWpKiosk_Other_Settings_section_callback(  ) {
 function stncWpKiosk_config_Other(  ) {
     ?>
     <form action='options.php' method='post'>
+        Coming Soon
         <?php
         settings_fields( 'stncWpKiosk_OtherConfig' );
         do_settings_sections( 'stncWpKiosk_OtherConfig' );
-        submit_button();
+       // submit_button();
         ?>
     </form>
     <?php

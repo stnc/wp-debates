@@ -1,7 +1,7 @@
 <?php
 function tvsDebate_configuration_menu()
 {
-    add_submenu_page( "edit.php?post_type=debate", 'Settings', 'Settings', 'manage_options', 'tvsDebate-config', 'stnc_wp_kiosk_configuration_content' ); 
+    add_submenu_page( "edit.php?post_type=debate", 'Settings', 'Settings', 'manage_options', 'tvsDebateSetting', 'tvsDebate_configuration_content' ); 
 
     add_submenu_page( "edit.php?post_type=debate",   __( 'About', 'debateLang' ) ,   __( 'About', 'debateLang' ) , 'manage_options', 'tvsDebate-about', 'tvsDebate_about_page' ); 
 

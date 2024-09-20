@@ -33,3 +33,11 @@ function ssOnlyDebate_script_in_admin($hook)
 if (tvsDebate_post_type()["post_type"] === 'debate' || tvsDebate_post_type()["get_type"] === 'debate') {
     add_action('admin_enqueue_scripts', 'ssOnlyDebate_script_in_admin');
 }
+
+
+add_action( 'wp_enqueue_scripts', 'enqueue_and_register_my_scripts' );
+
+function enqueue_and_register_my_scripts(){
+    wp_register_script( 'my_child_script', get_stylesheet_directory_uri().'/js/custom.js', array(), '1.0.0', true );
+    wp_enqueue_script( 'my_child_script' );
+}

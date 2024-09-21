@@ -126,10 +126,20 @@
       padding: 8px;
   }
   
+  .ss-metabox-form.widthOverride input[type=text],
+  .ss-metabox-form.widthOverride select,
+  .ss-metabox-form.widthOverride textarea {
 
-  .ss-metabox-form input[type=text],
-  .ss-metabox-form select,
-  .ss-metabox-form textarea {
+
+
+    width: auto;
+
+}
+
+
+.ss-metabox-form input[type=text],
+.ss-metabox-form select,
+.ss-metabox-form textarea {
       border: 1px solid #aaa;
       box-shadow: 0 0 3px #ccc, 0 10px 15px #eee inset;
       border-radius: 2px;
@@ -145,7 +155,14 @@
       border: 1px solid #ccc;
       border-radius: 3px;
   }
-  
+
+  .ss-metabox-form textarea {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;display: block;
+  }
+
   .ss-metabox-form .form_hint {
       background: #5298d4;
       border-radius: 3px 3px 3px 3px;

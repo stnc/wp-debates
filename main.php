@@ -63,13 +63,9 @@ require_once ('theme_page_templates/theme_page_templates-engine.php');
 
 require_once(tvsDebate_pages_Path ."configurationPages/init.php");
 
+require_once (tvsDebate_init_Path . "rewrite_rule_list.php");
 
 // include "other/customTaxonomies.php";
 // include "other/example_post_type.php";
-include "other/special-rewrite-rule/special-rewrite-rule.php";
+// include "other/special-rewrite-rule/special-rewrite-rule.php";
 // include "other/speakers-custom-rewrite-url/speakers-page-init.php";
-
-add_filter('query_vars', function($query_vars){
-    $query_vars[] = 'list';
-    return $query_vars;
-});

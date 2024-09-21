@@ -77,22 +77,3 @@ add_filter('query_vars', function($query_vars): mixed{
 
 
 
-//example link http://debates.test/debateModal?debateid=12
-add_action('init', function(): void{
-    add_rewrite_rule('debateModal/([a-zA-Z0-9\-]+)/ajax-debate', 'index.php?pagename=ajax-debate&debateid=$matches[1]','top');
-});
-
-// echo get_template_directory();
-add_action( 'template_include', function( $template ): mixed {
-    if ( false == get_query_var( 'debateid' ) || '' == get_query_var( 'debateid' )) {
-        status_header(200);
-        return $template;
-    }
-    return get_template_directory() . '-child/ajax-debate.php';
-});
-
-
-add_filter('query_vars', function($query_vars): mixed{
-    $query_vars[] = 'debateid';
-    return $query_vars;
-});

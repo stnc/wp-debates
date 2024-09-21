@@ -67,10 +67,10 @@ class STNC_PageTemplater {
 
 		// Add your templates to this array.
 		$this->templates = array(
-			'past-debates.php' =>  'Past Debates',
+			//'past-debates.php' =>  'Past Debates',
 			// 'past-debates-for-sidebar-backup.php' =>  'Old Sidebar Past Debates',
-			'overseas-debates.php' =>  'Overseas Debates',
-			'special-debates.php' =>  ' Special Debates',
+			//'overseas-debates.php' =>  'Overseas Debates',
+			//'special-debates.php' =>  ' Special Debates',
 			'speakers.php' =>  ' Speaker',
 			'presslistPage.php' =>  ' News Page',
 		);

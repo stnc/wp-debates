@@ -5,6 +5,9 @@ D:\laragon\www\debates\wp-content\themes\porto\inc\plugins\plugins.php  /// sati
 
 http://debates.test/opinion/   --- bu sayfanin adi ne olacak bilmiyorum ? 
 
+modallar title bakilacak 
+
+
 
 https://dev.tvsdebates.com/
 

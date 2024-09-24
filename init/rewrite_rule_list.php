@@ -12,7 +12,7 @@ add_action( 'template_include', function( $template ): mixed {
         status_header(200);
         return $template;
     }
-    return get_template_directory() . '-child/single-debate-ajax.php';
+    return get_template_directory() . '-child/ajax-single-debate.php';
 });
 
 
@@ -33,7 +33,7 @@ add_action( 'template_include', function( $template ): mixed {
         status_header(200);
         return $template;
     }
-    return get_template_directory() . '-child/single-transcript-ajax.php';
+    return get_template_directory() . '-child/ajax-single-transcript.php';
 });
 
 
@@ -59,7 +59,7 @@ add_action( 'template_include', function( $template ): mixed {
         status_header(200);
         return $template;
     }
-    return get_template_directory() . '-child/single-opinion-ajax.php';
+    return get_template_directory() . '-child/ajax-single-opinion.php';
 });
 
 
@@ -81,7 +81,7 @@ add_action( 'template_include', function( $template ): mixed {
         status_header(200);
         return $template;
     }
-    return get_template_directory() . '-child/speakersAjax.php';
+    return get_template_directory() . '-child/ajax-speakers.php';
 });
 
 
@@ -103,7 +103,7 @@ add_action( 'template_include', function( $template ): mixed {
         status_header(200);
         return $template;
     }
-    return get_template_directory() . '-child/CANCEL-speakers.php';
+    return get_template_directory() . '-child/0CANCEL-speakers.php';
 });
 
 

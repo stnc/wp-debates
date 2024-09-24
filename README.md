@@ -26,6 +26,25 @@ https://stackoverflow.com/questions/11261883/how-to-get-the-wordpress-post-thumb
 date time icin 
 https://flatpickr.js.org/examples/
 
+
+
+//https://wordpress.stackexchange.com/questions/40706/change-the-post-date-from-a-meta-box
+function cfc_reset_postdate( $data ) {
+    $date = get_post_meta( get_the_ID(), 'cfc_date', true );
+    $date = DateTime::createFromFormat('D - M j, Y', $date);
+    $date = $date->format('Y-m-d');
+
+    $data['post_date'] = $date;
+    return $data;
+}
+
+// add_filter( 'wp_insert_post_data', 'cfc_reset_postdate');
+
+
+
+
+
+
 # TODO 
  
 tarih icin singe debate ye bak 

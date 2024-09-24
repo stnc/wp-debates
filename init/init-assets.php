@@ -2,7 +2,7 @@
 function tvsDebate_admin_enqueue_style()
 {
     wp_enqueue_style('tvsDebateStyle', plugins_url('../assets/css/min/ss-system-custom-post-admin.css', __FILE__), "", "1.4.32");
-    wp_enqueue_style('tvsDebateMin', plugins_url('../assets/css/min/pico.min.css', __FILE__), "", "2.0.1");
+  //  wp_enqueue_style('tvsDebateMin', plugins_url('../assets/css/min/pico.min.css', __FILE__), "", "2.0.1");
     wp_enqueue_style('tvsDebate-bootsrap-grid', plugins_url('../assets/css/min/bootsrap-grid.css', __FILE__), "", "2.0.1");
 }
 

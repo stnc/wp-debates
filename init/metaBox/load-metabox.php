@@ -35,7 +35,7 @@ function tvsDebate_debate_options_()
 
 
 if (tvsDebate_post_type()["get_type"] == 'debate' || tvsDebate_post_type()["post_type"] == 'debate') {
-	//tvsDebate_debate_options_();
+	tvsDebate_debate_options_();
 	include 'for_debate/speaker-metabox.php';
 	include 'for_debate/video-metabox.php';
 	include "for_debate/related-metabox.php";

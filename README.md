@@ -10,9 +10,10 @@ tarih eklemelerde sorun var ona bak
 breadcrumb 
 mailchimp newsletter 
 debate satin almaya otomatik secme ozelligi 
-
+bilet al kismian ozel bir form olustulmasi gerekiyoor 
 social share ve breadcrumb icin setting e ekleme yapilacak 
-
+edit linkini setting e baglayabilirim 
+http://debates.test/wp-admin/post.php?post=4874&action=edit  busayfadaki metabox css ve buradaki categorileri menude nasil gosterecegim 
 
 doc hazirlama ornegi https://quadlayers.com/edit-breadcrumbs-in-wordpress/
 

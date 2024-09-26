@@ -81,7 +81,6 @@ $json_related_list= json_decode($json_related_list, true);
             }
 		 ?>
             </select>
-            <!-- <span class="form_hint">Please Debate</span> -->
         </li>
     </ul>
 </div>

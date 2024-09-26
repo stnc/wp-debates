@@ -34,30 +34,33 @@ require_once (tvsDebate_init_Path .'init-languages.php');
 require_once (tvsDebate_init_Path ."init-menu.php");
 
 //---- Custom Post type
-require_once (tvsDebate_init_Path .'c_debate-debate-custom-type.php');
-require_once (tvsDebate_init_Path .'c_debate-debate-topics-taxonomy-type.php');
+require_once (tvsDebate_init_Path .'c_debate-debate01-type.php');
+require_once (tvsDebate_init_Path .'c_debate-debate02-topics-taxonomy-type.php');
+require_once (tvsDebate_init_Path .'c_debate-debate03_term-taxonomy-metabox.php');
+require_once (tvsDebate_init_Path .'c_debate-speaker-type.php');
+require_once (tvsDebate_init_Path .'c_debate-transcript-type.php');
+require_once (tvsDebate_init_Path .'c_debate-press01-type.php');
+require_once (tvsDebate_init_Path .'c_debate-press02-topics-taxonomy-type.php');
+require_once (tvsDebate_init_Path .'c_debate-press03_term-taxonomy-metabox.php');
+require_once (tvsDebate_init_Path .'c_debate-opinions-type.php');
 
-require_once (tvsDebate_init_Path .'c_debate-speaker_custom-type.php');
-require_once (tvsDebate_init_Path .'c_debate-transcript_custom-type.php');
-require_once (tvsDebate_init_Path .'c_debate-press_custom-type.php');
-require_once (tvsDebate_init_Path .'c_debate-opinions_custom-type.php');
-
+//----METABOX init for  Custom Post type
 require_once (tvsDebate_init_Path . "metaBox/class.metabox-engine.php");
-
 require_once (tvsDebate_init_Path . "metaBox/load-metabox.php");
 
 //---- Extra Menu  
 require_once (tvsDebate_pages_Path ."about/about.php");
 
 
-//---- SIDEBAR 
+//---- Cancel SIDEBAR 
 // require_once (tvsDebate_init_Path .'c_sidebar.php');
 
 require_once (tvsDebate_init_Path .'init-assets.php');
 
 require_once (tvsDebate_init_Path .'widget/recent_posts.php');
 
-// require_once (tvsDebate_init_Path .'widget/elementor/last-videos.php');
+
+// require_once (tvsDebate_init_Path .'widget/elementor/last-videos.php'); // BETA 
 
 require_once ('theme_page_templates/theme_page_templates-engine.php');
 

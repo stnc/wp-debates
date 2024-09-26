@@ -6,10 +6,34 @@ D:\laragon\www\debates\wp-content\themes\porto\inc\plugins\plugins.php  /// sati
 http://debates.test/opinion/   --- bu sayfanin adi ne olacak bilmiyorum ? 
 
 modallar title bakilacak 
+tarih eklemelerde sorun var ona bak 
+breadcrumb 
+mailchimp newsletter 
+debate satin almaya otomatik secme ozelligi 
+
+social share ve breadcrumb icin setting e ekleme yapilacak 
 
 
+doc hazirlama ornegi https://quadlayers.com/edit-breadcrumbs-in-wordpress/
 
 https://dev.tvsdebates.com/
+
+
+
+
+v
+
+
+<?php
+if(class_exists('breadcrumb_navxt')){
+   echo 'plugin is active';
+}else{
+   echo 'plugin is not active';
+}
+?>
+
+
+
 
 
 

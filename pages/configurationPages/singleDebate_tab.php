@@ -7,12 +7,12 @@ function tvsDebate_spdSettings_init(  ) {
 
     register_setting( 'tvsDebate_spdSettingsSections', 'tvsDebate_spdSettings' );
     
-    add_settings_section(
-        'tvsDebate_CommonConfig_section',
-        __( 'Common', 'wordpress' ),
-        'tvsDebate_spdtabConfig_section_callback',
-        'tvsDebate_spdSettingsSections'
-    );
+    // add_settings_section(
+    //     'tvsDebate_CommonConfig_section',
+    //     __( 'Common', 'wordpress' ),
+    //     'tvsDebate_spdtabConfig_section_callback',
+    //     'tvsDebate_spdSettingsSections'
+    // );
 
 
     add_settings_field(
@@ -37,9 +37,9 @@ function tvsDebate_ShowRelatedCategoryConfig_spdtab_html(  ) {
     <?php
 }
 
-function tvsDebate_spdtabConfig_section_callback(  ) {
-    echo __( 'Coming Soon ', 'wordpress' );
-}
+// function tvsDebate_spdtabConfig_section_callback(  ) {
+//     echo __( 'Coming Soon ', 'wordpress' );
+// }
 
 function tvsDebate_config_spdtab(  ) {
     ?>

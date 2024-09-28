@@ -324,3 +324,43 @@ echo  paginate_links( array(
 	// 'type'  => 'list',
 ) );
 }
+
+
+
+
+function tvs_frontpage_metabox_for_speakerPage($id, $method)
+{
+	$transcriptUrl = "";
+	$opinionUrl = "";
+
+	$opinionPage = get_post_meta($id, 'tvsDebateMB_opinion', true);
+	$transcriptPage = get_post_meta($id, 'tvsDebateMB_transcript', true);
+
+
+
+	if ($transcriptPage != "0") {
+		if ($method == "yes") {
+			 $transcriptUrl = '<li><a class="ajax-popup" href="' . get_permalink($transcriptPage) . '#tvs-modal" data-url="'.  get_home_url().'/transcriptModal?transcriptid=' . $transcriptPage . '#tvs-modal">Transcript</a></li>';
+		//	$transcriptUrl = '<li><a class="ajax-popup" href="/transcriptModal?transcriptid=' . $transcriptPage . '">Transcript</a></li>';
+
+		} else {
+			$transcriptUrl = '<li><a  href="' . get_permalink($transcriptPage) . '">Transcript</a></li>';
+
+		}
+	}
+
+	if ($opinionPage != "0") {
+		if ($method == "yes") {
+			$opinionUrl = '<li><a class="ajax-popup"  href="' . get_permalink($opinionPage) . '#tvs-modal"  data-url="'.  get_home_url().'/OpinionModal?opinionid=' . $opinionPage . '#tvs-modal">Opinion Poll</a></li>';
+			//$opinionUrl = '<li><a class="ajax-popup"  href="/OpinionModal?opinionid=' . $opinionPage . '">Transcript</a></li>';
+
+		} else {
+			$opinionUrl = '<li><a  href="' . get_permalink($opinionPage) . '">Opinion Poll</a></li>';
+
+		}
+	}
+
+	return $transcriptUrl .  $opinionUrl;
+
+}
+

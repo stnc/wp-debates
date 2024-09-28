@@ -63,6 +63,7 @@ if (tvsDebate_post_type()["get_type"] == 'speaker' || tvsDebate_post_type()["pos
 
 if (tvsDebate_post_type()["get_type"] == 'transcript' || tvsDebate_post_type()["post_type"] == 'transcript') {
 	include 'for_transcript/metabox_options.php';
+	// include "for_transcript/_Cancel_metabox_sidebar.php";
 }
 
 if (tvsDebate_post_type()["get_type"] == 'opinion' || tvsDebate_post_type()["post_type"] == 'opinion') {

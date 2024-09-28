@@ -2,13 +2,13 @@
 
 
     if (is_admin()) {
-        add_action("load-post.php", "tvsDebateMB_forDebateSidebar_related_init_metabox");
-        add_action("load-post-new.php", "tvsDebateMB_forDebateSidebar_related_init_metabox");
+        add_action("load-post.php", "tvsDebateMB_forTranscriptSidebar_related_init_metabox");
+        add_action("load-post-new.php", "tvsDebateMB_forTranscriptSidebar_related_init_metabox");
     }
 
 
 
-function tvsDebateMB_forDebateSidebar_trans_selected_save($post_id)
+function tvsDebateMB_forTranscriptSidebar_trans_selected_save($post_id)
 {
     if (wp_is_post_autosave($post_id)) {
         return;
@@ -22,8 +22,8 @@ function tvsDebateMB_forDebateSidebar_trans_selected_save($post_id)
         return $post_id;
     }
 
-    if (isset($_POST['tvsDebateMB_sidebar'])) {
-        update_post_meta($post_id, "tvsDebateMB_sidebar", sanitize_text_field($_POST['tvsDebateMB_sidebar']));
+    if (isset($_POST['tvsTranscriptMB_sidebar'])) {
+        update_post_meta($post_id, "tvsTranscriptMB_sidebar", sanitize_text_field($_POST['tvsTranscriptMB_sidebar']));
     }
 
 
@@ -32,22 +32,22 @@ function tvsDebateMB_forDebateSidebar_trans_selected_save($post_id)
 
 
 /*register metabox */
-function tvsDebateMB_forDebateSidebar_related_init_metabox()
+function tvsDebateMB_forTranscriptSidebar_related_init_metabox()
 {
     // add meta box
-    add_action("add_meta_boxes", "tvsDebate_selected_forDebateSidebar_add_meta_box");
+    add_action("add_meta_boxes", "tvsDebate_selected_forTranscriptSidebar_add_meta_box");
     // metabox save
-    add_action("save_post", "tvsDebateMB_forDebateSidebar_selected_save");
+    add_action("save_post", "tvsDebateMB_forTranscriptSidebar_selected_save");
 }
 
 
-function tvsDebate_selected_forDebateSidebar_add_meta_box()
+function tvsDebate_selected_forTranscriptSidebar_add_meta_box()
 {
     add_meta_box(
-        "tvsDebateMB_forDebateSidebar_",
+        "tvsDebateMB_forTranscriptSidebar_",
         __("Sidebar", "debateLang"),
-        "tvsDebateMB_forDebateSidebar_selected_html",
-        "debate",
+        "tvsDebateMB_forTranscriptSidebar_selected_html",
+        "transcript",
         "side", // normal  side  advanced
         "default"
     );
@@ -56,18 +56,18 @@ function tvsDebate_selected_forDebateSidebar_add_meta_box()
 
 
 
-function tvsDebateMB_forDebateSidebar_selected_html($post)
+function tvsDebateMB_forTranscriptSidebar_selected_html($post)
 {
     ?>
     <div class="wp-core-ui  ss-metabox-form widthOverride">
-        <?php wp_nonce_field(basename(__FILE__), 'tvsDebateMB_forDebateSidebar_nonce'); ?>
+        <?php wp_nonce_field(basename(__FILE__), 'tvsDebateMB_forTranscriptSidebar_nonce'); ?>
         <div class="form-field term-meta-text-wrap">
             <label for="term-meta-text"><?php _e('Sidebar Menu', 'debateLang'); ?></label>
-            <select type="text" id="term-meta-text" name="tvsDebateMB_sidebar" id="tvsDebateMB_sidebar">
+            <select type="text" id="term-meta-text" name="tvsTranscriptMB_sidebar" id="tvsTranscriptMB_sidebar">
 
                 <?php
 
-                $selectedSidebarID = tvsDebate_selected_get_meta_simple('tvsDebateMB_sidebar');
+                $selectedSidebarID = tvsDebate_selected_get_meta_simple('tvsTranscriptMB_sidebar');
                 $selected = "selected";
                 $menus = get_terms('nav_menu');
                 $menus = array_combine(wp_list_pluck($menus, 'term_id'), wp_list_pluck($menus, 'name'));

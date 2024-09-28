@@ -3,6 +3,8 @@ add_action( 'admin_init', 'tvsDebate_CommonSettings_init' );
 
 function tvsDebate_CommonSettings_init(  ) {
     register_setting( 'tvsDebate_doSettingsSections', 'tvsDebate_CommonSettings' );
+
+
     add_settings_section(
         'tvsDebate_CommonConfig_section',
         __( 'Common', 'wordpress' ),
@@ -13,7 +15,7 @@ function tvsDebate_CommonSettings_init(  ) {
     add_settings_field(
         'tvsDebate_usedAjax',
         __( 'Open all pages with modal box', 'wordpress' ),
-        'tvsDebate_usedAjaxConfig_html',
+        'tvsDebate_C_usedAjaxConfig_html',
         'tvsDebate_doSettingsSections',
         'tvsDebate_CommonConfig_section'
     );
@@ -48,7 +50,7 @@ function tvsDebate_CommonSettings_init(  ) {
     
 }
 
-function tvsDebate_usedAjaxConfig_html(  ) {
+function tvsDebate_C_usedAjaxConfig_html(  ) {
     $options = get_option( 'tvsDebate_CommonSettings' );
     ?>
 
@@ -73,7 +75,7 @@ function tvsDebate_CommonConfig_section_callback(  ) {
     echo __( 'Coming Soon ', 'wordpress' );
 }
 
-function stncWpKiosk_config_exchange(  ) {
+function tvsDebate_config_common(  ) {
     ?>
     <form action='options.php' method='post'>
         <?php

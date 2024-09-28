@@ -57,6 +57,3 @@ function tvsDebate_register_press_type()
 
 }
 add_action('init', 'tvsDebate_register_press_type');
-
-
-

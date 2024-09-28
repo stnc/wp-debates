@@ -5,12 +5,21 @@ function stncWpKiosk_Weather_Settings_init(  ) {
 
     // register_setting('stncWpKiosk_WeatherConfig', 'stncWpKiosk_Weather_Settings');
 
-    // add_settings_section(
-    //     'stncWpKiosk_Weather_section',
-    //     __( 'Hava Durumu Ayarlari', 'wordpress' ),
-    //     'stncWpKiosk_Weather_Settings_section_callback',
-    //     'stncWpKiosk_WeatherConfig'
-    // );
+    add_settings_section(
+        'tvsDebate_CommonConfig_section',
+        __( 'Common', 'wordpress' ),
+        'tvsDebate_CommonConfig_section_callback',
+        'tvsDebate_doSettingsSections'
+    );
+
+
+    add_settings_field(
+        'tvsDebate_usedAjax',
+        __( 'Open all pages with modal box', 'wordpress' ),
+        'tvsDebate_usedAjaxConfig_html',
+        'tvsDebate_doSettingsSections',
+        'tvsDebate_CommonConfig_section'
+    );
 
     // add_settings_field(
     //     'stncWpKiosk_text_field_weather_date',
@@ -80,6 +89,26 @@ function stncWpKiosk_Weather_Settings_init(  ) {
     // ); 
 
 }
+
+
+function tvsDebate_usedAjaxConfig_html(  ) {
+    $options = get_option( 'tvsDebate_CommonSettings' );
+    ?>
+
+    <select name='tvsDebate_CommonSettings[tvsDebate_usedAjax]'>
+
+        <option value="yes" <?php selected( $options['tvsDebate_usedAjax'] , "yes"); ?>>Yes</option>
+        <option value="no" <?php selected( $options['tvsDebate_usedAjax'] , "no" ); ?>>No</option>
+
+    </select>
+
+
+    <?php
+}
+
+
+
+
 
 function weather_day_stncWpKiosk_text_field_render(  ) {
     global  $stncWpKiosk_Weather_Settingsoptions;
@@ -163,7 +192,7 @@ function stncWpKiosk_Weather_Settings_section_callback(  ) {
     //echo __( 'bu konuda ayrintili bilgi icin bu sayfaya bakiniz ', 'wordpress' );
 }
 
-function stncWpKiosk_config_weather(  ) {
+function stncWpKiosk_config_sdp(  ) {
     ?>
     <form action='options.php' method='post'>
         <?php

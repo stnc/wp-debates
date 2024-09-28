@@ -1,6 +1,4 @@
 <?php
-
-
 ///depent categories for donate 
 function tvsDebate_create_cat_taxonomies()
 {
@@ -32,5 +30,3 @@ function tvsDebate_create_cat_taxonomies()
 }
 
 add_action('init', 'tvsDebate_create_cat_taxonomies', 0);
-
-

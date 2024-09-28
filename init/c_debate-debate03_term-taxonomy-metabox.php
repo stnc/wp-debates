@@ -1,4 +1,3 @@
-
 <?php 
 // REGISTER TERM META  
 //edit_topics, create_topics , manage_edit-topics_columns  = mesela  burada dikkat edilmesi gereken dosya isimlerindeki   "topics" kelimesinin register taxomideki isimle ayni olmasi 

@@ -1,27 +1,27 @@
 <?php
 
-function tvsDebate_register_speaker_type()
+function tvsDebate_register_press_type()
 {
-    $singular = 'speaker';
-     $plural = __('Speakers', 'debateLang');
+    $singular = 'press';
+     $plural = __('Press', 'debateLang');
      $slug = str_replace(' ', '_', strtolower($singular));
     $labels = array(
         'name' => $plural,
-        'singular_name' => __('Speaker', 'debateLang'),
-        'add_new' =>__('New Speaker Add', 'debateLang'),
-        'add_new_item' => __('New Speaker Add', 'debateLang'),
+        'singular_name' => __('Press', 'debateLang'),
+        'add_new' =>__('New Press Add', 'debateLang'),
+        'add_new_item' => __('New Press Add', 'debateLang'),
         'edit' => __('Edit', 'debateLang'),
         'edit_item' => __('Edit', 'debateLang'),
-        'new_item' => __('New Speaker', 'debateLang'),
-        'view' => __('Show Speaker', 'debateLang'),
-        'view_item' => __('Show Speaker', 'debateLang'),
-        'search_term' =>  __('Search Speaker', 'debateLang'),
-        'parent' =>  __('Sub Speaker', 'debateLang'),
-        'not_found' => __('There are no speaker added', 'debateLang'),
+        'new_item' => __('New Press', 'debateLang'),
+        'view' => __('Show Press', 'debateLang'),
+        'view_item' => __('Show Press', 'debateLang'),
+        'search_term' =>  __('Search Press', 'debateLang'),
+        'parent' =>  __('Sub Press', 'debateLang'),
+        'not_found' => __('There are no press added', 'debateLang'),
         'not_found_in_trash' => __('Trash can empty', 'debateLang'),
     );
     $args = array(
-        'label' => 'Speakers',
+        'label' => 'Press',
         'labels' => $labels,
         'public' => true,
         'publicly_queryable' => true,
@@ -34,7 +34,7 @@ function tvsDebate_register_speaker_type()
         'can_export' => true,
         'delete_with_user' => false,
         'hierarchical' => true,
-        'show_in_nav_menus' => true,
+        'show_in_nav_menus' => false,
         'has_archive' => true,
         'query_var' => true,
         'map_meta_cap' => true,
@@ -47,7 +47,7 @@ function tvsDebate_register_speaker_type()
         'supports' => array(
             'title',
             'excerpt',
-            'editor',
+            // 'editor',
             'thumbnail',
             // 'custom-fields'
         )
@@ -56,9 +56,4 @@ function tvsDebate_register_speaker_type()
     register_post_type($slug, $args);
 
 }
-add_action('init', 'tvsDebate_register_speaker_type');
-
-
-
-
-
+add_action('init', 'tvsDebate_register_press_type');

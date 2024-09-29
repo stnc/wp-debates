@@ -6,6 +6,7 @@ D:\laragon\www\debates\wp-content\themes\porto\inc\plugins\plugins.php  /// sati
 http://debates.test/opinion/   --- bu sayfanin adi ne olacak bilmiyorum ? 
 
 modallar title bakilacak 
+<<<<<<< HEAD
 tarih eklemelerde sorun var ona bak gosterimi ve setting icin ayarlama yapialcak 
 breadcrumb 
 mailchimp newsletter 
@@ -14,6 +15,17 @@ debate satin almaya otomatik secme ozelligi
 social share ve breadcrumb icin setting e ekleme yapilacak 
 
 
+=======
+tarih eklemelerde sorun var ona bak 
+breadcrumb 
+mailchimp newsletter 
+debate satin almaya otomatik secme ozelligi 
+bilet al kismian ozel bir form olustulmasi gerekiyoor 
+social share ve breadcrumb icin setting e ekleme yapilacak 
+edit linkini setting e baglayabilirim 
+http://debates.test/wp-admin/post.php?post=4874&action=edit  busayfadaki metabox css ve buradaki categorileri menude nasil gosterecegim 
+
+>>>>>>> 61ebcc56e281516dcf98820d9a9fd55acf1c9f5a
 doc hazirlama ornegi https://quadlayers.com/edit-breadcrumbs-in-wordpress/
 
 https://dev.tvsdebates.com/
@@ -21,6 +33,7 @@ https://dev.tvsdebates.com/
 
 
 
+<<<<<<< HEAD
 yenilikler 
 paylas butonu 
 doc olayi 
@@ -28,6 +41,9 @@ yeni breadcrumb
 modal lightbox hatalari giderildi 
 
 
+=======
+v
+>>>>>>> 61ebcc56e281516dcf98820d9a9fd55acf1c9f5a
 
 
 <?php

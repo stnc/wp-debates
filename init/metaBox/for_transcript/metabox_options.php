@@ -21,8 +21,8 @@ function tvsDebate_transcript_selected_save($post_id) {
         return $post_id;
     }
 
-    if (isset ($_POST['tvsDebateMB_transcript'])) {
-        update_post_meta($post_id, "tvsDebateMB_transcript", sanitize_text_field($_POST['tvsDebateMB_transcript']));
+    if (isset ($_POST['tvsDebateMB_relatedDebateID'])) {
+        update_post_meta($post_id, "tvsDebateMB_relatedDebateID", sanitize_text_field($_POST['tvsDebateMB_relatedDebateID']));
     }
 
 
@@ -50,7 +50,7 @@ function tvsDebate_selected_transcript_add_meta_box() {
 function tvsDebate_transcript_selected_html($post) {
 wp_nonce_field("_related_selected_nonce", "related_selected_nonce"); 
 
-$json_related_list = tvsDebate_selected_get_meta_simple('tvsDebateMB_transcript');
+$json_related_list = tvsDebate_selected_get_meta_simple('tvsDebateMB_relatedDebateID');
 $json_related_list= json_decode($json_related_list, true);
 ?>
 <div class="wp-core-ui  ss-metabox-form widthOverride">
@@ -58,11 +58,11 @@ $json_related_list= json_decode($json_related_list, true);
         <li>
             <h2 data-required="pageSetting_background_repeat"><strong>Related Data </strong></h2>
         </li>
-        <li id="tvsDebateMB_transcript_li">
-            <label for="tvsDebateMB_transcript">Select Debate</label>
-            <select name="tvsDebateMB_transcript" id="tvsDebateMB_transcript">
+        <li id="tvsDebateMB_relatedDebateID_li">
+            <label for="tvsDebateMB_relatedDebateID">Select Debate</label>
+            <select name="tvsDebateMB_relatedDebateID" id="tvsDebateMB_relatedDebateID">
         <?php
-			$list_transcript_db = tvsDebate_selected_get_meta_simple('tvsDebateMB_transcript');
+			$list_transcript_db = tvsDebate_selected_get_meta_simple('tvsDebateMB_relatedDebateID');
             //print_r($list_transcript_db);
             $args = array("posts_per_page" => -1, "orderby" => "title", "order" => "asc", 'post_type' => 'debate', 'post_status' => array('publish', 'future', 'private'));
             $opinions = get_posts($args);
@@ -81,7 +81,6 @@ $json_related_list= json_decode($json_related_list, true);
             }
 		 ?>
             </select>
-            <!-- <span class="form_hint">Please Debate</span> -->
         </li>
     </ul>
 </div>

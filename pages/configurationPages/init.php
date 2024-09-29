@@ -18,25 +18,25 @@ function tvsDebate_configuration_content(){
         <!-- Here are our tabs -->
         <nav class="nav-tab-wrapper">
           <a href="?post_type=debate&page=tvsDebateSetting" class="nav-tab <?php if($tab===null):?>nav-tab-active<?php endif; ?>">Settings</a>
-          <a href="?post_type=debate&page=tvsDebateSetting&tab=hava" class="nav-tab <?php if($tab==='hava'):?>nav-tab-active<?php endif; ?>">Setting test2</a>
+          <a href="?post_type=debate&page=tvsDebateSetting&tab=sdp" class="nav-tab <?php if($tab==='sdp'):?>nav-tab-active<?php endif; ?>">Single Debate Page Setting</a>
           <a href="?post_type=debate&page=tvsDebateSetting&tab=other" class="nav-tab <?php if($tab==='other'):?>nav-tab-active<?php endif; ?>">Other Setting</a>
         </nav>
         <div class="tab-content">
         <?php switch($tab) :
-          case 'hava':
-             stncWpKiosk_config_weather();
+          case 'sdp':
+            tvsDebate_config_spdtab();
             break;
           case 'other':
             stncWpKiosk_config_Other();
             break;
           default:
-          stncWpKiosk_config_exchange(); 
+          tvsDebate_config_common(); 
             break;
         endswitch; ?>
         </div>
       </div>
     <?php
 }
-require ('debate_tab.php'); 
-require ('weather_tab.php'); 
+require ('common_tab.php'); 
+require ('singleDebate_tab.php'); 
 require ('other_tab.php'); 

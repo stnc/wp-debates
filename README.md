@@ -7,12 +7,16 @@ http://debates.test/opinion/   --- bu sayfanin adi ne olacak bilmiyorum ?
 
 modallar title bakilacak 
 <<<<<<< HEAD
+
 tarih eklemelerde sorun var ona bak gosterimi ve setting icin ayarlama yapialcak 
+
 breadcrumb 
+
 mailchimp newsletter 
+
 debate satin almaya otomatik secme ozelligi 
 
-social share ve breadcrumb icin setting e ekleme yapilacak 
+----social share ve breadcrumb icin setting e ekleme yapilacak 
 
 
 =======

@@ -86,7 +86,7 @@ $id = get_query_var('list');
 		<div class="row debate-row archive-debate-row">
 
 	<!-- col-lg-5 sidebar start  -->
-			<div class="col-lg-5 sidebar porto-alternative-default left-sidebar <?php echo !$mobile_sidebar ? '' : ' mobile-sidebar'; ?>">
+			<div class="col-lg-4 sidebar porto-alternative-default left-sidebar <?php echo !$mobile_sidebar ? '' : ' mobile-sidebar'; ?>">
 
 				<div class="pin-wrapper">
 					<div <?php echo $sticky ?>
@@ -226,7 +226,7 @@ $id = get_query_var('list');
 	<!-- col-lg-5 sidebar end  -->
 
 	<!-- col-lg-7  col-md-7 start  -->
-			<div class="col-lg-7  col-md-7  custom-sm-margin-bottom-1 p-b-lg single-debate">
+			<div class="col-lg-8  col-md-8  custom-sm-margin-bottom-1 p-b-lg single-debate">
 				<article id="post-<?php echo $id; ?>">
 					<!-- Post meta before content -->
 					<div class="post-content">
@@ -297,17 +297,19 @@ $id = get_query_var('list');
 														?>
 														<img width="300" height="300" src="<?php echo $image[0]; ?>">
 													<?php endif; ?>
+
+													<?php
+									if (is_user_logged_in() && current_user_can("edit_post", $id)) {
+										edit_post_link("Edit","","",$speakerId);
+									}
+									?>
 												</div>
 											</div>
 										</div>
 									</div>
 
 									<hr>
-									<?php
-									if (is_user_logged_in() && current_user_can("edit_post", get_the_ID())) {
-										edit_post_link("Edit");
-									}
-									?>
+								
 								<?php endforeach;
 							endif;
 						} else {

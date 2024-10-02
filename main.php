@@ -37,10 +37,18 @@ require_once (tvsDebate_init_Path .'c_debate-debate02-topics-taxonomy-type.php')
 require_once (tvsDebate_init_Path .'c_debate-debate03_term-taxonomy-metabox.php');
 require_once (tvsDebate_init_Path .'c_debate-speaker-type.php');
 require_once (tvsDebate_init_Path .'c_debate-transcript-type.php');
+
+require_once (tvsDebate_init_Path .'c_debate-opinions-type.php');
+
+
+
 require_once (tvsDebate_init_Path .'c_debate-press01-type.php');
 require_once (tvsDebate_init_Path .'c_debate-press02-topics-taxonomy-type.php');
 require_once (tvsDebate_init_Path .'c_debate-press03_term-taxonomy-metabox.php');
-// require_once (tvsDebate_init_Path .'c_debate-opinions-type.php');
+
+require_once (tvsDebate_init_Path .'c_debate-galleries01-type.php');
+// require_once (tvsDebate_init_Path .'c_debate-galleries02-album-taxonomy-type.php');
+
 
 //----METABOX init for  Custom Post type
 require_once (tvsDebate_init_Path . "metaBox/class.metabox-engine.php");

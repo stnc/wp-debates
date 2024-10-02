@@ -19,9 +19,6 @@ function tvsDebate_admin_enqueue_style()
 
 function ssOnlyDebate_script_in_admin($hook)
 {
-    wp_register_script('tvsDebateOnlyJS', plugin_dir_url(__FILE__) . '../assets/js/jquery.repeater.min.js', "", "1.4.28");
-    wp_enqueue_script('tvsDebateOnlyJS');
-
     wp_register_script( 'tvsflatpickrJS', 'https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.js' );
     wp_enqueue_script('tvsflatpickrJS');
 
@@ -30,18 +27,12 @@ function ssOnlyDebate_script_in_admin($hook)
 
 }
 
+function ssOnlyDebate_scriptRep_in_admin($hook)
+{
+    wp_register_script('tvsDebateOnlyJS', plugin_dir_url(__FILE__) . '../assets/js/jquery.repeater.min.js', "", "1.4.28");
+    wp_enqueue_script('tvsDebateOnlyJS');
 
-
-
-
-//for frontend 
-function enqueue_and_register_my_scripts(){
-    wp_register_script( 'tvsmagnific', get_stylesheet_directory_uri().'/assets/js/jquery.magnific-popup.min.js', array(), '1.0.0', true );
-    wp_enqueue_script( 'tvsmagnific' );
 }
-
-add_action( 'wp_enqueue_scripts', 'enqueue_and_register_my_scripts' );
-
 
 
 if (
@@ -49,6 +40,7 @@ if (
     tvsDebate_post_type()["get_type"] === 'speaker' || tvsDebate_post_type()["get_type"] === 'speaker' ||
     tvsDebate_post_type()["get_type"] === 'press' || tvsDebate_post_type()["get_type"] === 'press'
 ) {
+ 
     add_action('admin_enqueue_scripts', 'tvsDebate_admin_enqueue_style');
     add_action('admin_enqueue_scripts', 'ssOnlyDebate_script_in_admin');
     
@@ -57,5 +49,15 @@ if (
 
 
 if (tvsDebate_post_type()["post_type"] === 'debate' || tvsDebate_post_type()["get_type"] === 'debate') {
-    add_action('admin_enqueue_scripts', 'ssOnlyDebate_script_in_admin');
+    add_action('admin_enqueue_scripts', 'ssOnlyDebate_scriptRep_in_admin');
 }
+
+
+
+//for frontend 
+function tvsEnqueue_and_register_my_scripts(){
+    wp_register_script( 'tvsmagnific', get_stylesheet_directory_uri().'/assets/js/jquery.magnific-popup.min.js', array(), '1.0.0', true );
+    wp_enqueue_script( 'tvsmagnific' );
+}
+
+add_action( 'wp_enqueue_scripts', 'tvsEnqueue_and_register_my_scripts' );

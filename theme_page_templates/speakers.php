@@ -163,7 +163,7 @@ $id = get_query_var('list');
 													<div id="flush-collapseVideo" class="accordion-collapse collapse"
 														aria-labelledby="flush-headingTwo" data-bs-parent="#accordionSingleDebate">
 														<div class="accordion-body">
-															<div class="row row-cols-2 row-cols-sm-4 row-cols-md-3 g-3">
+														<div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3">
 																<?php
 																foreach ($json_video_list as $key => $video):
 																	$src = wp_get_attachment_image_src($video["youtubePicture"], 'thumbnail', false, '');

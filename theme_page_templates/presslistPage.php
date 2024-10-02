@@ -85,6 +85,12 @@ $pageName="presslist";
 														<strong> <?php echo $pressPublication ?> </strong> <br>
 													<?php endif;
 											
+
+											
+									if (is_user_logged_in() && current_user_can("edit_post", get_the_ID())) {
+										edit_post_link("Edit");
+									}
+									
 													porto_render_rich_snippets(false);
 													if (!empty($porto_settings['blog-excerpt'])) {
 														echo porto_get_excerpt($porto_settings['blog-excerpt-length'], false);

@@ -29,7 +29,7 @@ function tvsDebate_register_press_type()
         'show_ui' => true,
         'show_in_menu' => "edit.php?post_type=debate",
         'show_in_admin_bar' => true,
-        'menu_position' => 30,
+        'menu_position' => 40,
         'menu_icon' => 'dashicons-images-alt2',
         'can_export' => true,
         'delete_with_user' => false,

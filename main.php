@@ -29,9 +29,7 @@ define('tvsDebate_init_Path', value: plugin_dir_path(__FILE__) . 'init/');
 
 define('tvsDebate_pages_Path', plugin_dir_path(__FILE__) . 'pages/');
 
-require_once (tvsDebate_init_Path .'init-languages.php');
 
-require_once (tvsDebate_init_Path ."init-menu.php");
 
 //---- Custom Post type
 require_once (tvsDebate_init_Path .'c_debate-debate01-type.php');
@@ -42,7 +40,7 @@ require_once (tvsDebate_init_Path .'c_debate-transcript-type.php');
 require_once (tvsDebate_init_Path .'c_debate-press01-type.php');
 require_once (tvsDebate_init_Path .'c_debate-press02-topics-taxonomy-type.php');
 require_once (tvsDebate_init_Path .'c_debate-press03_term-taxonomy-metabox.php');
-require_once (tvsDebate_init_Path .'c_debate-opinions-type.php');
+// require_once (tvsDebate_init_Path .'c_debate-opinions-type.php');
 
 //----METABOX init for  Custom Post type
 require_once (tvsDebate_init_Path . "metaBox/class.metabox-engine.php");
@@ -67,6 +65,13 @@ require_once ('theme_page_templates/theme_page_templates-engine.php');
 require_once(tvsDebate_pages_Path ."configurationPages/init.php");
 
 require_once (tvsDebate_init_Path . "rewrite_rule_list.php");
+
+
+require_once (tvsDebate_init_Path .'init-languages.php');
+
+require_once (tvsDebate_init_Path ."init-menu.php");
+
+
 
 // include "other/customTaxonomies.php";
 // include "other/example_post_type.php";

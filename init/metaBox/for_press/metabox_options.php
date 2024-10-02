@@ -48,16 +48,16 @@ $tvs_press_OptionsPageSetting = array(
 
 		
 
-		array(
-			'type' => 'info',
-			'name' => $tvs_press_prefix_press . 'link',
-			// 'title' => __('Categories Link', 'debateLang'),
-			'title' => "",
-			'description' => '  <a href=" /wp-admin/edit-tags.php?taxonomy=presslist&post_type=press">Categories Link</a>  ',
-			'style' => '',
-			'class' => '',
-			'class_li' => '',
-		),
+		// array(
+		// 	'type' => 'info',
+		// 	'name' => $tvs_press_prefix_press . 'link',
+		// 	// 'title' => __('Categories Link', 'debateLang'),
+		// 	'title' => "",
+		// 	'description' => '  <a href=" /wp-admin/edit-tags.php?taxonomy=presslist&post_type=press">Categories Link</a>  ',
+		// 	'style' => '',
+		// 	'class' => '',
+		// 	'class_li' => '',
+		// ),
 
 	)
 );

@@ -303,7 +303,11 @@ $id = get_query_var('list');
 									</div>
 
 									<hr>
-
+									<?php
+									if (is_user_logged_in() && current_user_can("edit_post", get_the_ID())) {
+										edit_post_link("Edit");
+									}
+									?>
 								<?php endforeach;
 							endif;
 						} else {

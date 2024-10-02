@@ -4,6 +4,9 @@ function tvsDebate_admin_enqueue_style()
     wp_enqueue_style('tvsDebateStyle', plugins_url('../assets/css/min/ss-system-custom-post-admin.css', __FILE__), "", "1.4.32");
   //  wp_enqueue_style('tvsDebateMin', plugins_url('../assets/css/min/pico.min.css', __FILE__), "", "2.0.1");
     wp_enqueue_style('tvsDebate-bootsrap-grid', plugins_url('../assets/css/min/bootsrap-grid.css', __FILE__), "", "2.0.1");
+
+    wp_register_style( 'tvsflatpickr', 'https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.css' );
+    wp_enqueue_style('tvsflatpickr');
 }
 
 
@@ -22,10 +25,15 @@ if (
 
 function ssOnlyDebate_script_in_admin($hook)
 {
-    // wp_register_script( 'tvsDebateOnly-admin',plugin_dir_url( __FILE__ ) . '../assets/js/knockout-min.js', '',true );
-        // wp_register_script( 'tvsDebateOnly-admin',plugin_dir_url( __FILE__ ) . '../assets/js/CloneData.js', "","1.4.28" );
-    wp_register_script('tvsDebateOnly-admin', plugin_dir_url(__FILE__) . '../assets/js/jquery.repeater.min.js', "", "1.4.28");
-    wp_enqueue_script('tvsDebateOnly-admin');
+    wp_register_script('tvsDebateOnlyJS', plugin_dir_url(__FILE__) . '../assets/js/jquery.repeater.min.js', "", "1.4.28");
+    wp_enqueue_script('tvsDebateOnlyJS');
+
+    wp_register_script( 'tvsflatpickrJS', 'https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.js' );
+    wp_enqueue_script('tvsflatpickrJS');
+
+    // wp_register_script( 'tvsflatpickrRJS', 'https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/rangePlugin.js' );
+    // wp_enqueue_script('tvsflatpickrRJS');
+
 }
 
 
@@ -38,6 +46,6 @@ if (tvsDebate_post_type()["post_type"] === 'debate' || tvsDebate_post_type()["ge
 add_action( 'wp_enqueue_scripts', 'enqueue_and_register_my_scripts' );
 
 function enqueue_and_register_my_scripts(){
-    wp_register_script( 'my_child_script', get_stylesheet_directory_uri().'/assets/js/jquery.magnific-popup.min.js', array(), '1.0.0', true );
-    wp_enqueue_script( 'my_child_script' );
+    wp_register_script( 'tvsmagnific', get_stylesheet_directory_uri().'/assets/js/jquery.magnific-popup.min.js', array(), '1.0.0', true );
+    wp_enqueue_script( 'tvsmagnific' );
 }

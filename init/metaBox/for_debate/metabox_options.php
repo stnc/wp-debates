@@ -9,14 +9,34 @@ $tvs_debate_OptionsPageSetting = array(
 	'context' => 'side',
 	// 'context' => 'normal',
 	'priority' => 'default',
-	'class' => '',
+	'class' => 'ss-metabox-form',
 	'style' => '',
 	'title_h2' => true,
 	'fields' => array(
 
 		array(
+			'name' => $tvs_debate_prefix_debate . 'date',
+			'title' => __('Date', 'debateLang'),
+			'type' => 'date',
+			'description' => '',
+			'style' => '',
+			'class' => '',
+			'class_li' => '',
+		),
+
+		array(
 			'name' => $tvs_debate_prefix_debate . 'broadcast_date',
 			'title' => __('Broadcast Date', 'debateLang'),
+			'type' => 'text',
+			'description' => '',
+			'style' => '',
+			'class' => '',
+			'class_li' => '',
+		),
+
+		array(
+			'name' => $tvs_debate_prefix_debate . 'motionPassed',
+			'title' => __('Motion Passed', 'debateLang'),
 			'type' => 'text',
 			'description' => '',
 			'style' => '',

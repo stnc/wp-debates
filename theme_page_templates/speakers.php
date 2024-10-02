@@ -230,7 +230,19 @@ $id = get_query_var('list');
 				<article id="post-<?php echo $id; ?>">
 					<!-- Post meta before content -->
 					<div class="post-content">
-						<?php
+					<?php
+            $date = get_post_meta($id, 'tvsDebateMB_date', true);
+            $WpDateFormat = get_option('date_format');
+            $WpDateFormat = date($WpDateFormat, strtotime($date));
+            ?>
+            <div class="datetime"><strong><?php echo $WpDateFormat ?></strong></div>
+
+
+            <?php
+            $motionPassed = get_post_meta($id, 'tvsDebateMB_motionPassed', true);
+            if ($motionPassed != ""): ?>
+              <strong>MOTION PASSED : </strong><?php echo $motionPassed ?> <br>
+            <?php endif ;
 
 						$post = get_post($id);
 						// print_r($post);
@@ -259,6 +271,8 @@ $id = get_query_var('list');
 									$speaker_post = get_post($speakerId);
 									$speaker_content = apply_filters('the_content', $speaker_post->post_content)
 										?>
+
+
 									<div class="row">
 										<div class="col-md-12">
 											<div

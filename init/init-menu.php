@@ -1,7 +1,7 @@
 <?php
 function tvsDebate_configuration_menu()
 {
-    add_submenu_page("edit.php?post_type=debate", __("Locations", 'debateLang'), __("Press List Categories", 'debateLang'), "edit_posts", "edit-tags.php?taxonomy=presslist&post_type=press");//chfw condi
+    add_submenu_page("edit.php?post_type=debate", __("Locations", 'debateLang'), __("Press List Categories", 'debateLang'), "edit_posts", "edit-tags.php?taxonomy=presslist&post_type=debate");//chfw condi
 
     add_submenu_page( "edit.php?post_type=debate",  __( 'Settings', 'debateLang' ), __( 'Settings', 'debateLang' ), 'manage_options', 'tvsDebateSetting', 'tvsDebate_configuration_content' ); 
 

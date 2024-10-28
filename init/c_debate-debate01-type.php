@@ -2,7 +2,7 @@
 function tvsDebate_register_debate_type()
 {
     $singular = 'debate';
-    $plural = __('Debates', 'debateLang');
+    $plural = __('TVS Debates', 'debateLang');
     $slug = str_replace(' ', '_', strtolower($singular));
     $labels = array(
         'name' => $plural,
@@ -28,7 +28,7 @@ function tvsDebate_register_debate_type()
         'show_in_menu' => true,
         'show_in_admin_bar' => true,
         'menu_position' => 30,
-        'menu_icon' => 'dashicons-images-alt2',
+        'menu_icon' => 'dashicons-groups',
         'can_export' => true,
         'delete_with_user' => false,
         'hierarchical' => true,

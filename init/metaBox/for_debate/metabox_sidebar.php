@@ -37,7 +37,7 @@ function tvsDebateMB_forDebateSidebar_related_init_metabox()
     // add meta box
     add_action("add_meta_boxes", "tvsDebate_selected_forDebateSidebar_add_meta_box");
     // metabox save
-    add_action("save_post", "tvsDebateMB_forDebateSidebar_selected_save");
+    add_action("save_post", "tvsDebateMB_forDebateSidebar_trans_selected_save");
 }
 
 

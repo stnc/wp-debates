@@ -86,7 +86,7 @@ $id = get_query_var('list');
 		<div class="row debate-row archive-debate-row">
 
 	<!-- col-lg-5 sidebar start  -->
-			<div class="col-lg-5 sidebar porto-alternative-default left-sidebar <?php echo !$mobile_sidebar ? '' : ' mobile-sidebar'; ?>">
+			<div class="col-lg-4 sidebar porto-alternative-default left-sidebar <?php echo !$mobile_sidebar ? '' : ' mobile-sidebar'; ?>">
 
 				<div class="pin-wrapper">
 					<div <?php echo $sticky ?>
@@ -163,7 +163,7 @@ $id = get_query_var('list');
 													<div id="flush-collapseVideo" class="accordion-collapse collapse"
 														aria-labelledby="flush-headingTwo" data-bs-parent="#accordionSingleDebate">
 														<div class="accordion-body">
-															<div class="row row-cols-2 row-cols-sm-4 row-cols-md-3 g-3">
+														<div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3">
 																<?php
 																foreach ($json_video_list as $key => $video):
 																	$src = wp_get_attachment_image_src($video["youtubePicture"], 'thumbnail', false, '');
@@ -226,11 +226,23 @@ $id = get_query_var('list');
 	<!-- col-lg-5 sidebar end  -->
 
 	<!-- col-lg-7  col-md-7 start  -->
-			<div class="col-lg-7  col-md-7  custom-sm-margin-bottom-1 p-b-lg single-debate">
+			<div class="col-lg-8  col-md-8  custom-sm-margin-bottom-1 p-b-lg single-debate">
 				<article id="post-<?php echo $id; ?>">
 					<!-- Post meta before content -->
 					<div class="post-content">
-						<?php
+					<?php
+            $date = get_post_meta($id, 'tvsDebateMB_date', true);
+            $WpDateFormat = get_option('date_format');
+            $WpDateFormat = date($WpDateFormat, strtotime($date));
+            ?>
+            <div class="datetime"><strong><?php echo $WpDateFormat ?></strong></div>
+
+
+            <?php
+            $motionPassed = get_post_meta($id, 'tvsDebateMB_motionPassed', true);
+            if ($motionPassed != ""): ?>
+              <strong>MOTION PASSED : </strong><?php echo $motionPassed ?> <br>
+            <?php endif ;
 
 						$post = get_post($id);
 						// print_r($post);
@@ -259,6 +271,8 @@ $id = get_query_var('list');
 									$speaker_post = get_post($speakerId);
 									$speaker_content = apply_filters('the_content', $speaker_post->post_content)
 										?>
+
+
 									<div class="row">
 										<div class="col-md-12">
 											<div
@@ -283,13 +297,19 @@ $id = get_query_var('list');
 														?>
 														<img width="300" height="300" src="<?php echo $image[0]; ?>">
 													<?php endif; ?>
+
+													<?php
+									if (is_user_logged_in() && current_user_can("edit_post", $id)) {
+										edit_post_link("Edit","","",$speakerId);
+									}
+									?>
 												</div>
 											</div>
 										</div>
 									</div>
 
 									<hr>
-
+								
 								<?php endforeach;
 							endif;
 						} else {

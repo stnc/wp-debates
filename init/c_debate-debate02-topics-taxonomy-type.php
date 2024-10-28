@@ -1,5 +1,4 @@
 <?php
-///depent categories for donate 
 function tvsDebate_create_cat_taxonomies()
 {
     // Add new taxonomy, make it hierarchical (like categories)

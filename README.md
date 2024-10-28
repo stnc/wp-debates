@@ -3,26 +3,43 @@
 D:\laragon\www\debates\wp-content\themes\porto\inc\plugins\plugins.php  /// satir  10 $plugin = PORTO_PLUGINS . '/sidebar-generator/sidebar_generator.php';
 
 
+
+https://www.mc4wp.com/
+
+
+press deki tarihe bak 
+
+
+
+
 http://debates.test/opinion/   --- bu sayfanin adi ne olacak bilmiyorum ? 
 
+<<<<<<< HEAD
+---modallar title bakilacak 
+=======
 modallar title bakilacak 
 <<<<<<< HEAD
+
 tarih eklemelerde sorun var ona bak gosterimi ve setting icin ayarlama yapialcak 
+
 breadcrumb 
+
 mailchimp newsletter 
+
 debate satin almaya otomatik secme ozelligi 
 
-social share ve breadcrumb icin setting e ekleme yapilacak 
+----social share ve breadcrumb icin setting e ekleme yapilacak 
 
 
 =======
+>>>>>>> 47ed97c842f4cba818a772daa766de966ced2c51
 tarih eklemelerde sorun var ona bak 
-breadcrumb 
-mailchimp newsletter 
-debate satin almaya otomatik secme ozelligi 
-bilet al kismian ozel bir form olustulmasi gerekiyoor 
-social share ve breadcrumb icin setting e ekleme yapilacak 
-edit linkini setting e baglayabilirim 
+---breadcrumb 
+---mailchimp newsletter 
+--debate satin almaya otomatik secme ozelligi 
+--bilet al kismian ozel bir form olustulmasi gerekiyoor 
+--social share ve breadcrumb icin setting e ekleme yapilacak 
+--edit linkini setting e baglayabilirim 
 http://debates.test/wp-admin/post.php?post=4874&action=edit  busayfadaki metabox css ve buradaki categorileri menude nasil gosterecegim 
 
 >>>>>>> 61ebcc56e281516dcf98820d9a9fd55acf1c9f5a

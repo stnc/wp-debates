@@ -28,7 +28,7 @@ function tvs_add_form_field_TopicMBSidebarMenuSelect() { ?>
     <?php wp_nonce_field( basename( __FILE__ ), 'tvsTopicsMB_SidebarMenu_nonce' ); ?>
     <div class="form-field term-meta-text-wrap"> 
         <label for="term-meta-text"><?php _e( 'Sidebar Menu', 'debateLang' ); ?></label>
-        <select  type="text" name="tvsTopicsMBSidebarMenuSelect" id="term-meta-text" name="tvsDebateMB_opinion" id="tvsDebateMB_opinion">
+        <select  type="text" name="tvsTopicsMBSidebarMenuSelect" id="term-meta-text" >
 
         <?php
     $menus = get_terms( 'nav_menu' );
@@ -66,7 +66,7 @@ function tvs_edit_form_field_TopicMBSidebarMenuSelect( $term ) {
         <td>
             <?php wp_nonce_field( basename( __FILE__ ), 'tvsTopicsMB_SidebarMenu_nonce' ); ?>
             <!-- <input value="<?php echo esc_attr( $value ); ?>" class="term-meta-text-field"  /> -->
-            <select  type="text" name="tvsTopicsMBSidebarMenuSelect" id="tvsTopicsMBSidebarMenuSelectID" name="tvsDebateMB_opinion" id="tvsDebateMB_opinion">
+            <select  type="text" name="tvsTopicsMBSidebarMenuSelect" id="tvsTopicsMBSidebarMenuSelectID">
             <?php
             if ($menus) {
             echo '<option  value="0">Select Opinion</option>';

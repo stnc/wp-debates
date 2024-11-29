@@ -32,27 +32,27 @@ define('tvsDebate_pages_Path', plugin_dir_path(__FILE__) . 'pages/');
 
 
 //---- Custom Post type
-require_once (tvsDebate_init_Path .'c_debate-debate01-type.php');
-require_once (tvsDebate_init_Path .'c_debate-debate02-topics-taxonomy-type.php');
-//require_once (tvsDebate_init_Path .'___c_debate-debate03_term-taxonomy-metabox.php'); // //cancel - deprecated
-require_once (tvsDebate_init_Path .'c_debate-speaker-type.php');
-require_once (tvsDebate_init_Path .'c_debate-transcript-type.php');
+require_once (tvsDebate_init_Path .'debate-plugin/debate01-type.php');
+require_once (tvsDebate_init_Path .'debate-plugin/debate02-topics-taxonomy-type.php');
+require_once (tvsDebate_init_Path .'debate-plugin/debate03_term-taxonomy-metabox.php'); 
+require_once (tvsDebate_init_Path .'speaker-plugin/speaker-type.php');
+require_once (tvsDebate_init_Path .'transcript-plugin/transcript-type.php');
 
-require_once (tvsDebate_init_Path .'c_debate-opinions-type.php');
+require_once (tvsDebate_init_Path .'opinions-plugin/opinions-type.php');
 
 
 
-require_once (tvsDebate_init_Path .'c_debate-press01-type.php');
-require_once (tvsDebate_init_Path .'c_debate-press02-topics-taxonomy-type.php');
-//require_once (tvsDebate_init_Path .'___c_debate-press03_term-taxonomy-metabox.php'); //cancel -- deprecated
+require_once (tvsDebate_init_Path .'press-plugin/press01-type.php');
+require_once (tvsDebate_init_Path .'press-plugin/press02-topics-taxonomy-type.php');
+require_once (tvsDebate_init_Path .'press-plugin/press03_term-taxonomy-metabox.php'); 
 
-require_once (tvsDebate_init_Path .'c_debate-galleries01-type.php');
-// require_once (tvsDebate_init_Path .'c_debate-galleries02-album-taxonomy-type.php'); //cancel -- deprecated 
+require_once (tvsDebate_init_Path .'galleries-plugin/galleries-type.php');
+// require_once (tvsDebate_init_Path .'galleries-plugin/___c_debate-galleries02-album-taxonomy-type.php'); //cancel -- deprecated 
 
 
 //----METABOX init for  Custom Post type
 require_once (tvsDebate_init_Path . "metaBox/class.metabox-engine.php");
-require_once (tvsDebate_init_Path . "metaBox/load-metabox.php");
+require_once (tvsDebate_init_Path . "init-metabox.php");
 
 //---- Extra Menu  
 require_once (tvsDebate_pages_Path ."about/about.php");

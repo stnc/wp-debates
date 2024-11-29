@@ -44,7 +44,7 @@ require_once (tvsDebate_init_Path .'opinions-plugin/opinions-type.php');
 
 require_once (tvsDebate_init_Path .'press-plugin/press01-type.php');
 require_once (tvsDebate_init_Path .'press-plugin/press02-topics-taxonomy-type.php');
-require_once (tvsDebate_init_Path .'press-plugin/press03_term-taxonomy-metabox.php'); 
+require_once (tvsDebate_init_Path .'press-plugin/press03-term-taxonomy-metabox.php'); 
 
 require_once (tvsDebate_init_Path .'galleries-plugin/galleries-type.php');
 // require_once (tvsDebate_init_Path .'galleries-plugin/___c_debate-galleries02-album-taxonomy-type.php'); //cancel -- deprecated 

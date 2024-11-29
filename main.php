@@ -61,7 +61,7 @@ require_once (tvsDebate_pages_Path ."about/about.php");
 
 require_once (tvsDebate_init_Path .'init-assets.php');
 
-require_once (tvsDebate_init_Path .'widget/recent_posts.php');
+require_once (tvsDebate_init_Path .'widget/recent-posts.php');
 
 
 // require_once (tvsDebate_init_Path .'widget/elementor/last-videos.php'); // BETA 
@@ -70,7 +70,7 @@ require_once ('theme_page_templates/theme_page_templates-engine.php');
 
 require_once(tvsDebate_pages_Path ."configurationPages/init.php");
 
-require_once (tvsDebate_init_Path . "rewrite_rule_list.php");
+require_once (tvsDebate_init_Path . "rewrite-rule-list.php");
 
 
 require_once (tvsDebate_init_Path .'init-languages.php');

@@ -27,7 +27,7 @@ function tvs_cc($data)
 
 function tvsDebate_debate_options_()
 {
-	include ('debate-plugin/metabox/metabox_options.php');
+	include ('debate-plugin/metabox/metabox-options.php');
 	$tvsDebate_debate_options['0'] = $tvs_debate_OptionsPageSetting;
 	new ssSytemMetaboxEngine($tvsDebate_debate_options, 'tvs_debate-setting', true);
 }
@@ -39,13 +39,13 @@ if (tvsDebate_post_type()["get_type"] == 'debate' || tvsDebate_post_type()["post
 	include 'debate-plugin/metabox/speaker-metabox.php';
 	include 'debate-plugin/metabox/video-metabox.php';
 	include "debate-plugin/metabox/related-metabox.php";
-	include "debate-plugin/metabox/metabox_sidebar.php";
+	include "debate-plugin/metabox/metabox-sidebar.php";
 }
 
 
 function tvsDebate_press_options_()
 {
-	include ('press-plugin/metabox/metabox_options.php');
+	include ('press-plugin/metabox/metabox-options.php');
 	$tvsDebate_press_options['0'] = $tvs_press_OptionsPageSetting;
 	new ssSytemMetaboxEngine($tvsDebate_press_options, 'tvs_debate-setting', true);
 
@@ -62,12 +62,12 @@ if (tvsDebate_post_type()["get_type"] == 'speaker' || tvsDebate_post_type()["pos
 */
 
 if (tvsDebate_post_type()["get_type"] == 'transcript' || tvsDebate_post_type()["post_type"] == 'transcript') {
-	include 'transcript-plugin/metabox/metabox_options.php';
-	// include "for_transcript/_Cancel_metabox_sidebar.php";
+	include 'transcript-plugin/metabox/metabox-options.php';
+	// include "for_transcript/_Cancel-metabox-sidebar.php";
 }
 
 if (tvsDebate_post_type()["get_type"] == 'opinion' || tvsDebate_post_type()["post_type"] == 'opinion') {
-	include 'opinions-plugin/metabox/metabox_options.php';
+	include 'opinions-plugin/metabox/metabox-options.php';
 }
 
 
@@ -76,7 +76,7 @@ if (tvsDebate_post_type()["get_type"] == 'opinion' || tvsDebate_post_type()["pos
 
 // function tvs_wp_post_options_()
 // {
-// 	include('for-post/metabox_options.php');
+// 	include('for-post/metabox-options.php');
 // 	$tvsDebate_debate_options['0'] = $tvsDebate_OptionsPageSetting;
 // 	 new tvs_wp_metabox_engine($tvsDebate_debate_options, 'tvs_wp_post-Setting', true);
 // }

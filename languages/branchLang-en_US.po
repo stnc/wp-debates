@@ -89,38 +89,3 @@ msgstr ""
 msgid "Category Edit"
 msgstr ""
 
-msgid "New Donate Page"
-msgstr ""
-
-msgid "Show Donate Page"
-msgstr ""
-
-msgid "Search Donate Page"
-msgstr ""
-
-msgid "Sub Donate Page"
-msgstr ""
-
-msgid "There are no Speaker added"
-msgstr ""
-
-msgid "Donate Categories"
-msgstr ""
-
-msgid "New Donate Category"
-msgstr ""
-
-msgid "Donate Search Category"
-msgstr ""
-
-msgid "Donate Category"
-msgstr ""
-
-msgid "All Donate Categories"
-msgstr ""
-
-msgid "Sub Donate Categories"
-msgstr ""
-
-msgid "Donate Category Edit"
-msgstr ""

@@ -96,35 +96,3 @@ msgstr "Kategori Duzenle"
 msgid "New Donate Page"
 msgstr "Yeni Bagis"
 
-msgid "Show Donate Page"
-msgstr "Bağış Sayfasını Göster"
-
-msgid "Search Donate Page"
-msgstr "Ara"
-
-msgid "Sub Donate Page"
-msgstr "Alt Bağış Sayfasi"
-
-msgid "There are no donate added"
-msgstr "Bağış eklenmedi"
-
-msgid "Donate Categories"
-msgstr "Bağış Katgorileri"
-
-msgid "New Donate Category"
-msgstr "Yeni Bağış Kategorisi"
-
-msgid "Donate Search Category"
-msgstr "Bağış Kategorisi Ara"
-
-msgid "Donate Category"
-msgstr "Bağış Katgorisi"
-
-msgid "All Donate Categories"
-msgstr "Tum Bağış Katgorileri"
-
-msgid "Sub Donate Categories"
-msgstr "Alt Bağış Katgorileri"
-
-msgid "Donate Category Edit"
-msgstr "Bağış Kategorisi Duzenle"

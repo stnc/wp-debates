@@ -1,6 +1,9 @@
-<img src='https://github.com/stnc/wp-debates/blob/main/s1.png?raw=true' >
-<img src='https://github.com/stnc/wp-debates/blob/main/s2.png?raw=true'>
-<img src='https://github.com/stnc/wp-debates/blob/main/s3.png?raw=true'>
-<img src='https://github.com/stnc/wp-debates/blob/main/s3.png?raw=true'>
 
-main/assets
+<img src='https://github.com/stnc/wp-debates/blob/main/assets/homepage.jpeg?raw=true' >
+
+<img src='https://github.com/stnc/wp-debates/blob/main/assets/singlepage.jpeg?raw=true'>
+
+<img src='https://github.com/stnc/wp-debates/blob/main/assets/galleries.jpeg?raw=true'>
+
+<img src='https://github.com/stnc/wp-debates/blob/main/assets/list_page.jpeg?raw=true'>
+
